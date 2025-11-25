@@ -19,6 +19,19 @@ code {
 
 @layer base {
     :root {
+        /* Core Premium Color Palette - Defined once for Tailwind integration */
+        --color-deepblue: #002C5F;
+        --color-purple: #7E57C2;
+        --color-pink: #EC4899;
+        --color-orange: #F78B1F;
+        --color-green: #22C55E;
+        --color-yellow: #FACC15;
+        --color-skyblue: #38BDF8;
+        --color-darkred: #B91C1C;
+        --color-black: #0A0A0A;
+        --color-white: #ffffff;
+        
+        /* Shadcn/Radix Theme Variables */
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
         --card: 0 0% 100%;
