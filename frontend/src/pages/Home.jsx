@@ -19,6 +19,46 @@ const iconMap = {
   Wrench,
 };
 
+// Mock data for services when API is not available
+const mockServices = [
+  {
+    id: 1,
+    title: 'Digital Transformation',
+    description: 'Modernize your business with cutting-edge digital solutions that drive efficiency and growth.',
+    icon: 'Zap'
+  },
+  {
+    id: 2,
+    title: 'Cybersecurity',
+    description: 'Protect your digital assets with enterprise-grade security solutions and threat prevention.',
+    icon: 'Shield'
+  },
+  {
+    id: 3,
+    title: 'Cloud Solutions',
+    description: 'Scale your infrastructure with flexible, secure cloud computing and migration services.',
+    icon: 'Cloud'
+  },
+  {
+    id: 4,
+    title: 'Data Analytics',
+    description: 'Transform raw data into actionable insights with advanced analytics and AI-powered tools.',
+    icon: 'BarChart3'
+  },
+  {
+    id: 5,
+    title: 'Compliance & Risk',
+    description: 'Navigate regulatory requirements with comprehensive compliance and risk management solutions.',
+    icon: 'FileCheck'
+  },
+  {
+    id: 6,
+    title: 'IT Advisory',
+    description: 'Strategic technology consulting to align your IT infrastructure with business objectives.',
+    icon: 'Wrench'
+  }
+];
+
 const industries = [
   {
     name: 'Banking & Finance',
@@ -123,11 +163,13 @@ const Home = () => {
           axios.get(`${API}/case-studies`),
           axios.get(`${API}/blog`),
         ]);
-        setServices(servicesRes.data);
+        setServices(servicesRes.data.length > 0 ? servicesRes.data : mockServices);
         setCaseStudies(casesRes.data.slice(0, 3));
         setBlogPosts(blogRes.data.slice(0, 4));
       } catch (error) {
         console.error('Error fetching data:', error);
+        // Use mock data when API fails
+        setServices(mockServices);
       }
     };
 
@@ -155,38 +197,46 @@ const Home = () => {
 
   const renderStars = (count) => {
     return Array.from({ length: count }, (_, i) => (
-      <Star key={i} className="w-4 h-4 text-orange-500 fill-orange-500" />
+      <Star key={i} className="w-4 h-4 text-trine-orange fill-trine-orange" />
     ));
   };
 
   return (
     <main className="min-h-screen bg-white" data-testid="home-page" role="main">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-green-50 pt-20" aria-labelledby="hero-title">
-        <div className="container text-center px-6">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-sky-50 to-green-50 pt-20" aria-labelledby="hero-title">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-trine-orange/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-trine-lightblue/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-trine-green/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container text-center px-6 relative z-10">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 border border-orange-200 mb-8">
-              <span className="text-sm font-semibold text-orange-800">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-lightblue/10 border border-trine-orange/20 mb-8">
+              <Sparkles className="w-4 h-4 text-trine-orange" />
+              <span className="text-sm font-semibold bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text text-transparent">
                 Digital Innovation & Excellence
               </span>
             </div>
             
             <h1 id="hero-title" className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight" data-testid="hero-title">
-              <span className="block text-black">
+              <span className="block text-trine-black">
                 Transform
               </span>
-              <span className="block text-orange-600 mt-2">
+              <span className="block bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green bg-clip-text text-transparent mt-2">
                 Your Future
               </span>
             </h1>
             
             <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed text-gray-600" data-testid="hero-subtitle">
-              Enterprise solutions in <span className="font-semibold text-black">consulting, cybersecurity,</span> and <span className="font-semibold text-orange-600">digital transformation</span> that drive measurable business growth.
+              Enterprise solutions in <span className="font-semibold text-trine-black">consulting, cybersecurity,</span> and <span className="font-semibold text-trine-orange">digital transformation</span> that drive measurable business growth.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
               <Link to="/services" data-testid="explore-services-btn" className="group">
-                <button className="px-8 py-4 rounded-lg bg-orange-600 text-white font-semibold text-lg overflow-hidden transition-all duration-300 hover:bg-orange-700 hover:shadow-lg">
+                <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-trine-orange to-trine-orange/90 text-white font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-trine-orange/30 hover:scale-105">
                   <span className="flex items-center gap-2">
                     Explore Services
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -195,7 +245,7 @@ const Home = () => {
               </Link>
               
               <Link to="/contact" data-testid="get-consultation-btn" className="group">
-                <button className="px-8 py-4 rounded-lg bg-white border-2 border-orange-600 text-orange-600 font-semibold text-lg hover:bg-orange-50 transition-all duration-300 flex items-center gap-2">
+                <button className="px-8 py-4 rounded-lg bg-white border-2 border-trine-lightblue text-trine-lightblue font-semibold text-lg hover:bg-trine-lightblue hover:text-white transition-all duration-300 flex items-center gap-2">
                   Get Started
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
@@ -209,7 +259,7 @@ const Home = () => {
       <section className="py-16 bg-white" aria-labelledby="partners-title">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 id="partners-title" className="text-3xl font-bold text-black mb-4">
+            <h2 id="partners-title" className="text-3xl font-bold text-trine-black mb-4">
               Trusted Partners
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -223,7 +273,7 @@ const Home = () => {
                 key={index}
                 className="group animate-on-scroll opacity-0"
               >
-                <div className="text-3xl font-bold text-gray-400 group-hover:text-orange-600 transition-colors duration-300">
+                <div className="text-3xl font-bold text-gray-400 group-hover:text-trine-orange transition-colors duration-300">
                   {partner.logo}
                 </div>
               </div>
@@ -233,11 +283,12 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-green-50" aria-labelledby="about-title">
+      <section className="py-20 bg-gradient-to-br from-sky-50 to-green-50" aria-labelledby="about-title">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll opacity-0">
               <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-trine-orange/20 via-trine-lightblue/20 to-trine-green/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
                 <div className="relative overflow-hidden rounded-2xl shadow-lg">
                   <img
                     src="https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?w=800"
@@ -250,23 +301,23 @@ const Home = () => {
             </div>
             
             <div className="animate-on-scroll opacity-0">
-              <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-orange-100 border border-orange-200 mb-6">
-                <Sparkles className="w-4 h-4 text-orange-600" />
-                <span className="text-sm font-semibold text-orange-800">ABOUT US</span>
+              <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-lightblue/10 border border-trine-orange/20 mb-6">
+                <Sparkles className="w-4 h-4 text-trine-orange" />
+                <span className="text-sm font-semibold text-trine-orange">ABOUT US</span>
               </div>
               
               <h2 className="text-4xl font-bold mb-6" data-testid="about-title">
-                <span className="text-black">
+                <span className="text-trine-black">
                   Transforming
                 </span>
                 <br />
-                <span className="text-orange-600">
+                <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text text-transparent">
                   Vision Into Reality
                 </span>
               </h2>
               
               <p className="text-lg mb-8 text-gray-600 leading-relaxed">
-                Trine Solutions is a <span className="font-semibold text-black">global leader</span> in enterprise technology consulting, delivering innovative solutions that transform businesses and drive <span className="font-semibold text-orange-600">measurable results</span>.
+                Trine Solutions is a <span className="font-semibold text-trine-black">global leader</span> in enterprise technology consulting, delivering innovative solutions that transform businesses and drive <span className="font-semibold text-trine-orange">measurable results</span>.
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -275,11 +326,11 @@ const Home = () => {
                   return (
                     <div
                       key={index}
-                      className="group relative overflow-hidden rounded-xl p-4 bg-white border border-gray-200 hover:border-orange-300 transition-all duration-300 hover:shadow-md"
+                      className="group relative overflow-hidden rounded-xl p-4 bg-white border border-gray-200 hover:border-trine-orange/30 transition-all duration-300 hover:shadow-lg hover:shadow-trine-orange/10"
                     >
                       <div className="relative z-10">
-                        <IconComponent className="w-8 h-8 text-orange-600 mb-3" />
-                        <h3 className="font-semibold text-black mb-2">{feature.title}</h3>
+                        <IconComponent className="w-8 h-8 text-trine-orange mb-3" />
+                        <h3 className="font-semibold text-trine-black mb-2">{feature.title}</h3>
                         <p className="text-sm text-gray-600 leading-relaxed">{feature.desc}</p>
                       </div>
                     </div>
@@ -288,7 +339,7 @@ const Home = () => {
               </div>
               
               <Link to="/about" data-testid="learn-more-about-btn" className="group inline-block">
-                <button className="px-6 py-3 rounded-lg bg-orange-600 text-white font-semibold transition-all duration-300 hover:bg-orange-700 hover:shadow-lg">
+                <button className="px-6 py-3 rounded-lg bg-gradient-to-r from-trine-orange to-trine-lightblue text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-trine-orange/30 hover:scale-105">
                   <span className="flex items-center gap-2">
                     Discover Our Story
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -304,15 +355,15 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-orange-100 border border-orange-200 mb-6">
-              <Zap className="w-4 h-4 text-orange-600" />
-              <span className="text-sm font-semibold text-orange-800">OUR SERVICES</span>
+            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-trine-lightblue/10 to-trine-green/10 border border-trine-lightblue/20 mb-6">
+              <Zap className="w-4 h-4 text-trine-lightblue" />
+              <span className="text-sm font-semibold text-trine-lightblue">OUR SERVICES</span>
             </div>
             
             <h2 className="text-4xl font-bold mb-6" data-testid="services-title">
-              <span className="text-black">Solutions That</span>
+              <span className="text-trine-black">Solutions That</span>
               <br />
-              <span className="text-orange-600">Drive Growth</span>
+              <span className="bg-gradient-to-r from-trine-lightblue to-trine-green bg-clip-text text-transparent">Drive Growth</span>
             </h2>
             
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -326,15 +377,15 @@ const Home = () => {
               return (
                 <div
                   key={service.id}
-                  className="group animate-on-scroll opacity-0 relative overflow-hidden rounded-xl p-6 bg-white border border-gray-200 hover:border-orange-300 transition-all duration-300 hover:shadow-lg"
+                  className="group animate-on-scroll opacity-0 relative overflow-hidden rounded-xl p-6 bg-white border border-gray-200 hover:border-trine-lightblue/30 transition-all duration-300 hover:shadow-xl hover:shadow-trine-lightblue/10"
                   data-testid={`service-card-${index}`}
                 >
                   <div className="relative z-10">
-                    <div className="w-16 h-16 rounded-lg bg-orange-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-8 h-8 text-orange-600" />
+                    <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-trine-lightblue/10 to-trine-green/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Icon className="w-8 h-8 text-trine-lightblue" />
                     </div>
                     
-                    <h3 className="text-xl font-semibold mb-4 text-black group-hover:text-orange-600 transition-colors duration-300">
+                    <h3 className="text-xl font-semibold mb-4 text-trine-black group-hover:text-trine-lightblue transition-colors duration-300">
                       {service.title}
                     </h3>
                     
@@ -343,7 +394,7 @@ const Home = () => {
                     </p>
                     
                     <Link to="/services" data-testid={`service-learn-more-${index}`} className="inline-block">
-                      <button className="group/btn flex items-center gap-2 text-orange-600 font-semibold hover:gap-3 transition-all duration-300">
+                      <button className="group/btn flex items-center gap-2 text-trine-orange font-semibold hover:gap-3 transition-all duration-300">
                         <span>Learn More</span>
                         <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
                       </button>
@@ -357,18 +408,18 @@ const Home = () => {
       </section>
 
       {/* Industries */}
-      <section className="py-20 bg-green-50">
+      <section className="py-20 bg-gradient-to-br from-green-50 to-sky-50">
         <div className="container">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-orange-100 border border-orange-200 mb-6">
-              <Globe className="w-4 h-4 text-orange-600" />
-              <span className="text-sm font-semibold text-orange-800">INDUSTRIES</span>
+            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-trine-green/10 to-trine-lightblue/10 border border-trine-green/20 mb-6">
+              <Globe className="w-4 h-4 text-trine-green" />
+              <span className="text-sm font-semibold text-trine-green">INDUSTRIES</span>
             </div>
             
             <h2 className="text-4xl font-bold mb-6" data-testid="industries-title">
-              <span className="text-black">Expertise Across</span>
+              <span className="text-trine-black">Expertise Across</span>
               <br />
-              <span className="text-orange-600">Every Sector</span>
+              <span className="bg-gradient-to-r from-trine-green to-trine-lightblue bg-clip-text text-transparent">Every Sector</span>
             </h2>
             
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -380,7 +431,7 @@ const Home = () => {
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="group animate-on-scroll opacity-0 relative overflow-hidden rounded-xl bg-white border border-gray-200 hover:border-orange-300 transition-all duration-300 hover:shadow-lg cursor-pointer"
+                className="group animate-on-scroll opacity-0 relative overflow-hidden rounded-xl bg-white border border-gray-200 hover:border-trine-green/30 transition-all duration-300 hover:shadow-lg cursor-pointer"
                 data-testid={`industry-card-${index}`}
               >
                 <div className="aspect-square overflow-hidden relative">
@@ -390,7 +441,7 @@ const Home = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-trine-black/70 via-trine-black/30 to-transparent"></div>
                 </div>
                 
                 <div className="absolute inset-0 flex items-end p-4">
@@ -398,7 +449,7 @@ const Home = () => {
                     <h3 className="text-sm font-semibold text-white mb-2">
                       {industry.name}
                     </h3>
-                    <div className="h-1 w-0 bg-orange-500 group-hover:w-full transition-all duration-500"></div>
+                    <div className="h-1 w-0 bg-gradient-to-r from-trine-orange to-trine-green group-hover:w-full transition-all duration-500"></div>
                   </div>
                 </div>
               </div>
@@ -411,15 +462,15 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-orange-100 border border-orange-200 mb-6">
-              <Users className="w-4 h-4 text-orange-600" />
-              <span className="text-sm font-semibold text-orange-800">CLIENT TESTIMONIALS</span>
+            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-green/10 border border-trine-orange/20 mb-6">
+              <Users className="w-4 h-4 text-trine-orange" />
+              <span className="text-sm font-semibold text-trine-orange">CLIENT TESTIMONIALS</span>
             </div>
             
             <h2 className="text-4xl font-bold mb-6">
-              <span className="text-black">Trusted by</span>
+              <span className="text-trine-black">Trusted by</span>
               <br />
-              <span className="text-orange-600">Industry Leaders</span>
+              <span className="bg-gradient-to-r from-trine-orange to-trine-green bg-clip-text text-transparent">Industry Leaders</span>
             </h2>
           </div>
           
@@ -431,8 +482,8 @@ const Home = () => {
                     key={index}
                     className={`group relative p-6 rounded-xl border transition-all duration-300 ${
                       index === activeTestimonial
-                        ? 'bg-orange-50 border-orange-300 shadow-lg'
-                        : 'bg-white border-gray-200 hover:border-orange-200 hover:shadow-md'
+                        ? 'bg-gradient-to-br from-trine-orange/5 to-trine-lightblue/5 border-trine-orange/30 shadow-lg shadow-trine-orange/10'
+                        : 'bg-white border-gray-200 hover:border-trine-orange/20 hover:shadow-md'
                     }`}
                   >
                     <div className="flex gap-1 mb-4">
@@ -447,11 +498,11 @@ const Home = () => {
                       <img
                         src={testimonial.avatar}
                         alt={testimonial.name}
-                        className="w-12 h-12 rounded-lg border-2 border-orange-200"
+                        className="w-12 h-12 rounded-lg border-2 border-trine-orange/20"
                       />
                       <div>
-                        <div className="font-semibold text-black">{testimonial.name}</div>
-                        <div className="text-orange-600 text-sm">{testimonial.role}</div>
+                        <div className="font-semibold text-trine-black">{testimonial.name}</div>
+                        <div className="text-trine-lightblue text-sm">{testimonial.role}</div>
                       </div>
                     </div>
                   </div>
@@ -465,7 +516,7 @@ const Home = () => {
                     onClick={() => setActiveTestimonial(index)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       index === activeTestimonial
-                        ? 'bg-orange-600 scale-125'
+                        ? 'bg-gradient-to-r from-trine-orange to-trine-lightblue scale-125'
                         : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                   />
@@ -477,7 +528,7 @@ const Home = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-orange-500 to-orange-600">
+      <section className="py-20 bg-gradient-to-br from-trine-orange via-trine-orange to-trine-lightblue">
         <div className="container text-center text-white px-6">
           <div className="max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 mb-8">
@@ -491,18 +542,18 @@ const Home = () => {
               <span className="block text-white">
                 Ready to Build
               </span>
-              <span className="block text-orange-100 mt-2">
+              <span className="block text-white/90 mt-2">
                 The Future?
               </span>
             </h2>
             
-            <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed text-orange-100">
+            <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed text-white/90">
               Partner with us to transform your business and achieve <span className="font-semibold text-white">exceptional results</span> that drive growth.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <Link to="/contact" data-testid="cta-contact-btn" className="group">
-                <button className="px-8 py-4 rounded-lg bg-white text-orange-600 font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:scale-105">
+                <button className="px-8 py-4 rounded-lg bg-white text-trine-orange font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
                   <span className="flex items-center gap-2">
                     Get Started Now
                     <Rocket className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />

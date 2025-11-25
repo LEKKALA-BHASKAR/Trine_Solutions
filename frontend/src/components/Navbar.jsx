@@ -54,14 +54,14 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
               {/* Logo */}
               <Link 
                 to="/" 
-                className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded-xl" 
+                className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-trine-orange focus:ring-offset-2 rounded-xl" 
                 data-testid="logo-link"
                 aria-label="Trine Solutions - Home"
               >
-                <div className="w-10 h-10 rounded-xl bg-gradient-orange-blue flex items-center justify-center text-white font-bold text-xl" aria-hidden="true">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-trine-orange via-trine-lightblue to-trine-green flex items-center justify-center text-white font-bold text-xl" aria-hidden="true">
                   T
                 </div>
-                <span className="text-xl font-bold hidden sm:block" style={{ color: darkMode ? '#F5F5F5' : '#002C5F' }}>
+                <span className="text-xl font-bold hidden sm:block" style={{ color: darkMode ? '#F5F5F5' : '#0A0A0A' }}>
                   Trine Solutions
                 </span>
               </Link>
@@ -73,10 +73,10 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
                     key={link.path}
                     to={link.path}
                     data-testid={`nav-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-trine-orange ${
                       location.pathname === link.path
-                        ? 'bg-gradient-orange-blue text-white'
-                        : 'hover:bg-opacity-10 hover:bg-gray-500'
+                        ? 'bg-gradient-to-r from-trine-orange to-trine-lightblue text-white'
+                        : 'hover:bg-trine-orange/10 hover:text-trine-orange'
                     }`}
                     aria-current={location.pathname === link.path ? 'page' : undefined}
                   >
@@ -91,7 +91,7 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
                 <button
                   onClick={() => setSearchOpen(!searchOpen)}
                   data-testid="search-button"
-                  className="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="p-2 rounded-full hover:bg-trine-orange/10 hover:text-trine-orange transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-trine-orange"
                   aria-label="Open search"
                   aria-expanded={searchOpen}
                   aria-haspopup="dialog"
@@ -103,7 +103,7 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
                 <button
                   onClick={() => setDarkMode(!darkMode)}
                   data-testid="theme-toggle"
-                  className="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="p-2 rounded-full hover:bg-trine-orange/10 hover:text-trine-orange transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-trine-orange"
                   aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
                   aria-pressed={darkMode}
                 >
@@ -120,7 +120,7 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
                     onChange={(e) => setLanguage(e.target.value)}
                     data-testid="language-selector"
                     aria-describedby="language-description"
-                    className="appearance-none bg-transparent pl-8 pr-3 py-2 rounded-full text-sm font-medium cursor-pointer outline-none hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:ring-2 focus:ring-orange-500"
+                    className="appearance-none bg-transparent pl-8 pr-3 py-2 rounded-full text-sm font-medium cursor-pointer outline-none hover:bg-trine-orange/10 transition-all duration-300 focus:ring-2 focus:ring-trine-orange"
                   >
                     <option value="EN">EN</option>
                     <option value="ES">ES</option>
@@ -134,7 +134,7 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   data-testid="mobile-menu-toggle"
-                  className="lg:hidden p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="lg:hidden p-2 rounded-full hover:bg-trine-orange/10 hover:text-trine-orange transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-trine-orange"
                   aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                   aria-expanded={mobileMenuOpen}
                   aria-controls="mobile-menu"
@@ -170,7 +170,7 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
                 type="search"
                 placeholder="Search for services, insights, or solutions..."
                 data-testid="search-input"
-                className="flex-1 bg-transparent outline-none text-lg"
+                className="flex-1 bg-transparent outline-none text-lg focus:ring-0"
                 autoFocus
               />
             </div>
@@ -201,10 +201,10 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
                     to={link.path}
                     onClick={() => setMobileMenuOpen(false)}
                     data-testid={`mobile-nav-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className={`block px-4 py-3 rounded-2xl text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                    className={`block px-4 py-3 rounded-2xl text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-trine-orange ${
                       location.pathname === link.path
-                        ? 'bg-gradient-orange-blue text-white'
-                        : 'hover:bg-opacity-10 hover:bg-gray-500'
+                        ? 'bg-gradient-to-r from-trine-orange to-trine-lightblue text-white'
+                        : 'hover:bg-trine-orange/10 hover:text-trine-orange'
                     }`}
                     aria-current={location.pathname === link.path ? 'page' : undefined}
                   >

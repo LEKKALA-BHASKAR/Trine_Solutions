@@ -74,29 +74,22 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, url: '#', label: 'Facebook', color: 'from-blue-600 to-blue-400' },
-    { icon: Twitter, url: '#', label: 'Twitter', color: 'from-sky-500 to-blue-400' },
-    { icon: Linkedin, url: '#', label: 'LinkedIn', color: 'from-blue-700 to-blue-500' },
-    { icon: Instagram, url: '#', label: 'Instagram', color: 'from-purple-600 via-pink-600 to-orange-500' },
-    { icon: Youtube, url: '#', label: 'YouTube', color: 'from-red-600 to-red-500' },
-  ];
-
-  const stats = [
-    { value: '500+', label: 'Projects Completed' },
-    { value: '98%', label: 'Client Satisfaction' },
-    { value: '50+', label: 'Industry Awards' },
-    { value: '24/7', label: 'Support Available' },
+    { icon: Facebook, url: '#', label: 'Facebook', color: 'from-trine-lightblue to-trine-green' },
+    { icon: Twitter, url: '#', label: 'Twitter', color: 'from-trine-lightblue to-trine-orange' },
+    { icon: Linkedin, url: '#', label: 'LinkedIn', color: 'from-trine-lightblue to-trine-green' },
+    { icon: Instagram, url: '#', label: 'Instagram', color: 'from-trine-orange to-trine-green' },
+    { icon: Youtube, url: '#', label: 'YouTube', color: 'from-trine-orange to-trine-lightblue' },
   ];
 
   return (
     <footer className="relative overflow-hidden" data-testid="main-footer" role="contentinfo" aria-label="Site footer">
-      {/* Animated Gradient Background with Mesh */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 animate-gradient-xy" aria-hidden="true"></div>
+      {/* Premium Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-trine-black via-gray-900 to-trine-black" aria-hidden="true"></div>
       
       {/* Dynamic Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden opacity-30" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden opacity-20" aria-hidden="true">
         <div 
-          className="absolute w-[600px] h-[600px] bg-gradient-to-r from-orange-500 to-pink-500 rounded-full filter blur-[120px] animate-float"
+          className="absolute w-[600px] h-[600px] bg-gradient-to-r from-trine-orange to-trine-green rounded-full filter blur-[120px] animate-float"
           style={{
             top: '10%',
             left: '10%',
@@ -105,7 +98,7 @@ const Footer = () => {
           }}
         ></div>
         <div 
-          className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full filter blur-[100px] animate-float"
+          className="absolute w-[500px] h-[500px] bg-gradient-to-r from-trine-lightblue to-trine-green rounded-full filter blur-[100px] animate-float"
           style={{
             bottom: '10%',
             right: '10%',
@@ -114,7 +107,7 @@ const Footer = () => {
           }}
         ></div>
         <div 
-          className="absolute w-[400px] h-[400px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full filter blur-[90px] animate-float"
+          className="absolute w-[400px] h-[400px] bg-gradient-to-r from-trine-orange to-trine-lightblue rounded-full filter blur-[90px] animate-float"
           style={{
             top: '50%',
             right: '30%',
@@ -156,10 +149,8 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="container relative z-10 py-20">
-        <br/>
-        <br/>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-16">
+      <div className="container relative z-10 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
           {/* Company Info */}
           <div 
             className={`lg:col-span-2 transition-all duration-1000 delay-300 ${
@@ -167,15 +158,15 @@ const Footer = () => {
             }`}
           >
             <div className="group flex items-center space-x-3 mb-6 cursor-pointer">
-              <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 via-pink-500 to-blue-500 flex items-center justify-center font-black text-3xl text-white shadow-2xl group-hover:shadow-orange-500/50 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6" aria-hidden="true">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-400 to-blue-400 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+              <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-trine-orange via-trine-lightblue to-trine-green flex items-center justify-center font-black text-3xl text-white shadow-2xl group-hover:shadow-trine-orange/50 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6" aria-hidden="true">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-trine-orange to-trine-green opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
                 <span className="relative z-10">T</span>
               </div>
               <div>
-                <span className="block text-2xl font-black bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent group-hover:tracking-wider transition-all duration-300">
+                <span className="block text-2xl font-black bg-gradient-to-r from-white via-trine-lightblue to-trine-green bg-clip-text text-transparent group-hover:tracking-wider transition-all duration-300">
                   Trine Solutions
                 </span>
-                <span className="block text-xs text-orange-400 font-semibold mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <span className="block text-xs text-trine-orange font-semibold mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
                   Excellence in Innovation
                 </span>
               </div>
@@ -183,8 +174,8 @@ const Footer = () => {
             
             <p className="text-gray-300 mb-8 leading-relaxed text-base backdrop-blur-sm">
               <span className="inline-flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-orange-400 animate-pulse" />
-                <span className="font-semibold bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">
+                <Sparkles className="w-4 h-4 text-trine-orange animate-pulse" />
+                <span className="font-semibold bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text text-transparent">
                   Driving digital excellence
                 </span>
               </span>
@@ -193,8 +184,8 @@ const Footer = () => {
             
             <address className="space-y-4 text-gray-300 not-italic">
               <div className="group/item flex items-start space-x-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-500/5 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
-                  <MapPin className="w-5 h-5 text-orange-400 group-hover/item:text-orange-300" aria-hidden="true" />
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-trine-orange/20 to-trine-orange/5 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                  <MapPin className="w-5 h-5 text-trine-orange group-hover/item:text-trine-orange" aria-hidden="true" />
                 </div>
                 <span className="flex-1 group-hover/item:text-white transition-colors pt-1.5">
                   123 Innovation Drive, Tech Park, Silicon Valley, CA 94025
@@ -202,8 +193,8 @@ const Footer = () => {
               </div>
               
               <div className="group/item flex items-center space-x-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-blue-500/5 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
-                  <Phone className="w-5 h-5 text-blue-400 group-hover/item:text-blue-300 group-hover/item:rotate-12 transition-all duration-300" aria-hidden="true" />
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-trine-lightblue/20 to-trine-lightblue/5 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                  <Phone className="w-5 h-5 text-trine-lightblue group-hover/item:text-trine-lightblue group-hover/item:rotate-12 transition-all duration-300" aria-hidden="true" />
                 </div>
                 <a href="tel:+15551234567" className="flex-1 group-hover/item:text-white transition-colors pt-1.5">
                   +1 (555) 123-4567
@@ -211,8 +202,8 @@ const Footer = () => {
               </div>
               
               <div className="group/item flex items-center space-x-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-purple-500/5 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
-                  <Mail className="w-5 h-5 text-purple-400 group-hover/item:text-purple-300" aria-hidden="true" />
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-trine-green/20 to-trine-green/5 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                  <Mail className="w-5 h-5 text-trine-green group-hover/item:text-trine-green" aria-hidden="true" />
                 </div>
                 <a href="mailto:info@trinesolutions.com" className="flex-1 group-hover/item:text-white transition-colors pt-1.5">
                   info@trinesolutions.com
@@ -236,10 +227,10 @@ const Footer = () => {
                 }}
               >
                 <div className="flex items-center gap-2 mb-6 group cursor-pointer">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500/20 to-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-4 h-4 text-orange-400" />
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-trine-orange/20 to-trine-lightblue/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-4 h-4 text-trine-orange" />
                   </div>
-                  <h3 id={`footer-section-${index}`} className="text-white text-lg font-black group-hover:text-orange-400 transition-colors duration-300">
+                  <h3 id={`footer-section-${index}`} className="text-white text-lg font-black group-hover:text-trine-orange transition-colors duration-300">
                     {section.title}
                   </h3>
                 </div>
@@ -249,12 +240,12 @@ const Footer = () => {
                       <Link
                         to={link.path}
                         data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="group/link relative text-gray-300 hover:text-white transition-all duration-300 flex items-center py-2 px-3 -mx-3 rounded-lg hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/5"
+                        className="group/link relative text-gray-300 hover:text-white transition-all duration-300 flex items-center py-2 px-3 -mx-3 rounded-lg hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-trine-orange/50 focus:bg-white/5"
                       >
-                        <ArrowRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 -ml-2 group-hover/link:ml-0 mr-0 group-hover/link:mr-2 transition-all duration-300 text-orange-400" aria-hidden="true" />
+                        <ArrowRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 -ml-2 group-hover/link:ml-0 mr-0 group-hover/link:mr-2 transition-all duration-300 text-trine-orange" aria-hidden="true" />
                         <span className="relative">
                           {link.name}
-                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-blue-400 group-hover/link:w-full transition-all duration-300"></span>
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-trine-orange to-trine-lightblue group-hover/link:w-full transition-all duration-300"></span>
                         </span>
                       </Link>
                     </li>
@@ -265,26 +256,9 @@ const Footer = () => {
           })}
         </div>
 
-        {/* Newsletter Section */}
-        <div 
-          className={`relative overflow-hidden rounded-3xl mb-16 transition-all duration-1000 delay-700 ${
-            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`}
-        >
-          {/* Animated Background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-purple-500/10 to-blue-500/10 animate-gradient-x"></div>
-          <div className="absolute inset-0 backdrop-blur-xl bg-white/5"></div>
-          <div className="absolute inset-0 border border-white/20 rounded-3xl"></div>
-          
-          {/* Shimmer Effect */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-          </div>
-        </div>
-
         {/* Bottom Bar */}
         <div 
-          className={`border-t border-white/10 pt-10 transition-all duration-1000 delay-900 ${
+          className={`border-t border-white/10 pt-8 transition-all duration-1000 delay-900 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}
         >
@@ -292,7 +266,7 @@ const Footer = () => {
             {/* Copyright */}
             <p className="text-gray-400 text-sm font-medium">
               © {new Date().getFullYear()} <span className="text-white font-bold">Trine Solutions</span>. All rights reserved. Crafted with{' '}
-              <span className="inline-block animate-pulse text-red-500">❤️</span>
+              <span className="inline-block animate-pulse text-trine-orange">❤️</span>
             </p>
 
             {/* Social Icons */}
@@ -325,7 +299,7 @@ const Footer = () => {
                 data-testid="privacy-policy-link"
               >
                 Privacy Policy
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-trine-orange to-trine-lightblue group-hover:w-full transition-all duration-300"></span>
               </Link>
               <span className="text-gray-600">•</span>
               <Link 
@@ -334,7 +308,7 @@ const Footer = () => {
                 data-testid="terms-link"
               >
                 Terms of Service
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-trine-orange to-trine-lightblue group-hover:w-full transition-all duration-300"></span>
               </Link>
               <span className="text-gray-600">•</span>
               <Link 
@@ -342,7 +316,7 @@ const Footer = () => {
                 className="group relative text-gray-400 hover:text-white transition-colors duration-300"
               >
                 Cookie Policy
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-trine-orange to-trine-lightblue group-hover:w-full transition-all duration-300"></span>
               </Link>
             </div>
           </div>
