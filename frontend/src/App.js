@@ -27,13 +27,15 @@ const Layout = ({ children, darkMode, setDarkMode, language, setLanguage }) => {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       {!isAdminRoute && (
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} language={language} setLanguage={setLanguage} />
       )}
-      {children}
+      <main className="flex-grow">
+        {children}
+      </main>
       {!isAdminRoute && <Footer />}
-    </>
+    </div>
   );
 };
 
