@@ -35,11 +35,11 @@
   --radius-md: 12px;
   --blur-lg: 18px;
   
-  /* Premium Gradients */
-  --gradient-1: linear-gradient(135deg, #002C5F, #7E57C2);
-  --gradient-2: linear-gradient(135deg, #F78B1F, #FACC15);
-  --gradient-3: linear-gradient(135deg, #EC4899, #38BDF8);
-  --gradient-4: linear-gradient(135deg, #22C55E, #F78B1F);
+  /* Premium Gradients - using CSS custom properties for consistency */
+  --gradient-1: linear-gradient(135deg, var(--color-deepblue), var(--color-purple));
+  --gradient-2: linear-gradient(135deg, var(--color-orange), var(--color-yellow));
+  --gradient-3: linear-gradient(135deg, var(--color-pink), var(--color-skyblue));
+  --gradient-4: linear-gradient(135deg, var(--color-green), var(--color-orange));
   --gradient-orange-blue: linear-gradient(135deg, var(--color-orange) 0%, var(--color-deepblue) 100%);
   --gradient-purple-pink: linear-gradient(135deg, var(--color-purple) 0%, var(--color-pink) 100%);
   --gradient-green-yellow: linear-gradient(135deg, var(--color-green) 0%, var(--color-yellow) 100%);
