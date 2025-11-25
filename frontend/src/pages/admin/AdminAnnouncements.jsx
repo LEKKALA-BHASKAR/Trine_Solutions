@@ -9,10 +9,10 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api/admin`;
 
 const typeOptions = [
-  { value: 'info', label: 'Info', icon: Info, color: 'bg-blue-500' },
-  { value: 'success', label: 'Success', icon: CheckCircle, color: 'bg-green-500' },
-  { value: 'warning', label: 'Warning', icon: AlertTriangle, color: 'bg-yellow-500' },
-  { value: 'alert', label: 'Alert', icon: Bell, color: 'bg-red-500' },
+  { value: 'info', label: 'Info', icon: Info, color: 'bg-blue-500', borderColor: '#3B82F6' },
+  { value: 'success', label: 'Success', icon: CheckCircle, color: 'bg-green-500', borderColor: '#22C55E' },
+  { value: 'warning', label: 'Warning', icon: AlertTriangle, color: 'bg-yellow-500', borderColor: '#EAB308' },
+  { value: 'alert', label: 'Alert', icon: Bell, color: 'bg-red-500', borderColor: '#EF4444' },
 ];
 
 const AdminAnnouncements = () => {
@@ -178,7 +178,7 @@ const AdminAnnouncements = () => {
                   className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 ${
                     ann.active ? '' : 'opacity-60'
                   }`}
-                  style={{ borderLeftColor: typeInfo.color.replace('bg-', '') }}
+                  style={{ borderLeftColor: typeInfo.borderColor }}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-start space-x-4">

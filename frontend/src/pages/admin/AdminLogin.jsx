@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Lock, Mail, Eye, EyeOff, ArrowRight, Shield } from 'lucide-react';
+import { Lock, Mail, Eye, EyeOff, ArrowRight, Shield, User } from 'lucide-react';
 import { toast } from 'sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -88,7 +88,7 @@ const AdminLogin = () => {
                     className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 outline-none focus:border-orange-500 transition-colors"
                     placeholder="John Doe"
                   />
-                  <Mail className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <User className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
                 </div>
               </div>
             )}

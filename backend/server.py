@@ -24,6 +24,8 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # JWT Configuration
+# NOTE: In production, JWT_SECRET_KEY should be set as an environment variable
+# to ensure tokens remain valid across server restarts
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', secrets.token_urlsafe(32))
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24 hours
@@ -511,17 +513,20 @@ async def get_announcements():
 
 @admin_router.post("/register", response_model=TokenResponse)
 async def admin_register(user_data: AdminUserCreate):
-    # Check if user already exists
-    existing_user = await db.admin_users.find_one({"email": user_data.email})
+    # Normalize email to lowercase for case-insensitive comparison
+    normalized_email = user_data.email.lower()
+    
+    # Check if user already exists (case-insensitive)
+    existing_user = await db.admin_users.find_one({"email": normalized_email})
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     
     # Check if this is the first admin (auto-approve)
     admin_count = await db.admin_users.count_documents({})
     
-    # Create user
+    # Create user with normalized email
     user = AdminUser(
-        email=user_data.email,
+        email=normalized_email,
         password_hash=hash_password(user_data.password),
         name=user_data.name,
         role="admin" if admin_count == 0 else "admin",
@@ -548,7 +553,10 @@ async def admin_register(user_data: AdminUserCreate):
 
 @admin_router.post("/login", response_model=TokenResponse)
 async def admin_login(credentials: AdminUserLogin):
-    user = await db.admin_users.find_one({"email": credentials.email}, {"_id": 0})
+    # Normalize email to lowercase for case-insensitive lookup
+    normalized_email = credentials.email.lower()
+    
+    user = await db.admin_users.find_one({"email": normalized_email}, {"_id": 0})
     if not user:
         raise HTTPException(status_code=401, detail="Invalid email or password")
     
