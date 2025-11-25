@@ -11,6 +11,7 @@ import CaseStudies from "@/pages/CaseStudies";
 import Insights from "@/pages/Insights";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
+import Portfolio from "@/pages/Portfolio";
 import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminBlog from "@/pages/admin/AdminBlog";
@@ -64,6 +65,7 @@ function App() {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
             
             {/* Admin Routes */}
