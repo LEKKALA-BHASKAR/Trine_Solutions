@@ -112,32 +112,48 @@ const Insights = () => {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="py-12">
+        <section className="py-20 gradient-subtle">
           <div className="container">
-            <h2 className="text-3xl font-bold mb-8">Featured</h2>
-            <div className="glass-card overflow-hidden grid md:grid-cols-2 gap-0" data-testid="featured-post">
-              <div className="h-80 md:h-auto overflow-hidden">
-                <img
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-8 md:p-12 flex flex-col justify-center">
-                <span className="text-sm text-orange-500 font-semibold uppercase mb-3">{featuredPost.category}</span>
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">{featuredPost.title}</h3>
-                <p className="text-lg opacity-80 mb-6 leading-relaxed">{featuredPost.excerpt}</p>
-                <div className="flex items-center gap-6 text-sm opacity-60 mb-6">
-                  <div className="flex items-center space-x-2">
-                    <User className="w-4 h-4" />
-                    <span>{featuredPost.author}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>{featuredPost.date}</span>
-                  </div>
+            <div className="flex items-center space-x-3 mb-12">
+              <div className="w-1 h-8 bg-gradient-orange-blue rounded-full"></div>
+              <h2 className="text-3xl font-bold">Featured Article</h2>
+            </div>
+            <div className="relative overflow-hidden rounded-3xl" data-testid="featured-post">
+              <div className="grid md:grid-cols-5 gap-0">
+                <div className="md:col-span-3 h-[400px] md:h-auto overflow-hidden relative group">
+                  <img
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
-                <button className="btn-primary w-fit">Read Article</button>
+                <div className="md:col-span-2 bg-white dark:bg-gray-900 p-10 md:p-12 flex flex-col justify-center">
+                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 font-semibold text-sm mb-4 w-fit">
+                    <Tag className="w-3 h-3" />
+                    <span>{featuredPost.category}</span>
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">{featuredPost.title}</h3>
+                  <p className="text-lg opacity-80 mb-6 leading-relaxed">{featuredPost.excerpt}</p>
+                  <div className="flex items-center gap-6 text-sm opacity-70 mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
+                    <div className="flex items-center space-x-2">
+                      <User className="w-4 h-4" />
+                      <span className="font-medium">{featuredPost.author}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="w-4 h-4" />
+                      <span>{featuredPost.date}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-4 h-4" />
+                      <span>{featuredPost.readTime}</span>
+                    </div>
+                  </div>
+                  <button className="btn-primary flex items-center space-x-2 group">
+                    <span>Read Full Article</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
