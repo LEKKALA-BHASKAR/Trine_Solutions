@@ -1,14 +1,18 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Depends, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+import bcrypt
+from jose import JWTError, jwt
+import secrets
 
 
 ROOT_DIR = Path(__file__).parent
@@ -19,18 +23,72 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
+# JWT Configuration
+SECRET_KEY = os.environ.get('JWT_SECRET_KEY', secrets.token_urlsafe(32))
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24 hours
+
+# Security
+security = HTTPBearer()
+
 # Create the main app without a prefix
 app = FastAPI()
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# Create admin router
+admin_router = APIRouter(prefix="/api/admin")
 
-# Define Models
+
+# ===================== MODELS =====================
+
+# Admin User Models
+class AdminUser(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    email: str
+    password_hash: str
+    name: str
+    role: str = "admin"
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    is_active: bool = True
+
+class AdminUserCreate(BaseModel):
+    email: str
+    password: str
+    name: str
+
+class AdminUserLogin(BaseModel):
+    email: str
+    password: str
+
+class AdminUserResponse(BaseModel):
+    id: str
+    email: str
+    name: str
+    role: str
+    is_active: bool
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: AdminUserResponse
+
+
+# Content Models
 class Service(BaseModel):
     model_config = ConfigDict(extra="ignore")
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    description: str
+    icon: str
+    capabilities: List[str] = []
+    tools: List[str] = []
+
+class ServiceCreate(BaseModel):
     title: str
     description: str
     icon: str
@@ -49,6 +107,15 @@ class CaseStudy(BaseModel):
     image: str
     technologies: List[str] = []
 
+class CaseStudyCreate(BaseModel):
+    title: str
+    industry: str
+    challenge: str
+    solution: str
+    results: str
+    image: str
+    technologies: List[str] = []
+
 class BlogPost(BaseModel):
     model_config = ConfigDict(extra="ignore")
     
@@ -57,11 +124,23 @@ class BlogPost(BaseModel):
     excerpt: str
     content: str
     image: str
-    date: str
+    date: str = Field(default_factory=lambda: datetime.now(timezone.utc).strftime("%Y-%m-%d"))
     author: str
     category: str
     readTime: str
     tags: List[str] = []
+    published: bool = True
+
+class BlogPostCreate(BaseModel):
+    title: str
+    excerpt: str
+    content: str
+    image: str
+    author: str
+    category: str
+    readTime: str
+    tags: List[str] = []
+    published: bool = True
 
 class ContactForm(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -72,6 +151,7 @@ class ContactForm(BaseModel):
     company: str
     message: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    read: bool = False
 
 class ContactFormCreate(BaseModel):
     name: str
@@ -87,6 +167,71 @@ class TeamMember(BaseModel):
     position: str
     bio: str
     image: str
+
+class TeamMemberCreate(BaseModel):
+    name: str
+    position: str
+    bio: str
+    image: str
+
+class Announcement(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    content: str
+    type: str = "info"  # info, success, warning, alert
+    active: bool = True
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    expires_at: Optional[datetime] = None
+
+class AnnouncementCreate(BaseModel):
+    title: str
+    content: str
+    type: str = "info"
+    active: bool = True
+    expires_at: Optional[str] = None
+
+
+# ===================== AUTH HELPERS =====================
+
+def hash_password(password: str) -> str:
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+def verify_password(password: str, hashed: str) -> bool:
+    return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
+
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.now(timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        token = credentials.credentials
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        if user_id is None:
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    
+    user = await db.admin_users.find_one({"id": user_id}, {"_id": 0})
+    if user is None:
+        raise credentials_exception
+    if not user.get("is_active", True):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="User account is disabled")
+    return user
 
 # Routes
 @api_router.get("/")
@@ -343,8 +488,322 @@ async def get_team():
         return default_team
     return team
 
-# Include the router in the main app
+@api_router.get("/announcements", response_model=List[Announcement])
+async def get_announcements():
+    now = datetime.now(timezone.utc)
+    announcements = await db.announcements.find(
+        {"active": True},
+        {"_id": 0}
+    ).to_list(100)
+    # Filter out expired announcements
+    active_announcements = []
+    for ann in announcements:
+        if ann.get("expires_at"):
+            expires = datetime.fromisoformat(ann["expires_at"].replace('Z', '+00:00')) if isinstance(ann["expires_at"], str) else ann["expires_at"]
+            if expires > now:
+                active_announcements.append(ann)
+        else:
+            active_announcements.append(ann)
+    return active_announcements
+
+
+# ===================== ADMIN AUTH ROUTES =====================
+
+@admin_router.post("/register", response_model=TokenResponse)
+async def admin_register(user_data: AdminUserCreate):
+    # Check if user already exists
+    existing_user = await db.admin_users.find_one({"email": user_data.email})
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    # Check if this is the first admin (auto-approve)
+    admin_count = await db.admin_users.count_documents({})
+    
+    # Create user
+    user = AdminUser(
+        email=user_data.email,
+        password_hash=hash_password(user_data.password),
+        name=user_data.name,
+        role="admin" if admin_count == 0 else "admin",
+        is_active=True
+    )
+    
+    doc = user.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    await db.admin_users.insert_one(doc)
+    
+    # Generate token
+    access_token = create_access_token(data={"sub": user.id})
+    
+    return TokenResponse(
+        access_token=access_token,
+        user=AdminUserResponse(
+            id=user.id,
+            email=user.email,
+            name=user.name,
+            role=user.role,
+            is_active=user.is_active
+        )
+    )
+
+@admin_router.post("/login", response_model=TokenResponse)
+async def admin_login(credentials: AdminUserLogin):
+    user = await db.admin_users.find_one({"email": credentials.email}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    
+    if not verify_password(credentials.password, user["password_hash"]):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    
+    if not user.get("is_active", True):
+        raise HTTPException(status_code=403, detail="Account is disabled")
+    
+    access_token = create_access_token(data={"sub": user["id"]})
+    
+    return TokenResponse(
+        access_token=access_token,
+        user=AdminUserResponse(
+            id=user["id"],
+            email=user["email"],
+            name=user["name"],
+            role=user.get("role", "admin"),
+            is_active=user.get("is_active", True)
+        )
+    )
+
+@admin_router.get("/me", response_model=AdminUserResponse)
+async def get_current_admin(current_user: dict = Depends(get_current_user)):
+    return AdminUserResponse(
+        id=current_user["id"],
+        email=current_user["email"],
+        name=current_user["name"],
+        role=current_user.get("role", "admin"),
+        is_active=current_user.get("is_active", True)
+    )
+
+
+# ===================== ADMIN CRUD ROUTES =====================
+
+# Dashboard Stats
+@admin_router.get("/dashboard/stats")
+async def get_dashboard_stats(current_user: dict = Depends(get_current_user)):
+    blog_count = await db.blog_posts.count_documents({})
+    case_study_count = await db.case_studies.count_documents({})
+    contact_count = await db.contacts.count_documents({})
+    unread_contacts = await db.contacts.count_documents({"read": False})
+    team_count = await db.team_members.count_documents({})
+    service_count = await db.services.count_documents({})
+    announcement_count = await db.announcements.count_documents({"active": True})
+    
+    return {
+        "blog_posts": blog_count,
+        "case_studies": case_study_count,
+        "total_contacts": contact_count,
+        "unread_contacts": unread_contacts,
+        "team_members": team_count,
+        "services": service_count,
+        "active_announcements": announcement_count
+    }
+
+# Blog Posts CRUD
+@admin_router.get("/blog", response_model=List[BlogPost])
+async def admin_get_blog_posts(current_user: dict = Depends(get_current_user)):
+    posts = await db.blog_posts.find({}, {"_id": 0}).to_list(100)
+    return posts
+
+@admin_router.post("/blog", response_model=BlogPost)
+async def admin_create_blog_post(post_data: BlogPostCreate, current_user: dict = Depends(get_current_user)):
+    post = BlogPost(**post_data.model_dump())
+    doc = post.model_dump()
+    await db.blog_posts.insert_one(doc)
+    return post
+
+@admin_router.put("/blog/{post_id}", response_model=BlogPost)
+async def admin_update_blog_post(post_id: str, post_data: BlogPostCreate, current_user: dict = Depends(get_current_user)):
+    existing = await db.blog_posts.find_one({"id": post_id})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    
+    update_data = post_data.model_dump()
+    await db.blog_posts.update_one({"id": post_id}, {"$set": update_data})
+    
+    updated = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
+    return BlogPost(**updated)
+
+@admin_router.delete("/blog/{post_id}")
+async def admin_delete_blog_post(post_id: str, current_user: dict = Depends(get_current_user)):
+    result = await db.blog_posts.delete_one({"id": post_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    return {"message": "Blog post deleted successfully"}
+
+# Case Studies CRUD
+@admin_router.get("/case-studies", response_model=List[CaseStudy])
+async def admin_get_case_studies(current_user: dict = Depends(get_current_user)):
+    studies = await db.case_studies.find({}, {"_id": 0}).to_list(100)
+    return studies
+
+@admin_router.post("/case-studies", response_model=CaseStudy)
+async def admin_create_case_study(study_data: CaseStudyCreate, current_user: dict = Depends(get_current_user)):
+    study = CaseStudy(**study_data.model_dump())
+    doc = study.model_dump()
+    await db.case_studies.insert_one(doc)
+    return study
+
+@admin_router.put("/case-studies/{study_id}", response_model=CaseStudy)
+async def admin_update_case_study(study_id: str, study_data: CaseStudyCreate, current_user: dict = Depends(get_current_user)):
+    existing = await db.case_studies.find_one({"id": study_id})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Case study not found")
+    
+    update_data = study_data.model_dump()
+    await db.case_studies.update_one({"id": study_id}, {"$set": update_data})
+    
+    updated = await db.case_studies.find_one({"id": study_id}, {"_id": 0})
+    return CaseStudy(**updated)
+
+@admin_router.delete("/case-studies/{study_id}")
+async def admin_delete_case_study(study_id: str, current_user: dict = Depends(get_current_user)):
+    result = await db.case_studies.delete_one({"id": study_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Case study not found")
+    return {"message": "Case study deleted successfully"}
+
+# Services CRUD
+@admin_router.get("/services", response_model=List[Service])
+async def admin_get_services(current_user: dict = Depends(get_current_user)):
+    services = await db.services.find({}, {"_id": 0}).to_list(100)
+    return services
+
+@admin_router.post("/services", response_model=Service)
+async def admin_create_service(service_data: ServiceCreate, current_user: dict = Depends(get_current_user)):
+    service = Service(**service_data.model_dump())
+    doc = service.model_dump()
+    await db.services.insert_one(doc)
+    return service
+
+@admin_router.put("/services/{service_id}", response_model=Service)
+async def admin_update_service(service_id: str, service_data: ServiceCreate, current_user: dict = Depends(get_current_user)):
+    existing = await db.services.find_one({"id": service_id})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Service not found")
+    
+    update_data = service_data.model_dump()
+    await db.services.update_one({"id": service_id}, {"$set": update_data})
+    
+    updated = await db.services.find_one({"id": service_id}, {"_id": 0})
+    return Service(**updated)
+
+@admin_router.delete("/services/{service_id}")
+async def admin_delete_service(service_id: str, current_user: dict = Depends(get_current_user)):
+    result = await db.services.delete_one({"id": service_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Service not found")
+    return {"message": "Service deleted successfully"}
+
+# Team Members CRUD
+@admin_router.get("/team", response_model=List[TeamMember])
+async def admin_get_team(current_user: dict = Depends(get_current_user)):
+    team = await db.team_members.find({}, {"_id": 0}).to_list(100)
+    return team
+
+@admin_router.post("/team", response_model=TeamMember)
+async def admin_create_team_member(member_data: TeamMemberCreate, current_user: dict = Depends(get_current_user)):
+    member = TeamMember(**member_data.model_dump())
+    doc = member.model_dump()
+    await db.team_members.insert_one(doc)
+    return member
+
+@admin_router.put("/team/{member_id}", response_model=TeamMember)
+async def admin_update_team_member(member_id: str, member_data: TeamMemberCreate, current_user: dict = Depends(get_current_user)):
+    existing = await db.team_members.find_one({"id": member_id})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Team member not found")
+    
+    update_data = member_data.model_dump()
+    await db.team_members.update_one({"id": member_id}, {"$set": update_data})
+    
+    updated = await db.team_members.find_one({"id": member_id}, {"_id": 0})
+    return TeamMember(**updated)
+
+@admin_router.delete("/team/{member_id}")
+async def admin_delete_team_member(member_id: str, current_user: dict = Depends(get_current_user)):
+    result = await db.team_members.delete_one({"id": member_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Team member not found")
+    return {"message": "Team member deleted successfully"}
+
+# Contacts Management
+@admin_router.get("/contacts", response_model=List[ContactForm])
+async def admin_get_contacts(current_user: dict = Depends(get_current_user)):
+    contacts = await db.contacts.find({}, {"_id": 0}).sort("timestamp", -1).to_list(100)
+    return contacts
+
+@admin_router.put("/contacts/{contact_id}/read")
+async def admin_mark_contact_read(contact_id: str, current_user: dict = Depends(get_current_user)):
+    result = await db.contacts.update_one({"id": contact_id}, {"$set": {"read": True}})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Contact not found")
+    return {"message": "Contact marked as read"}
+
+@admin_router.delete("/contacts/{contact_id}")
+async def admin_delete_contact(contact_id: str, current_user: dict = Depends(get_current_user)):
+    result = await db.contacts.delete_one({"id": contact_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Contact not found")
+    return {"message": "Contact deleted successfully"}
+
+# Announcements CRUD
+@admin_router.get("/announcements", response_model=List[Announcement])
+async def admin_get_announcements(current_user: dict = Depends(get_current_user)):
+    announcements = await db.announcements.find({}, {"_id": 0}).to_list(100)
+    return announcements
+
+@admin_router.post("/announcements", response_model=Announcement)
+async def admin_create_announcement(ann_data: AnnouncementCreate, current_user: dict = Depends(get_current_user)):
+    announcement = Announcement(
+        title=ann_data.title,
+        content=ann_data.content,
+        type=ann_data.type,
+        active=ann_data.active,
+        expires_at=datetime.fromisoformat(ann_data.expires_at) if ann_data.expires_at else None
+    )
+    doc = announcement.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    if doc['expires_at']:
+        doc['expires_at'] = doc['expires_at'].isoformat()
+    await db.announcements.insert_one(doc)
+    return announcement
+
+@admin_router.put("/announcements/{ann_id}", response_model=Announcement)
+async def admin_update_announcement(ann_id: str, ann_data: AnnouncementCreate, current_user: dict = Depends(get_current_user)):
+    existing = await db.announcements.find_one({"id": ann_id})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Announcement not found")
+    
+    update_data = {
+        "title": ann_data.title,
+        "content": ann_data.content,
+        "type": ann_data.type,
+        "active": ann_data.active,
+        "expires_at": ann_data.expires_at
+    }
+    await db.announcements.update_one({"id": ann_id}, {"$set": update_data})
+    
+    updated = await db.announcements.find_one({"id": ann_id}, {"_id": 0})
+    return Announcement(**updated)
+
+@admin_router.delete("/announcements/{ann_id}")
+async def admin_delete_announcement(ann_id: str, current_user: dict = Depends(get_current_user)):
+    result = await db.announcements.delete_one({"id": ann_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Announcement not found")
+    return {"message": "Announcement deleted successfully"}
+
+
+# Include the routers in the main app
 app.include_router(api_router)
+app.include_router(admin_router)
 
 app.add_middleware(
     CORSMiddleware,
