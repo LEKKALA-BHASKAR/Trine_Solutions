@@ -55,10 +55,13 @@ class BlogPost(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
     excerpt: str
+    content: str
     image: str
     date: str
     author: str
     category: str
+    readTime: str
+    tags: List[str] = []
 
 class ContactForm(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -196,37 +199,97 @@ async def get_blog_posts():
                 "id": "1",
                 "title": "The Future of Enterprise AI: Trends Shaping 2025",
                 "excerpt": "Explore how artificial intelligence is revolutionizing enterprise operations and what to expect in the coming years.",
-                "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+                "content": "Artificial Intelligence continues to reshape the enterprise landscape in unprecedented ways. From predictive analytics to automated decision-making, AI is becoming the cornerstone of modern business operations. This comprehensive guide explores the key trends that will define enterprise AI in 2025 and beyond.",
+                "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200",
                 "date": "2025-01-15",
                 "author": "Dr. Sarah Chen",
-                "category": "AI & Innovation"
+                "category": "AI & Innovation",
+                "readTime": "8 min read",
+                "tags": ["AI", "Machine Learning", "Enterprise Technology", "Innovation"]
             },
             {
                 "id": "2",
-                "title": "Zero Trust Security: A Comprehensive Guide",
-                "excerpt": "Learn how zero trust architecture is becoming essential for modern cybersecurity strategies.",
-                "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800",
+                "title": "Zero Trust Security: A Comprehensive Implementation Guide",
+                "excerpt": "Learn how zero trust architecture is becoming essential for modern cybersecurity strategies and how to implement it effectively.",
+                "content": "As cyber threats become increasingly sophisticated, the traditional perimeter-based security model is no longer sufficient. Zero Trust Architecture represents a paradigm shift in how organizations approach security, assuming that threats can exist both inside and outside the network.",
+                "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200",
                 "date": "2025-01-10",
                 "author": "Michael Rodriguez",
-                "category": "Cybersecurity"
+                "category": "Cybersecurity",
+                "readTime": "12 min read",
+                "tags": ["Cybersecurity", "Zero Trust", "Network Security", "Enterprise Security"]
             },
             {
                 "id": "3",
-                "title": "Cloud Migration Best Practices for 2025",
-                "excerpt": "Navigate the complexities of cloud migration with our expert insights and proven strategies.",
-                "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800",
+                "title": "Cloud Migration Best Practices for Enterprise Success",
+                "excerpt": "Navigate the complexities of cloud migration with our expert insights and proven strategies for 2025.",
+                "content": "Cloud migration is no longer a question of 'if' but 'how' for modern enterprises. This comprehensive guide covers everything from assessment and planning to execution and optimization, ensuring your cloud journey is smooth and successful.",
+                "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1200",
                 "date": "2025-01-05",
                 "author": "Emily Watson",
-                "category": "Cloud Computing"
+                "category": "Cloud Computing",
+                "readTime": "10 min read",
+                "tags": ["Cloud Computing", "AWS", "Azure", "Migration Strategy"]
             },
             {
                 "id": "4",
-                "title": "Data Privacy Regulations: What Your Business Needs to Know",
-                "excerpt": "Stay compliant with evolving data privacy regulations across different jurisdictions.",
-                "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800",
+                "title": "Data Privacy Regulations: Global Compliance Strategies",
+                "excerpt": "Stay compliant with evolving data privacy regulations across different jurisdictions with our expert guidance.",
+                "content": "The regulatory landscape for data privacy is constantly evolving, with new laws and requirements emerging globally. Understanding and complying with regulations like GDPR, CCPA, and emerging frameworks is crucial for any organization handling personal data.",
+                "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200",
                 "date": "2024-12-28",
                 "author": "James Park",
-                "category": "Compliance"
+                "category": "Compliance",
+                "readTime": "15 min read",
+                "tags": ["Data Privacy", "GDPR", "Compliance", "Legal"]
+            },
+            {
+                "id": "5",
+                "title": "Kubernetes at Scale: Managing Enterprise Container Orchestration",
+                "excerpt": "Master the art of scaling Kubernetes deployments for enterprise-grade applications with advanced strategies.",
+                "content": "Kubernetes has become the de facto standard for container orchestration, but managing it at enterprise scale presents unique challenges. This guide provides advanced techniques for scaling, monitoring, and optimizing Kubernetes in production environments.",
+                "image": "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=1200",
+                "date": "2024-12-20",
+                "author": "Dr. Sarah Chen",
+                "category": "Cloud Computing",
+                "readTime": "14 min read",
+                "tags": ["Kubernetes", "DevOps", "Container Orchestration", "Cloud Native"]
+            },
+            {
+                "id": "6",
+                "title": "The ROI of Digital Transformation: Measuring Success",
+                "excerpt": "Discover how to quantify and maximize the return on investment from your digital transformation initiatives.",
+                "content": "Digital transformation requires significant investment, but how do you measure its success? This article explores key metrics, frameworks, and real-world examples of organizations that have successfully quantified their digital transformation ROI.",
+                "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200",
+                "date": "2024-12-15",
+                "author": "Emily Watson",
+                "category": "Digital Transformation",
+                "readTime": "11 min read",
+                "tags": ["Digital Transformation", "ROI", "Business Strategy", "Metrics"]
+            },
+            {
+                "id": "7",
+                "title": "API Security: Protecting Your Digital Assets in 2025",
+                "excerpt": "Essential strategies for securing APIs in an increasingly interconnected digital ecosystem.",
+                "content": "APIs are the backbone of modern applications, but they also represent a significant security risk if not properly protected. This comprehensive guide covers the latest API security threats and how to defend against them.",
+                "image": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200",
+                "date": "2024-12-10",
+                "author": "Michael Rodriguez",
+                "category": "Cybersecurity",
+                "readTime": "9 min read",
+                "tags": ["API Security", "Cybersecurity", "Web Security", "Best Practices"]
+            },
+            {
+                "id": "8",
+                "title": "Building Data-Driven Organizations: A Leadership Perspective",
+                "excerpt": "Transform your organization's culture to embrace data-driven decision making at every level.",
+                "content": "Becoming a truly data-driven organization requires more than just technology—it demands cultural change, leadership commitment, and the right processes. Learn how leading organizations are making this transition successfully.",
+                "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200",
+                "date": "2024-12-05",
+                "author": "James Park",
+                "category": "AI & Innovation",
+                "readTime": "13 min read",
+                "tags": ["Data Analytics", "Leadership", "Business Intelligence", "Culture"]
             }
         ]
         return default_posts
