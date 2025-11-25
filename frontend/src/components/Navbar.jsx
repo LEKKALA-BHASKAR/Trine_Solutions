@@ -16,6 +16,18 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
@@ -29,102 +41,131 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
 
   return (
     <>
-      <nav
-        data-testid="main-navbar"
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
-          scrolled ? 'w-[95%] lg:w-[90%]' : 'w-[98%] lg:w-[95%]'
-        }`}
-      >
-        <div className="glass rounded-[30px] px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2" data-testid="logo-link">
-              <div className="w-10 h-10 rounded-xl bg-gradient-orange-blue flex items-center justify-center text-white font-bold text-xl">
-                T
-              </div>
-              <span className="text-xl font-bold hidden sm:block" style={{ color: darkMode ? '#F5F5F5' : '#002C5F' }}>
-                Trine Solutions
-              </span>
-            </Link>
+      <header role="banner">
+        <nav
+          data-testid="main-navbar"
+          aria-label="Main navigation"
+          className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+            scrolled ? 'w-[95%] lg:w-[90%]' : 'w-[98%] lg:w-[95%]'
+          }`}
+        >
+          <div className="glass rounded-[30px] px-6 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <Link 
+                to="/" 
+                className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded-xl" 
+                data-testid="logo-link"
+                aria-label="Trine Solutions - Home"
+              >
+                <div className="w-10 h-10 rounded-xl bg-gradient-orange-blue flex items-center justify-center text-white font-bold text-xl" aria-hidden="true">
+                  T
+                </div>
+                <span className="text-xl font-bold hidden sm:block" style={{ color: darkMode ? '#F5F5F5' : '#002C5F' }}>
+                  Trine Solutions
+                </span>
+              </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  data-testid={`nav-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    location.pathname === link.path
-                      ? 'bg-gradient-orange-blue text-white'
-                      : 'hover:bg-opacity-10 hover:bg-gray-500'
-                  }`}
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex items-center space-x-1" aria-label="Primary">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    data-testid={`nav-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                      location.pathname === link.path
+                        ? 'bg-gradient-orange-blue text-white'
+                        : 'hover:bg-opacity-10 hover:bg-gray-500'
+                    }`}
+                    aria-current={location.pathname === link.path ? 'page' : undefined}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Right Side Actions */}
+              <div className="flex items-center space-x-3" role="group" aria-label="Site controls">
+                {/* Search */}
+                <button
+                  onClick={() => setSearchOpen(!searchOpen)}
+                  data-testid="search-button"
+                  className="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  aria-label="Open search"
+                  aria-expanded={searchOpen}
+                  aria-haspopup="dialog"
                 >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
+                  <Search className="w-5 h-5" aria-hidden="true" />
+                </button>
 
-            {/* Right Side Actions */}
-            <div className="flex items-center space-x-3">
-              {/* Search */}
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                data-testid="search-button"
-                className="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300"
-                aria-label="Search"
-              >
-                <Search className="w-5 h-5" />
-              </button>
-
-              {/* Dark Mode Toggle */}
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                data-testid="theme-toggle"
-                className="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300"
-                aria-label="Toggle dark mode"
-              >
-                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </button>
-
-              {/* Language Selector */}
-              <div className="relative hidden sm:block">
-                <select
-                  value={language}
-                  onChange={(e) => setLanguage(e.target.value)}
-                  data-testid="language-selector"
-                  className="appearance-none bg-transparent pl-8 pr-3 py-2 rounded-full text-sm font-medium cursor-pointer outline-none hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300"
+                {/* Dark Mode Toggle */}
+                <button
+                  onClick={() => setDarkMode(!darkMode)}
+                  data-testid="theme-toggle"
+                  className="p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                  aria-pressed={darkMode}
                 >
-                  <option value="EN">EN</option>
-                  <option value="ES">ES</option>
-                  <option value="FR">FR</option>
-                  <option value="DE">DE</option>
-                </select>
-                <Globe className="w-4 h-4 absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none" />
-              </div>
+                  {darkMode ? <Sun className="w-5 h-5" aria-hidden="true" /> : <Moon className="w-5 h-5" aria-hidden="true" />}
+                </button>
 
-              {/* Mobile Menu Toggle */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                data-testid="mobile-menu-toggle"
-                className="lg:hidden p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300"
-                aria-label="Toggle menu"
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
+                {/* Language Selector */}
+                <div className="relative hidden sm:block">
+                  <label htmlFor="language-selector" className="sr-only">Select language</label>
+                  <select
+                    id="language-selector"
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    data-testid="language-selector"
+                    className="appearance-none bg-transparent pl-8 pr-3 py-2 rounded-full text-sm font-medium cursor-pointer outline-none hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:ring-2 focus:ring-orange-500"
+                  >
+                    <option value="EN">EN</option>
+                    <option value="ES">ES</option>
+                    <option value="FR">FR</option>
+                    <option value="DE">DE</option>
+                  </select>
+                  <Globe className="w-4 h-4 absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
+                </div>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  data-testid="mobile-menu-toggle"
+                  className="lg:hidden p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-500 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={mobileMenuOpen}
+                  aria-controls="mobile-menu"
+                >
+                  {mobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* Search Overlay */}
       {searchOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[60] flex items-start justify-center pt-32" onClick={() => setSearchOpen(false)}>
-          <div className="glass rounded-3xl p-6 w-[90%] max-w-2xl" onClick={(e) => e.stopPropagation()} data-testid="search-overlay">
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[60] flex items-start justify-center pt-32" 
+          onClick={() => setSearchOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Search"
+        >
+          <div 
+            className="glass rounded-3xl p-6 w-[90%] max-w-2xl" 
+            onClick={(e) => e.stopPropagation()} 
+            data-testid="search-overlay"
+            role="search"
+          >
             <div className="flex items-center space-x-4">
-              <Search className="w-6 h-6 text-gray-400" />
+              <Search className="w-6 h-6 text-gray-400" aria-hidden="true" />
+              <label htmlFor="search-input" className="sr-only">Search</label>
               <input
-                type="text"
+                id="search-input"
+                type="search"
                 placeholder="Search for services, insights, or solutions..."
                 data-testid="search-input"
                 className="flex-1 bg-transparent outline-none text-lg"
@@ -137,30 +178,40 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[55] lg:hidden" onClick={() => setMobileMenuOpen(false)}>
-          <div
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[55] lg:hidden" 
+          onClick={() => setMobileMenuOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+        >
+          <nav
+            id="mobile-menu"
             className="glass absolute right-4 top-20 w-[calc(100%-2rem)] max-w-sm rounded-3xl p-6"
             onClick={(e) => e.stopPropagation()}
             data-testid="mobile-menu"
+            aria-label="Mobile navigation"
           >
-            <div className="flex flex-col space-y-2">
+            <ul className="flex flex-col space-y-2" role="list">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  data-testid={`mobile-nav-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  className={`px-4 py-3 rounded-2xl text-base font-medium transition-all duration-300 ${
-                    location.pathname === link.path
-                      ? 'bg-gradient-orange-blue text-white'
-                      : 'hover:bg-opacity-10 hover:bg-gray-500'
-                  }`}
-                >
-                  {link.name}
-                </Link>
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    data-testid={`mobile-nav-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
+                    className={`block px-4 py-3 rounded-2xl text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                      location.pathname === link.path
+                        ? 'bg-gradient-orange-blue text-white'
+                        : 'hover:bg-opacity-10 hover:bg-gray-500'
+                    }`}
+                    aria-current={location.pathname === link.path ? 'page' : undefined}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
         </div>
       )}
     </>

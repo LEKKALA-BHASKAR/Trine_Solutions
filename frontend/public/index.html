@@ -4,54 +4,205 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#002C5F" />
+        <meta name="color-scheme" content="light dark" />
         
         <!-- SEO Meta Tags -->
         <title>Trine Solutions – Digital Transformation, Cloud, Cybersecurity, IT Consulting</title>
         <meta name="description" content="Trine Solutions provides digital transformation, cybersecurity, cloud services, AI solutions, DevOps, and enterprise IT consulting. Premium consulting powered by expert teams." />
-        <meta name="keywords" content="Digital Transformation, Cybersecurity, Cloud, DevOps, AI Solutions, IT Consulting, Enterprise IT, Software Development" />
+        <meta name="keywords" content="Digital Transformation, Cybersecurity, Cloud, DevOps, AI Solutions, IT Consulting, Enterprise IT, Software Development, Risk Management, Compliance" />
         <meta name="author" content="Trine Solutions" />
         <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         
         <!-- Canonical Link -->
         <link rel="canonical" href="https://trine-solutions.vercel.app/" />
         
         <!-- Favicon Links -->
         <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest" />
+        
+        <!-- Preconnect for Performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         
         <!-- Open Graph Tags -->
         <meta property="og:title" content="Trine Solutions – Premium IT Consulting & Digital Services" />
         <meta property="og:description" content="We deliver enterprise-grade digital transformation, cybersecurity, cloud and AI services." />
         <meta property="og:url" content="https://trine-solutions.vercel.app/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+        <meta property="og:image" content="https://trine-solutions.vercel.app/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Trine Solutions - Enterprise IT Consulting" />
         <meta property="og:site_name" content="Trine Solutions" />
+        <meta property="og:locale" content="en_US" />
         
         <!-- Twitter Card Tags -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Trine Solutions – Premium IT Consulting & Digital Services" />
         <meta name="twitter:description" content="We deliver enterprise-grade digital transformation, cybersecurity, cloud and AI services." />
-        <meta name="twitter:image" content="%PUBLIC_URL%/og-image.png" />
+        <meta name="twitter:image" content="https://trine-solutions.vercel.app/og-image.png" />
+        <meta name="twitter:site" content="@trinesolutions" />
         
-        <!-- Structured Data (JSON-LD) -->
+        <!-- Structured Data (JSON-LD) - Organization -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Organization",
+            "@id": "https://trine-solutions.vercel.app/#organization",
             "name": "Trine Solutions",
             "url": "https://trine-solutions.vercel.app",
-            "logo": "%PUBLIC_URL%/logo.png",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://trine-solutions.vercel.app/logo.png",
+                "width": 512,
+                "height": 512
+            },
             "sameAs": [
-                "https://www.linkedin.com/company/trine-solutions/"
+                "https://www.linkedin.com/company/trine-solutions/",
+                "https://twitter.com/trinesolutions"
             ],
             "description": "Trine Solutions provides digital transformation, cybersecurity, cloud services, AI solutions, DevOps, and enterprise IT consulting.",
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+1-555-123-4567",
-                "contactType": "customer service"
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 Innovation Drive, Tech Park",
+                "addressLocality": "Silicon Valley",
+                "addressRegion": "CA",
+                "postalCode": "94025",
+                "addressCountry": "US"
+            },
+            "contactPoint": [
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "+1-555-123-4567",
+                    "contactType": "customer service",
+                    "availableLanguage": ["English", "Spanish"]
+                },
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "+1-555-123-4568",
+                    "contactType": "sales",
+                    "availableLanguage": ["English"]
+                }
+            ],
+            "areaServed": "Worldwide",
+            "serviceType": [
+                "Digital Transformation",
+                "Cybersecurity",
+                "Cloud Computing",
+                "DevOps",
+                "AI Solutions",
+                "IT Consulting",
+                "Risk Management",
+                "Compliance"
+            ]
+        }
+        </script>
+        
+        <!-- Structured Data (JSON-LD) - WebSite with Search -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://trine-solutions.vercel.app/#website",
+            "name": "Trine Solutions",
+            "url": "https://trine-solutions.vercel.app",
+            "publisher": {
+                "@id": "https://trine-solutions.vercel.app/#organization"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://trine-solutions.vercel.app/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
             }
         }
         </script>
+        
+        <!-- Structured Data (JSON-LD) - BreadcrumbList -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://trine-solutions.vercel.app/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Services",
+                    "item": "https://trine-solutions.vercel.app/services"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Industries",
+                    "item": "https://trine-solutions.vercel.app/industries"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "Case Studies",
+                    "item": "https://trine-solutions.vercel.app/case-studies"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "name": "Insights",
+                    "item": "https://trine-solutions.vercel.app/insights"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "name": "Careers",
+                    "item": "https://trine-solutions.vercel.app/careers"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 7,
+                    "name": "Contact",
+                    "item": "https://trine-solutions.vercel.app/contact"
+                }
+            ]
+        }
+        </script>
+        
+        <!-- Accessibility: Skip Link Styles -->
+        <style>
+            .skip-link {
+                position: absolute;
+                top: -40px;
+                left: 0;
+                background: #002C5F;
+                color: white;
+                padding: 8px 16px;
+                z-index: 100000;
+                text-decoration: none;
+                font-weight: 600;
+                border-radius: 0 0 8px 0;
+                transition: top 0.2s ease;
+            }
+            .skip-link:focus {
+                top: 0;
+                outline: 2px solid #F78B1F;
+                outline-offset: 2px;
+            }
+            /* Reduced Motion Support */
+            @media (prefers-reduced-motion: reduce) {
+                *, *::before, *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+        </style>
         
         <!--
         These two scripts have been added for the testing, please do not edit or remove them
@@ -60,8 +211,15 @@
         <script src="https://d2adkz2s9zrlge.cloudfront.net/rrweb-recorder-20250919-1.js"></script>
     </head>
     <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
+        <!-- Accessibility: Skip to Main Content Link -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        
+        <noscript>
+            <div style="padding: 20px; background: #FEF3CD; color: #856404; text-align: center;">
+                You need to enable JavaScript to run this app. Please enable JavaScript in your browser settings.
+            </div>
+        </noscript>
+        <div id="root" role="application" aria-label="Trine Solutions Website"></div>
         <script>
             !(function (t, e) {
                 var o, n, p, r;

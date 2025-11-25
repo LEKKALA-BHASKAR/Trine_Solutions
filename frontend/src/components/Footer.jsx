@@ -64,10 +64,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative overflow-hidden" data-testid="main-footer">
+    <footer className="relative overflow-hidden" data-testid="main-footer" role="contentinfo" aria-label="Site footer">
       {/* Decorative Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900"></div>
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900" aria-hidden="true"></div>
+      <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
       </div>
@@ -78,7 +78,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-orange-blue flex items-center justify-center font-bold text-2xl text-white shadow-xl">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-orange-blue flex items-center justify-center font-bold text-2xl text-white shadow-xl" aria-hidden="true">
                 T
               </div>
               <span className="text-2xl font-bold text-white">Trine Solutions</span>
@@ -86,41 +86,41 @@ const Footer = () => {
             <p className="text-gray-300 mb-8 leading-relaxed text-base">
               Driving digital excellence with intelligent solutions. Your trusted partner in enterprise transformation.
             </p>
-            <div className="space-y-4 text-gray-300">
+            <address className="space-y-4 text-gray-300 not-italic">
               <div className="flex items-start space-x-3 group cursor-pointer">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-orange-400 group-hover:text-orange-300 transition-colors" />
+                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-orange-400 group-hover:text-orange-300 transition-colors" aria-hidden="true" />
                 <span className="group-hover:text-white transition-colors">123 Innovation Drive, Tech Park, Silicon Valley, CA 94025</span>
               </div>
               <div className="flex items-center space-x-3 group cursor-pointer">
-                <Phone className="w-5 h-5 flex-shrink-0 text-orange-400 group-hover:text-orange-300 transition-colors" />
-                <span className="group-hover:text-white transition-colors">+1 (555) 123-4567</span>
+                <Phone className="w-5 h-5 flex-shrink-0 text-orange-400 group-hover:text-orange-300 transition-colors" aria-hidden="true" />
+                <a href="tel:+15551234567" className="group-hover:text-white transition-colors">+1 (555) 123-4567</a>
               </div>
               <div className="flex items-center space-x-3 group cursor-pointer">
-                <Mail className="w-5 h-5 flex-shrink-0 text-orange-400 group-hover:text-orange-300 transition-colors" />
-                <span className="group-hover:text-white transition-colors">info@trinesolutions.com</span>
+                <Mail className="w-5 h-5 flex-shrink-0 text-orange-400 group-hover:text-orange-300 transition-colors" aria-hidden="true" />
+                <a href="mailto:info@trinesolutions.com" className="group-hover:text-white transition-colors">info@trinesolutions.com</a>
               </div>
-            </div>
+            </address>
           </div>
 
           {/* Footer Links */}
           {footerSections.map((section, index) => (
-            <div key={index}>
-              <h3 className="text-white text-lg font-bold mb-6">{section.title}</h3>
-              <ul className="space-y-3">
+            <nav key={index} aria-labelledby={`footer-section-${index}`}>
+              <h3 id={`footer-section-${index}`} className="text-white text-lg font-bold mb-6">{section.title}</h3>
+              <ul className="space-y-3" role="list">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <Link
                       to={link.path}
                       data-testid={`footer-link-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
+                      className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center space-x-2 group focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
                     >
-                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all duration-300" />
+                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all duration-300" aria-hidden="true" />
                       <span>{link.name}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 
