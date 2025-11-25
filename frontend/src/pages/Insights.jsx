@@ -210,24 +210,38 @@ const Insights = () => {
       </section>
 
       {/* Newsletter */}
-      <section className="py-20 gradient-subtle">
-        <div className="container">
-          <div className="glass-card p-12 rounded-3xl text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4" data-testid="newsletter-title">Subscribe to Our Newsletter</h2>
-            <p className="text-lg opacity-80 mb-8">
-              Get the latest insights, industry trends, and expert perspectives delivered to your inbox.
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-600 to-blue-900"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full filter blur-3xl"></div>
+        </div>
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 mb-6">
+              <TrendingUp className="w-4 h-4" />
+              <span className="text-sm font-medium">Join 50,000+ Subscribers</span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="newsletter-title">
+              Never Miss an Insight
+            </h2>
+            <p className="text-xl opacity-90 mb-10 leading-relaxed">
+              Get exclusive access to expert perspectives, industry trends, and actionable strategies delivered directly to your inbox every week.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email address"
                 data-testid="newsletter-email-input"
-                className="flex-1 px-6 py-3 rounded-full bg-white dark:bg-gray-900 outline-none"
+                className="flex-1 px-8 py-4 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 outline-none focus:bg-white/30 transition-all text-lg"
               />
-              <button className="btn-primary" data-testid="newsletter-subscribe-btn">
-                Subscribe
+              <button className="px-10 py-4 rounded-full bg-white text-orange-600 font-bold hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-xl" data-testid="newsletter-subscribe-btn">
+                Subscribe Now
               </button>
             </div>
+            <p className="text-sm opacity-75 mt-6">
+              No spam, unsubscribe anytime. Read our <a href="#" className="underline hover:text-white">privacy policy</a>.
+            </p>
           </div>
         </div>
       </section>
