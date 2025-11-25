@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Calendar, User, Tag, Search } from 'lucide-react';
+import { Calendar, User, Tag, Search, Clock, ArrowRight, TrendingUp } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -48,14 +48,24 @@ const Insights = () => {
   return (
     <div className="min-h-screen" data-testid="insights-page">
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 gradient-blue-orange opacity-90"></div>
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900"></div>
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-20 left-20 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          </div>
+        </div>
         <div className="container relative z-10 text-center text-white">
-          <h1 className="text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up" data-testid="insights-hero-title">
-            Insights & Thought Leadership
+          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6 animate-fade-in-up">
+            <TrendingUp className="w-4 h-4 text-orange-400" />
+            <span className="text-sm font-medium">Latest Insights & Thought Leadership</span>
+          </div>
+          <h1 className="text-5xl lg:text-7xl font-bold mb-6 animate-fade-in-up" data-testid="insights-hero-title" style={{ animationDelay: '0.1s' }}>
+            Stories That Inspire Innovation
           </h1>
-          <p className="text-lg lg:text-xl max-w-3xl mx-auto opacity-95 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Stay ahead with expert perspectives on technology trends, best practices, and industry innovations.
+          <p className="text-lg lg:text-xl max-w-3xl mx-auto opacity-90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            Expert perspectives on technology trends, best practices, and industry innovations from our team of thought leaders.
           </p>
         </div>
       </section>
