@@ -14,6 +14,58 @@ const iconMap = {
   Wrench,
 };
 
+// Mock services data
+const mockServices = [
+  {
+    id: 1,
+    title: 'Digital Transformation',
+    description: 'Accelerate your business evolution with comprehensive digital strategies that modernize operations and enhance customer experiences.',
+    icon: 'Zap',
+    capabilities: ['Process Automation', 'Digital Strategy', 'Legacy Modernization', 'Customer Experience'],
+    tools: ['React', 'Node.js', 'AWS', 'Azure', 'Kubernetes']
+  },
+  {
+    id: 2,
+    title: 'Cybersecurity',
+    description: 'Protect your organization with enterprise-grade security solutions, threat detection, and compliance frameworks.',
+    icon: 'Shield',
+    capabilities: ['Threat Detection', 'Security Audits', 'Compliance Management', 'Incident Response'],
+    tools: ['SIEM', 'Firewall', 'Encryption', 'Zero Trust', 'IAM']
+  },
+  {
+    id: 3,
+    title: 'Cloud Solutions',
+    description: 'Scale your infrastructure with flexible cloud computing, migration services, and DevOps excellence.',
+    icon: 'Cloud',
+    capabilities: ['Cloud Migration', 'Multi-Cloud Strategy', 'DevOps', 'Infrastructure as Code'],
+    tools: ['AWS', 'Azure', 'GCP', 'Terraform', 'Docker']
+  },
+  {
+    id: 4,
+    title: 'Data Analytics',
+    description: 'Transform raw data into actionable insights with advanced analytics, AI, and machine learning solutions.',
+    icon: 'BarChart3',
+    capabilities: ['Business Intelligence', 'Predictive Analytics', 'Data Visualization', 'ML Models'],
+    tools: ['Python', 'TensorFlow', 'Tableau', 'Power BI', 'Spark']
+  },
+  {
+    id: 5,
+    title: 'Compliance & Risk',
+    description: 'Navigate complex regulatory landscapes with comprehensive compliance and risk management solutions.',
+    icon: 'FileCheck',
+    capabilities: ['Regulatory Compliance', 'Risk Assessment', 'Audit Management', 'Policy Development'],
+    tools: ['GRC Platforms', 'NIST', 'ISO 27001', 'SOC 2', 'GDPR']
+  },
+  {
+    id: 6,
+    title: 'IT Advisory',
+    description: 'Strategic technology consulting to align your IT investments with business goals and industry best practices.',
+    icon: 'Wrench',
+    capabilities: ['IT Strategy', 'Technology Roadmap', 'Vendor Selection', 'Cost Optimization'],
+    tools: ['ITIL', 'TOGAF', 'Agile', 'Project Management', 'Change Management']
+  }
+];
+
 const Services = () => {
   const [services, setServices] = useState([]);
 
@@ -21,9 +73,10 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         const response = await axios.get(`${API}/services`);
-        setServices(response.data);
+        setServices(response.data.length > 0 ? response.data : mockServices);
       } catch (error) {
         console.error('Error fetching services:', error);
+        setServices(mockServices);
       }
     };
     fetchServices();
@@ -33,7 +86,11 @@ const Services = () => {
     <div className="min-h-screen" data-testid="services-page">
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 gradient-orange-blue opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-trine-orange via-trine-orange/80 to-trine-lightblue"></div>
+        <div className="absolute inset-0 opacity-20" aria-hidden="true">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-trine-green rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        </div>
         <div className="container relative z-10 text-center text-white">
           <h1 className="text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up" data-testid="services-hero-title">
             Enterprise Solutions That Drive Results
@@ -48,6 +105,12 @@ const Services = () => {
       {services.map((service, index) => {
         const Icon = iconMap[service.icon] || Zap;
         const isEven = index % 2 === 0;
+        const gradientColors = [
+          'from-trine-orange to-trine-lightblue',
+          'from-trine-lightblue to-trine-green',
+          'from-trine-green to-trine-orange',
+        ];
+        const gradientClass = gradientColors[index % 3];
 
         return (
           <section
@@ -58,20 +121,20 @@ const Services = () => {
             <div className="container">
               <div className={`grid md:grid-cols-2 gap-12 items-center ${!isEven ? 'md:grid-flow-dense' : ''}`}>
                 <div className={!isEven ? 'md:col-start-2' : ''}>
-                  <div className="w-20 h-20 rounded-3xl bg-gradient-orange-blue flex items-center justify-center mb-6">
+                  <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${gradientClass} flex items-center justify-center mb-6`}>
                     <Icon className="w-10 h-10 text-white" />
                   </div>
-                  <h2 className="text-4xl lg:text-5xl font-bold mb-6">{service.title}</h2>
+                  <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-trine-black">{service.title}</h2>
                   <p className="text-lg opacity-80 mb-8 leading-relaxed">{service.description}</p>
 
                   {/* Capabilities */}
                   {service.capabilities && service.capabilities.length > 0 && (
                     <div className="mb-8">
-                      <h3 className="text-2xl font-bold mb-4">Key Capabilities</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-trine-black">Key Capabilities</h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {service.capabilities.map((capability, idx) => (
                           <div key={idx} className="flex items-center space-x-2">
-                            <CheckCircle2 className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                            <CheckCircle2 className="w-5 h-5 text-trine-green flex-shrink-0" />
                             <span>{capability}</span>
                           </div>
                         ))}
@@ -82,12 +145,12 @@ const Services = () => {
                   {/* Tools */}
                   {service.tools && service.tools.length > 0 && (
                     <div>
-                      <h3 className="text-2xl font-bold mb-4">Technologies & Tools</h3>
+                      <h3 className="text-2xl font-bold mb-4 text-trine-black">Technologies & Tools</h3>
                       <div className="flex flex-wrap gap-3">
                         {service.tools.map((tool, idx) => (
                           <span
                             key={idx}
-                            className="px-4 py-2 glass-card text-sm font-medium"
+                            className="px-4 py-2 glass-card text-sm font-medium hover:border-trine-orange/30 transition-all duration-300"
                           >
                             {tool}
                           </span>
@@ -98,7 +161,7 @@ const Services = () => {
                 </div>
 
                 <div className={!isEven ? 'md:col-start-1 md:row-start-1' : ''}>
-                  <div className="glass-card p-8 rounded-3xl">
+                  <div className="glass-card p-8 rounded-3xl hover:border-trine-orange/30 transition-all duration-300">
                     <img
                       src={`https://images.unsplash.com/photo-${[
                         '1551288049-bebda4e38f71',
@@ -122,17 +185,19 @@ const Services = () => {
       {/* Process */}
       <section className="py-20">
         <div className="container">
-          <h2 className="text-4xl lg:text-5xl font-bold text-center mb-16" data-testid="process-title">Our Approach</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-center mb-16" data-testid="process-title">
+            <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text text-transparent">Our Approach</span>
+          </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { step: '01', title: 'Discovery', description: 'Understand your business goals and challenges' },
-              { step: '02', title: 'Strategy', description: 'Design tailored solutions aligned with your objectives' },
-              { step: '03', title: 'Implementation', description: 'Execute with precision using agile methodologies' },
-              { step: '04', title: 'Optimization', description: 'Continuous improvement and support' },
+              { step: '01', title: 'Discovery', description: 'Understand your business goals and challenges', colorClass: 'from-trine-orange to-trine-lightblue' },
+              { step: '02', title: 'Strategy', description: 'Design tailored solutions aligned with your objectives', colorClass: 'from-trine-lightblue to-trine-green' },
+              { step: '03', title: 'Implementation', description: 'Execute with precision using agile methodologies', colorClass: 'from-trine-green to-trine-orange' },
+              { step: '04', title: 'Optimization', description: 'Continuous improvement and support', colorClass: 'from-trine-orange to-trine-green' },
             ].map((phase, index) => (
-              <div key={index} className="glass-card p-8" data-testid={`process-step-${index}`}>
-                <div className="text-5xl font-bold text-gradient mb-4">{phase.step}</div>
-                <h3 className="text-2xl font-bold mb-3">{phase.title}</h3>
+              <div key={index} className="glass-card p-8 hover:border-trine-orange/30 transition-all duration-300" data-testid={`process-step-${index}`}>
+                <div className={`text-5xl font-bold mb-4 bg-gradient-to-r ${phase.colorClass} bg-clip-text text-transparent`}>{phase.step}</div>
+                <h3 className="text-2xl font-bold mb-3 text-trine-black">{phase.title}</h3>
                 <p className="opacity-80">{phase.description}</p>
               </div>
             ))}
@@ -141,15 +206,15 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 gradient-subtle">
+      <section className="py-20 bg-gradient-to-br from-trine-lightblue to-trine-green">
         <div className="container text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="services-cta-title">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white" data-testid="services-cta-title">
             Ready to Transform Your Business?
           </h2>
-          <p className="text-lg opacity-80 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg text-white/90 mb-10 max-w-2xl mx-auto">
             Let's discuss how our services can help you achieve your goals.
           </p>
-          <button className="btn-primary flex items-center space-x-2 mx-auto" data-testid="services-cta-btn">
+          <button className="btn-primary flex items-center space-x-2 mx-auto bg-white text-trine-lightblue hover:bg-gray-100" data-testid="services-cta-btn">
             <span>Schedule a Consultation</span>
             <ArrowRight className="w-5 h-5" />
           </button>

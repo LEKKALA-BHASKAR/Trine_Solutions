@@ -7,21 +7,17 @@
 }
 
 :root {
-  /* Core Premium Color Palette */
-  --color-deepblue: #002C5F;
-  --color-purple: #7E57C2;
-  --color-pink: #EC4899;
+  /* Trine Solutions Premium Color Palette */
   --color-orange: #F78B1F;
   --color-green: #22C55E;
-  --color-yellow: #FACC15;
-  --color-skyblue: #38BDF8;
-  --color-darkred: #B91C1C;
+  --color-lightblue: #38BDF8;
   --color-black: #0A0A0A;
-  --color-white: #ffffff;
+  --color-white: #FFFFFF;
   
-  /* Legacy aliases for backward compatibility */
+  /* Semantic aliases */
   --orange: #F78B1F;
-  --deep-blue: #002C5F;
+  --green: #22C55E;
+  --lightblue: #38BDF8;
   --light-bg: #FAFAFA;
   --dark-bg: #0A0A0A;
   --text-light: #1A1A1A;
@@ -35,15 +31,13 @@
   --radius-md: 12px;
   --blur-lg: 18px;
   
-  /* Premium Gradients - using CSS custom properties for consistency */
-  --gradient-1: linear-gradient(135deg, var(--color-deepblue), var(--color-purple));
-  --gradient-2: linear-gradient(135deg, var(--color-orange), var(--color-yellow));
-  --gradient-3: linear-gradient(135deg, var(--color-pink), var(--color-skyblue));
-  --gradient-4: linear-gradient(135deg, var(--color-green), var(--color-orange));
-  --gradient-orange-blue: linear-gradient(135deg, var(--color-orange) 0%, var(--color-deepblue) 100%);
-  --gradient-purple-pink: linear-gradient(135deg, var(--color-purple) 0%, var(--color-pink) 100%);
-  --gradient-green-yellow: linear-gradient(135deg, var(--color-green) 0%, var(--color-yellow) 100%);
-  --gradient-skyblue-purple: linear-gradient(135deg, var(--color-skyblue) 0%, var(--color-purple) 100%);
+  /* Premium Gradients using new palette */
+  --gradient-orange-green: linear-gradient(135deg, var(--color-orange) 0%, var(--color-green) 100%);
+  --gradient-orange-lightblue: linear-gradient(135deg, var(--color-orange) 0%, var(--color-lightblue) 100%);
+  --gradient-green-lightblue: linear-gradient(135deg, var(--color-green) 0%, var(--color-lightblue) 100%);
+  --gradient-lightblue-orange: linear-gradient(135deg, var(--color-lightblue) 0%, var(--color-orange) 100%);
+  --gradient-black-orange: linear-gradient(135deg, var(--color-black) 0%, var(--color-orange) 100%);
+  --gradient-premium: linear-gradient(135deg, var(--color-orange) 0%, var(--color-lightblue) 50%, var(--color-green) 100%);
 }
 
 .dark {
@@ -60,6 +54,7 @@ body {
   background: var(--light-bg);
   color: var(--text-light);
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .dark body {
@@ -98,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .glass-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.25);
+  box-shadow: 0 16px 48px 0 rgba(247, 139, 31, 0.2);
 }
 
 /* Smooth Scrolling */
@@ -106,37 +101,42 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Gradient Backgrounds */
+/* New Premium Gradient Backgrounds */
+.gradient-orange-green {
+  background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-green) 100%);
+}
+
+.gradient-orange-lightblue {
+  background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-lightblue) 100%);
+}
+
+.gradient-green-lightblue {
+  background: linear-gradient(135deg, var(--color-green) 0%, var(--color-lightblue) 100%);
+}
+
+.gradient-lightblue-orange {
+  background: linear-gradient(135deg, var(--color-lightblue) 0%, var(--color-orange) 100%);
+}
+
+.gradient-black-orange {
+  background: linear-gradient(135deg, var(--color-black) 0%, var(--color-orange) 100%);
+}
+
+.gradient-premium {
+  background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-lightblue) 50%, var(--color-green) 100%);
+}
+
+/* Legacy gradient aliases for backward compatibility */
 .gradient-orange-blue {
-  background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-deepblue) 100%);
+  background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-lightblue) 100%);
 }
 
 .gradient-blue-orange {
-  background: linear-gradient(135deg, var(--color-deepblue) 0%, var(--color-orange) 100%);
-}
-
-.gradient-purple-pink {
-  background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-pink) 100%);
-}
-
-.gradient-green-yellow {
-  background: linear-gradient(135deg, var(--color-green) 0%, var(--color-yellow) 100%);
-}
-
-.gradient-skyblue-purple {
-  background: linear-gradient(135deg, var(--color-skyblue) 0%, var(--color-purple) 100%);
-}
-
-.gradient-pink-skyblue {
-  background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-skyblue) 100%);
-}
-
-.gradient-deepblue-purple {
-  background: linear-gradient(135deg, var(--color-deepblue) 0%, var(--color-purple) 100%);
+  background: linear-gradient(135deg, var(--color-lightblue) 0%, var(--color-orange) 100%);
 }
 
 .gradient-subtle {
-  background: linear-gradient(135deg, #FFF5EB 0%, #E6F2FF 100%);
+  background: linear-gradient(135deg, #FFF5EB 0%, #E6F9FF 100%);
 }
 
 .dark .gradient-subtle {
@@ -144,24 +144,20 @@ html {
 }
 
 /* Background Gradient Utilities */
-.bg-gradient-orange-blue {
-  background: var(--gradient-orange-blue);
+.bg-gradient-orange-lightblue {
+  background: var(--gradient-orange-lightblue);
 }
 
-.bg-gradient-1 {
-  background: var(--gradient-1);
+.bg-gradient-orange-green {
+  background: var(--gradient-orange-green);
 }
 
-.bg-gradient-2 {
-  background: var(--gradient-2);
+.bg-gradient-green-lightblue {
+  background: var(--gradient-green-lightblue);
 }
 
-.bg-gradient-3 {
-  background: var(--gradient-3);
-}
-
-.bg-gradient-4 {
-  background: var(--gradient-4);
+.bg-gradient-premium {
+  background: var(--gradient-premium);
 }
 
 /* Animations */
@@ -236,7 +232,26 @@ html {
 }
 
 .btn-secondary {
-  background: var(--deep-blue);
+  background: var(--lightblue);
+  color: var(--color-black);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+}
+
+.btn-secondary:hover {
+  background: #0EA5E9;
+  box-shadow: 0 6px 24px rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-success {
+  background: var(--green);
   color: white;
   padding: 14px 32px;
   border-radius: 50px;
@@ -245,12 +260,12 @@ html {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(0, 44, 95, 0.3);
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
 }
 
-.btn-secondary:hover {
-  background: #003D7A;
-  box-shadow: 0 6px 24px rgba(0, 44, 95, 0.4);
+.btn-success:hover {
+  background: #16A34A;
+  box-shadow: 0 6px 24px rgba(34, 197, 94, 0.4);
   transform: translateY(-2px);
 }
 
@@ -323,7 +338,14 @@ section {
 
 /* Text Styles */
 .text-gradient {
-  background: linear-gradient(135deg, var(--orange) 0%, var(--deep-blue) 100%);
+  background: linear-gradient(135deg, var(--orange) 0%, var(--lightblue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, var(--green) 0%, var(--lightblue) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -398,14 +420,12 @@ section {
 
 /* Admin Portal Container */
 .admin-portal {
-  --admin-primary: var(--color-deepblue);
+  --admin-primary: var(--color-lightblue);
   --admin-secondary: var(--color-orange);
   --admin-success: var(--color-green);
-  --admin-warning: var(--color-yellow);
-  --admin-danger: var(--color-darkred);
-  --admin-info: var(--color-skyblue);
-  --admin-purple: var(--color-purple);
-  --admin-pink: var(--color-pink);
+  --admin-warning: var(--color-orange);
+  --admin-danger: #DC2626;
+  --admin-info: var(--color-lightblue);
 }
 
 /* Admin Button Base */
@@ -441,16 +461,16 @@ section {
   transform: translateY(-1px);
 }
 
-/* Admin Secondary Button - Deep Blue */
+/* Admin Secondary Button - Light Blue */
 .admin-btn-secondary {
-  background: var(--color-deepblue);
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 44, 95, 0.3);
+  background: var(--color-lightblue);
+  color: var(--color-black);
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
 }
 
 .admin-btn-secondary:hover:not(:disabled) {
-  background: #003D7A;
-  box-shadow: 0 4px 12px rgba(0, 44, 95, 0.4);
+  background: #0EA5E9;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
   transform: translateY(-1px);
 }
 
@@ -467,36 +487,36 @@ section {
   transform: translateY(-1px);
 }
 
-/* Admin Warning Button - Yellow with dark text */
+/* Admin Warning Button - Orange with dark text */
 .admin-btn-warning {
-  background: var(--color-yellow);
-  color: #1A1A1A;
-  box-shadow: 0 2px 8px rgba(250, 204, 21, 0.3);
+  background: var(--color-orange);
+  color: white;
+  box-shadow: 0 2px 8px rgba(247, 139, 31, 0.3);
 }
 
 .admin-btn-warning:hover:not(:disabled) {
-  background: #EAB308;
-  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
+  background: #E67D0F;
+  box-shadow: 0 4px 12px rgba(247, 139, 31, 0.4);
   transform: translateY(-1px);
 }
 
-/* Admin Danger Button - Dark Red */
+/* Admin Danger Button - Red */
 .admin-btn-danger {
-  background: var(--color-darkred);
+  background: #DC2626;
   color: white;
-  box-shadow: 0 2px 8px rgba(185, 28, 28, 0.3);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
 }
 
 .admin-btn-danger:hover:not(:disabled) {
-  background: #991B1B;
-  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.4);
+  background: #B91C1C;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
   transform: translateY(-1px);
 }
 
-/* Admin Info Button - Sky Blue */
+/* Admin Info Button - Light Blue */
 .admin-btn-info {
-  background: var(--color-skyblue);
-  color: #1A1A1A;
+  background: var(--color-lightblue);
+  color: var(--color-black);
   box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
 }
 
@@ -506,34 +526,34 @@ section {
   transform: translateY(-1px);
 }
 
-/* Admin Purple Button */
-.admin-btn-purple {
-  background: var(--color-purple);
+/* Admin Green Button */
+.admin-btn-green {
+  background: var(--color-green);
   color: white;
-  box-shadow: 0 2px 8px rgba(126, 87, 194, 0.3);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
 }
 
-.admin-btn-purple:hover:not(:disabled) {
-  background: #6D4AAE;
-  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.4);
+.admin-btn-green:hover:not(:disabled) {
+  background: #16A34A;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
   transform: translateY(-1px);
 }
 
 /* Admin Outline Button */
 .admin-btn-outline {
   background: transparent;
-  color: var(--color-deepblue);
-  border: 2px solid var(--color-deepblue);
+  color: var(--color-orange);
+  border: 2px solid var(--color-orange);
 }
 
 .admin-btn-outline:hover:not(:disabled) {
-  background: var(--color-deepblue);
+  background: var(--color-orange);
   color: white;
 }
 
 /* Admin Gradient Button */
 .admin-btn-gradient {
-  background: var(--gradient-orange-blue);
+  background: var(--gradient-orange-lightblue);
   color: white;
   box-shadow: 0 2px 8px rgba(247, 139, 31, 0.3);
 }
@@ -625,8 +645,8 @@ section {
 }
 
 .admin-badge-purple {
-  background: rgba(126, 87, 194, 0.15);
-  color: var(--color-purple);
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--color-lightblue);
 }
 
 /* Admin Input Styles */

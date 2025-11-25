@@ -52,11 +52,21 @@ const Industries = () => {
     },
   ];
 
+  const gradientColors = [
+    'from-trine-orange to-trine-lightblue',
+    'from-trine-lightblue to-trine-green',
+    'from-trine-green to-trine-orange',
+  ];
+
   return (
     <div className="min-h-screen" data-testid="industries-page">
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 gradient-blue-orange opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-trine-lightblue via-trine-green to-trine-lightblue"></div>
+        <div className="absolute inset-0 opacity-20" aria-hidden="true">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-trine-orange rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        </div>
         <div className="container relative z-10 text-center text-white">
           <h1 className="text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up" data-testid="industries-hero-title">
             Industry-Specific Expertise
@@ -70,6 +80,7 @@ const Industries = () => {
       {/* Industries Detail */}
       {industries.map((industry, index) => {
         const isEven = index % 2 === 0;
+        const gradientClass = gradientColors[index % 3];
         return (
           <section
             key={index}
@@ -79,18 +90,18 @@ const Industries = () => {
             <div className="container">
               <div className={`grid md:grid-cols-2 gap-12 items-center ${!isEven ? 'md:grid-flow-dense' : ''}`}>
                 <div className={!isEven ? 'md:col-start-2' : ''}>
-                  <div className="w-20 h-20 rounded-3xl bg-gradient-orange-blue flex items-center justify-center mb-6">
+                  <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${gradientClass} flex items-center justify-center mb-6`}>
                     <industry.icon className="w-10 h-10 text-white" />
                   </div>
-                  <h2 className="text-4xl lg:text-5xl font-bold mb-6">{industry.name}</h2>
+                  <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-trine-black">{industry.name}</h2>
                   <p className="text-lg opacity-80 mb-8 leading-relaxed">{industry.description}</p>
 
                   {/* Solutions */}
                   <div className="mb-8">
-                    <h3 className="text-2xl font-bold mb-4">Our Solutions</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-trine-black">Our Solutions</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {industry.solutions.map((solution, idx) => (
-                        <div key={idx} className="glass-card px-4 py-3 text-sm font-medium">
+                        <div key={idx} className="glass-card px-4 py-3 text-sm font-medium hover:border-trine-orange/30 transition-all duration-300">
                           {solution}
                         </div>
                       ))}
@@ -99,11 +110,11 @@ const Industries = () => {
 
                   {/* Impact */}
                   <div>
-                    <h3 className="text-2xl font-bold mb-4">Impact & Results</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-trine-black">Impact & Results</h3>
                     <div className="space-y-2">
                       {industry.impact.map((item, idx) => (
                         <div key={idx} className="flex items-start space-x-3">
-                          <div className="w-2 h-2 rounded-full bg-orange-500 mt-2 flex-shrink-0"></div>
+                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-trine-orange to-trine-green mt-2 flex-shrink-0"></div>
                           <span className="opacity-80">{item}</span>
                         </div>
                       ))}
@@ -112,7 +123,7 @@ const Industries = () => {
                 </div>
 
                 <div className={!isEven ? 'md:col-start-1 md:row-start-1' : ''}>
-                  <div className="glass-card p-4 rounded-3xl">
+                  <div className="glass-card p-4 rounded-3xl hover:border-trine-lightblue/30 transition-all duration-300">
                     <img
                       src={industry.image}
                       alt={industry.name}
@@ -129,9 +140,9 @@ const Industries = () => {
       {/* CTA */}
       <section className="py-20">
         <div className="container text-center">
-          <div className="glass-card p-12 rounded-3xl max-w-4xl mx-auto">
+          <div className="glass-card p-12 rounded-3xl max-w-4xl mx-auto hover:border-trine-orange/30 transition-all duration-300">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6" data-testid="industries-cta-title">
-              Don't See Your Industry?
+              <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text text-transparent">Don't See Your Industry?</span>
             </h2>
             <p className="text-lg opacity-80 mb-10">
               We work across many sectors. Let's discuss how we can help your specific business needs.

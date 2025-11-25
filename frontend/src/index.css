@@ -19,17 +19,12 @@ code {
 
 @layer base {
     :root {
-        /* Core Premium Color Palette - Defined once for Tailwind integration */
-        --color-deepblue: #002C5F;
-        --color-purple: #7E57C2;
-        --color-pink: #EC4899;
+        /* Trine Solutions Premium Color Palette */
         --color-orange: #F78B1F;
         --color-green: #22C55E;
-        --color-yellow: #FACC15;
-        --color-skyblue: #38BDF8;
-        --color-darkred: #B91C1C;
+        --color-lightblue: #38BDF8;
         --color-black: #0A0A0A;
-        --color-white: #ffffff;
+        --color-white: #FFFFFF;
         
         /* Shadcn/Radix Theme Variables */
         --background: 0 0% 100%;
