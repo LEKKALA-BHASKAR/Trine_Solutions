@@ -54,10 +54,10 @@ const Footer = () => {
       title: 'Resources',
       icon: Sparkles,
       links: [
+        { name: 'Portfolio', path: '/portfolio' },
         { name: 'Case Studies', path: '/case-studies' },
         { name: 'Insights', path: '/insights' },
         { name: 'Whitepapers', path: '/insights' },
-        { name: 'Podcast', path: '/insights' },
         { name: 'News & Updates', path: '/insights' },
       ],
     },

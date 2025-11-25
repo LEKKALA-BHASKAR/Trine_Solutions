@@ -6,6 +6,7 @@ import {
   Sparkles, TrendingUp, Award, Users, Globe, Rocket, ChevronRight,
   Target, Lightbulb, Star, Heart
 } from 'lucide-react';
+import TestimonialSlider from '@/components/TestimonialSlider';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -126,24 +127,43 @@ const features = [
 
 const testimonials = [
   {
+    id: 1,
     name: 'Sarah Chen',
-    role: 'CTO, Global Finance Corp',
-    content: 'Trine Solutions transformed our digital infrastructure, resulting in 40% cost savings and unprecedented scalability.',
+    role: 'CTO',
+    company: 'Global Finance Corp',
+    content: 'Trine Solutions transformed our digital infrastructure, resulting in 40% cost savings and unprecedented scalability. Their team understood our complex requirements from day one.',
     avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800',
     rating: 5
   },
   {
+    id: 2,
     name: 'Marcus Johnson',
-    role: 'CEO, TechInnovate Inc',
-    content: 'Their cybersecurity implementation protected us from a major breach. The ROI was immediate and substantial.',
+    role: 'CEO',
+    company: 'TechInnovate Inc',
+    content: 'Their cybersecurity implementation protected us from a major breach. The ROI was immediate and substantial. I cannot recommend Trine Solutions highly enough.',
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800',
     rating: 5
   },
   {
+    id: 3,
     name: 'Elena Rodriguez',
-    role: 'Digital Director, Retail Giant',
-    content: 'The e-commerce platform they built increased our conversion rate by 65%. Exceptional work from start to finish.',
+    role: 'Digital Director',
+    company: 'Retail Giant Ltd',
+    content: 'The e-commerce platform they built increased our conversion rate by 65%. Exceptional work from start to finish. Their attention to detail is unmatched.',
     avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800',
+    rating: 5
+  },
+  {
+    id: 4,
+    name: 'David Park',
+    role: 'VP Engineering',
+    company: 'HealthTech Solutions',
+    content: 'Working with Trine Solutions on our healthcare platform was transformative. They delivered a HIPAA-compliant solution that exceeded all our expectations.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800',
     rating: 5
   }
 ];
@@ -458,8 +478,157 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Statistics / Impact Section */}
+      <section className="py-20 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920)',
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-trine-black/90 via-trine-black/80 to-trine-green/20"></div>
+        </div>
+        
+        <div className="container relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+              <Award className="w-4 h-4 text-trine-orange" />
+              <span className="text-sm font-semibold text-white">OUR IMPACT</span>
+            </div>
+            
+            <h2 className="text-4xl font-bold mb-6 text-white">
+              <span className="block">Delivering Measurable</span>
+              <span className="block bg-gradient-to-r from-trine-orange to-trine-green bg-clip-text text-transparent mt-2">Results That Matter</span>
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { value: '500+', label: 'Projects Completed', icon: Rocket },
+              { value: '98%', label: 'Client Satisfaction', icon: Heart },
+              { value: '50+', label: 'Countries Served', icon: Globe },
+              { value: '$2B+', label: 'Client Revenue Generated', icon: TrendingUp },
+            ].map((stat, index) => (
+              <div 
+                key={index}
+                className="text-center group animate-on-scroll opacity-0"
+                data-testid={`stat-${index}`}
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-trine-orange/20 to-trine-green/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <stat.icon className="w-8 h-8 text-trine-orange" />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-300 font-medium">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Showcase */}
       <section className="py-20 bg-white">
+        <div className="container">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-green/10 border border-trine-orange/20 mb-6">
+              <Sparkles className="w-4 h-4 text-trine-orange" />
+              <span className="text-sm font-semibold text-trine-orange">FEATURED WORK</span>
+            </div>
+            
+            <h2 className="text-4xl font-bold mb-6">
+              <span className="text-trine-black">Our Latest</span>
+              <br />
+              <span className="bg-gradient-to-r from-trine-orange to-trine-green bg-clip-text text-transparent">Success Stories</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our portfolio of transformative digital solutions that have helped businesses achieve remarkable results.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Enterprise Cloud Migration',
+                category: 'Cloud Solutions',
+                image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600',
+                result: '40% cost reduction'
+              },
+              {
+                title: 'AI Analytics Platform',
+                category: 'Data & AI',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600',
+                result: '65% better insights'
+              },
+              {
+                title: 'Healthcare Security',
+                category: 'Cybersecurity',
+                image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600',
+                result: '100% HIPAA compliant'
+              }
+            ].map((project, index) => (
+              <Link 
+                to="/portfolio" 
+                key={index}
+                className="group animate-on-scroll opacity-0"
+                data-testid={`portfolio-preview-${index}`}
+              >
+                <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500">
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-trine-black via-trine-black/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-trine-orange/90 backdrop-blur-sm text-white text-xs font-semibold">
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    {/* Result Badge */}
+                    <div className="absolute bottom-4 right-4">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-trine-green/90 backdrop-blur-sm text-white text-xs font-semibold">
+                        {project.result}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-trine-black group-hover:text-trine-orange transition-colors mb-2">
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-trine-green font-medium text-sm">
+                      <span>View Project</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link to="/portfolio" className="group inline-block">
+              <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-trine-orange to-trine-green text-white font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-trine-orange/30 hover:scale-105">
+                <span className="flex items-center gap-2">
+                  View All Projects
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-green-50/30">
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-green/10 border border-trine-orange/20 mb-6">
@@ -472,58 +641,12 @@ const Home = () => {
               <br />
               <span className="bg-gradient-to-r from-trine-orange to-trine-green bg-clip-text text-transparent">Industry Leaders</span>
             </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Hear what our clients have to say about their transformative experience working with Trine Solutions.
+            </p>
           </div>
           
-          <div className="max-w-6xl mx-auto">
-            <div className="relative">
-              <div className="grid md:grid-cols-3 gap-6">
-                {testimonials.map((testimonial, index) => (
-                  <div
-                    key={index}
-                    className={`group relative p-6 rounded-xl border transition-all duration-300 ${
-                      index === activeTestimonial
-                        ? 'bg-gradient-to-br from-trine-orange/5 to-trine-lightblue/5 border-trine-orange/30 shadow-lg shadow-trine-orange/10'
-                        : 'bg-white border-gray-200 hover:border-trine-orange/20 hover:shadow-md'
-                    }`}
-                  >
-                    <div className="flex gap-1 mb-4">
-                      {renderStars(testimonial.rating)}
-                    </div>
-                    
-                    <p className="text-gray-600 leading-relaxed mb-6">
-                      {testimonial.content}
-                    </p>
-                    
-                    <div className="flex items-center gap-4">
-                      <img
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-lg border-2 border-trine-orange/20"
-                      />
-                      <div>
-                        <div className="font-semibold text-trine-black">{testimonial.name}</div>
-                        <div className="text-trine-lightblue text-sm">{testimonial.role}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="flex justify-center gap-3 mt-8">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === activeTestimonial
-                        ? 'bg-gradient-to-r from-trine-orange to-trine-lightblue scale-125'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+          <TestimonialSlider testimonials={testimonials} autoPlay={true} interval={6000} />
         </div>
       </section>
 
