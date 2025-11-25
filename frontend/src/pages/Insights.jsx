@@ -161,36 +161,49 @@ const Insights = () => {
       )}
 
       {/* All Posts */}
-      <section className="py-12">
+      <section className="py-20">
         <div className="container">
-          <h2 className="text-3xl font-bold mb-8">All Insights</h2>
+          <div className="flex items-center space-x-3 mb-12">
+            <div className="w-1 h-8 bg-gradient-orange-blue rounded-full"></div>
+            <h2 className="text-3xl font-bold">Latest Insights</h2>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.slice(1).map((post, index) => (
-              <div key={post.id} className="glass-card overflow-hidden group" data-testid={`blog-post-${index}`}>
-                <div className="h-56 overflow-hidden">
+              <article key={post.id} className="group cursor-pointer" data-testid={`blog-post-${index}`}>
+                <div className="relative overflow-hidden rounded-2xl mb-5 h-64">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-xs font-semibold text-orange-600">
+                      {post.category}
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="p-6">
-                  <span className="text-xs text-orange-500 font-semibold uppercase">{post.category}</span>
-                  <h3 className="text-xl font-bold mt-2 mb-3">{post.title}</h3>
-                  <p className="text-sm opacity-80 mb-4 line-clamp-3">{post.excerpt}</p>
-                  <div className="flex items-center justify-between text-xs opacity-60 mb-4">
+                <div className="space-y-3">
+                  <h3 className="text-2xl font-bold leading-tight group-hover:text-orange-500 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-base opacity-70 leading-relaxed line-clamp-3">{post.excerpt}</p>
+                  <div className="flex items-center gap-4 text-sm opacity-60 pt-3 border-t border-gray-200 dark:border-gray-800">
                     <div className="flex items-center space-x-2">
-                      <User className="w-3 h-3" />
-                      <span>{post.author}</span>
+                      <User className="w-4 h-4" />
+                      <span className="font-medium">{post.author}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Calendar className="w-3 h-3" />
-                      <span>{post.date}</span>
+                      <Clock className="w-4 h-4" />
+                      <span>{post.readTime}</span>
                     </div>
                   </div>
-                  <button className="text-orange-500 font-semibold text-sm hover:underline">Read More</button>
+                  <button className="text-orange-500 font-semibold flex items-center space-x-2 group-hover:space-x-3 transition-all duration-300 pt-2">
+                    <span>Read Article</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
