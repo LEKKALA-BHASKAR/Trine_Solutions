@@ -18,7 +18,7 @@ const AdminBlog = () => {
     title: '',
     excerpt: '',
     content: '',
-    image: '',
+    featured_image: '',
     author: '',
     category: '',
     readTime: '',
@@ -67,7 +67,7 @@ const AdminBlog = () => {
         title: post.title,
         excerpt: post.excerpt,
         content: post.content,
-        image: post.image,
+        featured_image: post.featured_image || post.image || '',
         author: post.author,
         category: post.category,
         readTime: post.readTime,
@@ -80,7 +80,7 @@ const AdminBlog = () => {
         title: '',
         excerpt: '',
         content: '',
-        image: '',
+        featured_image: '',
         author: '',
         category: '',
         readTime: '',
@@ -179,7 +179,7 @@ const AdminBlog = () => {
               >
                 <div className="h-40 overflow-hidden">
                   <img
-                    src={post.image}
+                    src={post.featured_image || post.image || 'https://via.placeholder.com/400x300'}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />
@@ -196,7 +196,7 @@ const AdminBlog = () => {
                   <h3 className="font-bold text-lg mb-2 line-clamp-2">{post.title}</h3>
                   <p className="text-sm text-gray-500 mb-4 line-clamp-2">{post.excerpt}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-400">{post.date}</span>
+                    <span className="text-xs text-gray-400">{post.published_date || post.date}</span>
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => openModal(post)}
@@ -269,11 +269,11 @@ const AdminBlog = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Image URL *</label>
+                    <label className="block text-sm font-medium mb-2">Featured Image URL *</label>
                     <input
                       type="url"
-                      name="image"
-                      value={formData.image}
+                      name="featured_image"
+                      value={formData.featured_image}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 outline-none focus:border-orange-500"

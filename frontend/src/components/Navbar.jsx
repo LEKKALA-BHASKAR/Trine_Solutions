@@ -33,8 +33,8 @@ const Navbar = ({ darkMode, setDarkMode, language, setLanguage }) => {
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Industries', path: '/industries' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Careers', path: '/careers' },
-    { name: 'Insights', path: '/insights' },
     { name: 'Contact', path: '/contact' },
   ];
 

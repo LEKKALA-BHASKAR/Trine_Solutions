@@ -1,0 +1,276 @@
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Calendar, User, ArrowRight, Search, Tag, Clock, TrendingUp, Sparkles, BookOpen } from 'lucide-react';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+
+const Blog = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+
+  const fetchBlogPosts = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/api/blog`);
+      setBlogPosts(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+      setLoading(false);
+    }
+  };
+
+  const categories = ['All', ...new Set(blogPosts.map(post => post.category))];
+
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50">
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-24 pb-16">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/20 via-transparent to-black/30"></div>
+        </div>
+        
+        {/* Animated Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-32 right-20 w-96 h-96 bg-green-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-yellow-400/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
+        </div>
+
+        {/* Dot Pattern Overlay */}
+        <div className="absolute inset-0 opacity-[0.15]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+
+        <div className="container relative z-10 text-center text-white px-6">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-8 shadow-xl">
+            <BookOpen className="w-5 h-5 text-white animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide">Latest Articles & Updates</span>
+          </div>
+          
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-8 leading-tight">
+            <span className="block text-white drop-shadow-2xl">Our Blog &</span>
+            <span className="block bg-gradient-to-r from-green-300 via-green-200 to-green-100 bg-clip-text text-transparent drop-shadow-lg">
+              Insights
+            </span>
+          </h1>
+          
+          <p className="text-xl sm:text-2xl max-w-4xl mx-auto mb-12 text-white/95 leading-relaxed font-light">
+            Stay updated with the latest trends, insights, and innovations in technology and digital transformation
+          </p>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-6 py-5 pr-14 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-300 text-lg"
+              />
+              <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 w-6 h-6 text-white/70" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filter */}
+      <section className="py-8 bg-white/50 backdrop-blur-sm border-y border-gray-200">
+        <div className="container">
+          <div className="flex items-center gap-3 overflow-x-auto pb-2">
+            <Tag className="w-5 h-5 text-orange-600 flex-shrink-0" />
+            <span className="text-sm font-semibold text-gray-700 flex-shrink-0">Categories:</span>
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 flex-shrink-0 ${
+                  selectedCategory === category
+                    ? 'bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg scale-105'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Posts Grid */}
+      <section className="py-20">
+        <div className="container">
+          {loading ? (
+            <div className="flex items-center justify-center min-h-[400px]">
+              <div className="text-center">
+                <div className="w-16 h-16 border-4 border-orange-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-gray-600 text-lg">Loading articles...</p>
+              </div>
+            </div>
+          ) : filteredPosts.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="inline-flex p-6 bg-orange-100 rounded-full mb-6">
+                <BookOpen className="w-12 h-12 text-orange-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-3">No articles found</h3>
+              <p className="text-gray-600">Try adjusting your search or category filter</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
+                <article
+                  key={post.id}
+                  className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {/* Featured Image */}
+                  {post.featured_image && (
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={post.featured_image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Category Badge */}
+                      <div className="absolute top-4 left-4">
+                        <span className="px-4 py-2 bg-orange-600 text-white text-xs font-bold rounded-full shadow-lg">
+                          {post.category}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Meta Info */}
+                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-orange-600" />
+                        <span>{formatDate(post.published_date)}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <User className="w-4 h-4 text-orange-600" />
+                        <span>{post.author}</span>
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300 line-clamp-2">
+                      {post.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Tags */}
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {post.tags.slice(0, 3).map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Read More Link */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                        <Clock className="w-4 h-4" />
+                        <span>5 min read</span>
+                      </div>
+                      <button className="group/btn flex items-center gap-2 text-orange-600 font-semibold hover:gap-3 transition-all duration-300">
+                        Read More
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {/* Load More Button */}
+          {filteredPosts.length > 0 && (
+            <div className="text-center mt-12">
+              <button className="px-10 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white font-bold text-lg rounded-2xl hover:shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300">
+                Load More Articles
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600"></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'radial-gradient(circle, white 1.5px, transparent 1.5px)',
+            backgroundSize: '48px 48px'
+          }}></div>
+        </div>
+
+        <div className="container relative z-10 text-center text-white">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-6 shadow-xl">
+            <Sparkles className="w-5 h-5 text-white" />
+            <span className="text-sm font-semibold tracking-wide">Stay Updated</span>
+          </div>
+
+          <h2 className="text-4xl lg:text-5xl font-black mb-6">
+            Subscribe to Our Newsletter
+          </h2>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+            Get the latest articles, insights, and updates delivered directly to your inbox
+          </p>
+
+          <div className="max-w-xl mx-auto">
+            <div className="flex gap-3">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="flex-1 px-6 py-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-300"
+              />
+              <button className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold hover:bg-green-50 transform hover:scale-105 transition-all duration-300 shadow-2xl flex items-center gap-2">
+                Subscribe
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Blog;

@@ -7,9 +7,9 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Industries from "@/pages/Industries";
-import Insights from "@/pages/Insights";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
+import Blog from "@/pages/Blog";
 import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminBlog from "@/pages/admin/AdminBlog";
@@ -25,6 +25,11 @@ import { Toaster } from "@/components/ui/sonner";
 const Layout = ({ children, darkMode, setDarkMode, language, setLanguage }) => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -61,9 +66,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/industries" element={<Industries />} />
-            <Route path="/insights" element={<Insights />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />

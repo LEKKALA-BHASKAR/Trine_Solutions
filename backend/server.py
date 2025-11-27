@@ -125,8 +125,8 @@ class BlogPost(BaseModel):
     title: str
     excerpt: str
     content: str
-    image: str
-    date: str = Field(default_factory=lambda: datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+    featured_image: str
+    published_date: str = Field(default_factory=lambda: datetime.now(timezone.utc).strftime("%Y-%m-%d"))
     author: str
     category: str
     readTime: str
@@ -137,7 +137,7 @@ class BlogPostCreate(BaseModel):
     title: str
     excerpt: str
     content: str
-    image: str
+    featured_image: str
     author: str
     category: str
     readTime: str
