@@ -294,15 +294,6 @@ code {
 }
 
 /* Grid Background Animation for Hero */
-@keyframes gridPulse {
-    0%, 100% {
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 0.6;
-    }
-}
-
 @keyframes gridMove {
     0% {
         transform: translate(0, 0);

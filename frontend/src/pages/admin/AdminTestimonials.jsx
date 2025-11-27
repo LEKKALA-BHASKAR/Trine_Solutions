@@ -196,7 +196,7 @@ const AdminTestimonials = () => {
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-trine-orange to-trine-lightblue flex items-center justify-center text-white font-bold text-xl">
-                          {testimonial.name ? testimonial.name.charAt(0).toUpperCase() : 'T'}
+                          {testimonial.name?.charAt(0)?.toUpperCase() || 'T'}
                         </div>
                       )}
                     </div>
@@ -337,9 +337,10 @@ const AdminTestimonials = () => {
                     onChange={handleChange}
                     required
                     placeholder="https://example.com/avatar.jpg"
+                    aria-describedby="avatar-help"
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none focus:border-trine-orange"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Profile image of the client (recommended: 150x150px)</p>
+                  <p id="avatar-help" className="text-xs text-gray-500 mt-1">Profile image of the client (recommended: 150x150px)</p>
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Background Image URL (Optional)</label>
@@ -349,9 +350,10 @@ const AdminTestimonials = () => {
                     value={formData.image}
                     onChange={handleChange}
                     placeholder="https://example.com/background.jpg"
+                    aria-describedby="image-help"
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white outline-none focus:border-trine-orange"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Background image for the testimonial card (recommended: 800x600px)</p>
+                  <p id="image-help" className="text-xs text-gray-500 mt-1">Background image for the testimonial card (recommended: 800x600px)</p>
                 </div>
                 <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <button

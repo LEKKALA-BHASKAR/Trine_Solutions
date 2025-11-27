@@ -161,8 +161,8 @@ const AdminLogin = () => {
               className="w-full py-4 rounded-xl bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green text-white font-semibold flex items-center justify-center space-x-2 hover:shadow-xl hover:shadow-trine-orange/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {loading ? (
-                <div className="flex items-center space-x-2">
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                <div className="flex items-center space-x-2" role="status" aria-label="Loading">
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden="true"></div>
                   <span>Processing...</span>
                 </div>
               ) : (
