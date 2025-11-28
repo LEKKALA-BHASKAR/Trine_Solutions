@@ -135,7 +135,7 @@ const Industries = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50" data-testid="industries-page">
       {/* Enhanced Hero with Modern Design */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-24">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 lg:pb-0">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/20 via-transparent to-black/30"></div>
@@ -156,29 +156,29 @@ const Industries = () => {
           }}></div>
         </div>
 
-        <div className="container relative z-10 px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left text-white">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-tight" data-testid="industries-hero-title">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-tight" data-testid="industries-hero-title">
                 <span className="block text-white drop-shadow-2xl animate-fade-in-up">Industry-Specific</span>
                 <span className="block bg-gradient-to-r from-green-300 via-green-200 to-green-100 bg-clip-text text-transparent animate-fade-in-up drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
                   Digital Solutions
                 </span>
               </h1>
               
-              <p className="text-xl sm:text-2xl lg:text-2xl mb-12 text-white/95 leading-relaxed font-light animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-lg md:text-xl lg:text-2xl mb-12 text-white/95 leading-relaxed font-light animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                 Transforming businesses across sectors with cutting-edge technology and deep domain expertise
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                <Link to="/contact">
-                  <button className="group px-10 py-5 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:bg-green-50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 flex items-center gap-3">
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto group px-10 py-5 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:bg-green-50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 flex items-center justify-center gap-3">
                     <span>Explore Solutions</span>
                     <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
                   </button>
                 </Link>
-                <Link to="/case-studies">
-                  <button className="px-10 py-5 border-2 border-white/40 text-white rounded-2xl font-bold text-lg backdrop-blur-md hover:bg-white/20 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-xl">
+                <Link to="/case-studies" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-10 py-5 border-2 border-white/40 text-white rounded-2xl font-bold text-lg backdrop-blur-md hover:bg-white/20 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-xl">
                     View Success Stories
                   </button>
                 </Link>
@@ -186,8 +186,10 @@ const Industries = () => {
             </div>
 
             {/* Right Side Image */}
-            <div className="hidden lg:block relative animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-               <img src="/content-writing-services-provider.svg" alt="Industry Solutions" className="w-full h-auto object-contain drop-shadow-2xl animate-float" />
+            <div className="relative block mt-12 lg:mt-0 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+               <div className="relative w-full h-[300px] md:h-[500px] lg:h-auto flex items-center justify-center">
+                 <img src="/content-writing-services-provider.svg" alt="Industry Solutions" className="w-full h-full object-contain drop-shadow-2xl animate-float" />
+               </div>
             </div>
           </div>
 
@@ -200,7 +202,7 @@ const Industries = () => {
               { value: '24/7', label: 'Support' }
             ].map((stat, index) => (
               <div key={index} className="text-center lg:text-left animate-fade-in-up" style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
-                <div className="text-4xl lg:text-5xl font-black text-white mb-2 drop-shadow-lg">{stat.value}</div>
+                <div className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 drop-shadow-lg">{stat.value}</div>
                 <div className="text-sm lg:text-base text-white/90 font-medium">{stat.label}</div>
               </div>
             ))}
@@ -208,7 +210,7 @@ const Industries = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block">
           <div className="w-8 h-12 border-2 border-white/60 rounded-full flex justify-center items-start p-2">
             <div className="w-2 h-3 bg-white/80 rounded-full animate-pulse"></div>
           </div>
@@ -216,30 +218,30 @@ const Industries = () => {
       </section>
 
       {/* Telecom Spotlight Section */}
-      <section className="py-28 relative overflow-hidden bg-gradient-to-br from-white via-green-50/50 to-orange-50/30">
+      <section className="py-12 lg:py-28 relative overflow-hidden bg-gradient-to-br from-white via-green-50/50 to-orange-50/30">
         {/* Background Decorations */}
         <div className="absolute inset-0">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-orange-200/30 to-transparent rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-green-200/30 to-transparent rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container relative z-10">
-          <div className="text-center mb-16">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 lg:mb-16">
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-orange-100 to-green-100 border border-orange-200/50 mb-6 shadow-lg">
               <Wifi className="w-5 h-5 text-orange-600 animate-pulse" />
               <span className="text-sm font-bold text-gray-800 tracking-wide">Featured Industry</span>
             </div>
-            <h2 className="text-5xl lg:text-7xl font-black mb-6">
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6">
               <span className="bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 bg-clip-text text-transparent">
                 Telecommunications
               </span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Powering the next generation of connectivity with cutting-edge solutions for 5G, IoT, and global communications infrastructure.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 lg:mb-16">
             {telecomFeatures.map((feature, index) => (
               <div
                 key={index}
@@ -273,7 +275,7 @@ const Industries = () => {
               { value: '40%', label: 'Cost Reduction' }
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl lg:text-4xl font-black bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent mb-2">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent mb-2">
                   {stat.value}
                 </div>
                 <div className="text-sm text-gray-600 font-medium">
@@ -286,20 +288,20 @@ const Industries = () => {
       </section>
 
       {/* Industries Grid */}
-      <section className="py-28 relative bg-gradient-to-b from-white via-green-50/30 to-white">
-        <div className="container relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-7xl font-black mb-6">
+      <section className="py-12 lg:py-28 relative bg-gradient-to-b from-white via-green-50/30 to-white">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 lg:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6">
               <span className="bg-gradient-to-r from-orange-600 via-green-600 to-orange-600 bg-clip-text text-transparent">
                 All Industries
               </span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Comprehensive digital transformation solutions tailored to your industry's unique challenges and opportunities.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
             {industries.map((industry, index) => (
               <Link
                 key={index}
@@ -366,7 +368,7 @@ const Industries = () => {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="py-28 relative overflow-hidden">
+      <section className="py-12 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/20"></div>
         </div>
@@ -386,33 +388,33 @@ const Industries = () => {
           }}></div>
         </div>
 
-        <div className="container relative z-10 text-center text-white">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8 text-center text-white">
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-8 shadow-xl">
             <CheckCircle className="w-5 h-5 text-white" />
             <span className="text-sm font-semibold tracking-wide">Industry-Proven Solutions</span>
           </div>
 
-          <h2 className="text-5xl lg:text-7xl font-black mb-8 leading-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-8 leading-tight">
             <span className="block text-white drop-shadow-2xl">Ready to Transform</span>
             <span className="block bg-gradient-to-r from-green-300 via-green-200 to-green-100 bg-clip-text text-transparent drop-shadow-lg">
               Your Industry?
             </span>
           </h2>
           
-          <p className="text-xl lg:text-2xl max-w-3xl mx-auto mb-12 text-white/95 leading-relaxed font-light">
+          <p className="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-12 text-white/95 leading-relaxed font-light">
             Let's discuss how our industry-specific expertise can drive your digital transformation journey 
             and create lasting competitive advantage.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-            <Link to="/contact">
-              <button className="group px-12 py-5 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:bg-green-50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 flex items-center gap-3">
+            <Link to="/contact" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto group px-12 py-5 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:bg-green-50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 flex items-center justify-center gap-3">
                 <span>Start Your Project</span>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
               </button>
             </Link>
-            <Link to="/contact">
-              <button className="px-12 py-5 border-2 border-white/40 text-white rounded-2xl font-bold text-lg backdrop-blur-md hover:bg-white/20 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-xl">
+            <Link to="/contact" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto px-12 py-5 border-2 border-white/40 text-white rounded-2xl font-bold text-lg backdrop-blur-md hover:bg-white/20 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-xl">
                 Get In Touch
               </button>
             </Link>
@@ -429,7 +431,7 @@ const Industries = () => {
                 <div className="inline-flex p-3 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:bg-white/30 transition-colors duration-300 shadow-lg">
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-4xl lg:text-5xl font-black text-white mb-2 drop-shadow-lg">{stat.value}</div>
+                <div className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-2 drop-shadow-lg">{stat.value}</div>
                 <div className="text-sm lg:text-base text-white/90 font-medium">{stat.label}</div>
               </div>
             ))}

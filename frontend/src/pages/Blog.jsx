@@ -45,7 +45,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-24 pb-16">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 lg:pb-16">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/20 via-transparent to-black/30"></div>
@@ -66,8 +66,8 @@ const Blog = () => {
           }}></div>
         </div>
 
-        <div className="container relative z-10 px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
             <div className="text-center lg:text-left text-white">
               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-8 shadow-xl">
@@ -75,14 +75,14 @@ const Blog = () => {
                 <span className="text-sm font-semibold tracking-wide">Latest Articles & Updates</span>
               </div>
               
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-8 leading-tight">
+              <h1 className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 leading-tight">
                 <span className="block text-white drop-shadow-2xl">Our Blog &</span>
                 <span className="block bg-gradient-to-r from-green-300 via-green-200 to-green-100 bg-clip-text text-transparent drop-shadow-lg">
                   Insights
                 </span>
               </h1>
               
-              <p className="text-xl sm:text-2xl max-w-4xl mx-auto lg:mx-0 mb-12 text-white/95 leading-relaxed font-light">
+              <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto lg:mx-0 mb-12 text-white/95 leading-relaxed font-light">
                 Stay updated with the latest trends, insights, and innovations in technology and digital transformation
               </p>
 
@@ -102,8 +102,8 @@ const Blog = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="hidden lg:block relative">
-               <div className="relative w-full h-[600px] flex items-center justify-center">
+            <div className="relative block mt-12 lg:mt-0">
+               <div className="relative w-full h-[300px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
                  <img 
                    src="/blog-banner.svg" 
                    alt="Blog Insights" 
@@ -119,12 +119,12 @@ const Blog = () => {
       <section className="py-8 bg-white/50 backdrop-blur-sm border-y border-gray-200">
         <div className="container">
           {/* Type Filter */}
-          <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200">
+          <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200 overflow-x-auto no-scrollbar">
             <Sparkles className="w-5 h-5 text-orange-600 flex-shrink-0" />
             <span className="text-sm font-semibold text-gray-700 flex-shrink-0">Type:</span>
             <button
               onClick={() => setSelectedType('all')}
-              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 flex-shrink-0 ${
                 selectedType === 'all'
                   ? 'bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg scale-105'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
@@ -134,7 +134,7 @@ const Blog = () => {
             </button>
             <button
               onClick={() => setSelectedType('blog')}
-              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 flex-shrink-0 ${
                 selectedType === 'blog'
                   ? 'bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg scale-105'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
@@ -144,7 +144,7 @@ const Blog = () => {
             </button>
             <button
               onClick={() => setSelectedType('company-update')}
-              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 flex-shrink-0 ${
                 selectedType === 'company-update'
                   ? 'bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg scale-105'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
@@ -194,7 +194,7 @@ const Blog = () => {
               <p className="text-gray-600">Try adjusting your search or category filter</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {filteredPosts.map((post, index) => (
                 <article
                   key={post.id}
@@ -348,7 +348,7 @@ const Blog = () => {
           </p>
 
           <div className="max-w-xl mx-auto">
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="Enter your email address"

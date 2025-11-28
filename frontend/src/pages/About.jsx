@@ -137,7 +137,7 @@ const About = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-cyan-50/20 dark:from-gray-900 dark:via-blue-950/30 dark:to-cyan-950/20" data-testid="about-page">
       
       {/* Hero Section with Right Side Transparent Image */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 lg:pb-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/20"></div>
         </div>
@@ -153,8 +153,8 @@ const About = () => {
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
         </div>
 
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
             <div className="text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
@@ -162,24 +162,24 @@ const About = () => {
                 <span className="text-sm font-medium text-white">Trusted by Fortune 500 Companies</span>
               </div>
               
-              <h1 className="text-6xl lg:text-8xl font-black mb-8 bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent" data-testid="about-hero-title">
+              <h1 className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent" data-testid="about-hero-title">
                 Digital
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Transformation</span>
               </h1>
               
-              <p className="text-xl lg:text-2xl mb-12 opacity-90 leading-relaxed text-white">
+              <p className="text-lg md:text-xl lg:text-2xl mb-12 opacity-90 leading-relaxed text-white">
                 We architect the future of enterprise technology through innovative solutions, 
                 cutting-edge expertise, and a passion for digital excellence.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-                <Link to="/contact">
-                  <button className="px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold hover:bg-cyan-50 transform hover:scale-105 transition-all duration-300 shadow-2xl">
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold hover:bg-cyan-50 transform hover:scale-105 transition-all duration-300 shadow-2xl">
                     Start Your Project
                   </button>
                 </Link>
-                <Link to="/services">
-                  <button className="px-8 py-4 border-2 border-white/30 text-white rounded-2xl font-bold backdrop-blur-sm hover:bg-white/10 transform hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                <Link to="/services" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-8 py-4 border-2 border-white/30 text-white rounded-2xl font-bold backdrop-blur-sm hover:bg-white/10 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
                     Explore Services
                     <ArrowRight className="w-5 h-5" />
                   </button>
@@ -188,12 +188,12 @@ const About = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="relative hidden lg:block">
-              <div className="relative w-full h-[600px] flex items-center justify-center">
+            <div className="relative block mt-12 lg:mt-0">
+              <div className="relative w-full h-[300px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
                  <img 
                    src="./career.svg" 
                    alt="About Us Hero" 
-                   className="w-full h-full object-contain drop-shadow-2xl"
+                   className="w-full h-full object-contain drop-shadow-2xl transform scale-110"
                  />
               </div>
             </div>
@@ -201,7 +201,7 @@ const About = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
           </div>
@@ -209,21 +209,21 @@ const About = () => {
       </section>
 
       {/* Expertise Section */}
-      <section className="py-24 relative">
+      <section className="py-12 lg:py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-100/50 to-gray-200/30 dark:via-gray-800/50 dark:to-gray-900/30"></div>
-        <div className="container relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-7xl font-black mb-6">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 lg:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
                 Our Expertise
               </span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Specialized solutions tailored to drive your digital transformation journey
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {expertiseAreas.map((area, index) => (
               <div
                 key={index}
@@ -256,10 +256,10 @@ const About = () => {
       </section>
 
       {/* Enhanced Vision & Mission */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50/50 to-cyan-50/30 dark:from-blue-950/20 dark:via-purple-950/10 dark:to-cyan-950/20"></div>
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Vision */}
             <div className="relative group" data-testid="vision-card">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
@@ -308,10 +308,10 @@ const About = () => {
       </section>
 
       {/* Enhanced Timeline */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-50/50 to-gray-100/30 dark:via-gray-800/50 dark:to-gray-900/30"></div>
-        <div className="container relative z-10">
-          <h2 className="text-5xl lg:text-7xl font-black text-center mb-20" data-testid="timeline-title">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-center mb-12 lg:mb-20" data-testid="timeline-title">
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
               Our Journey
             </span>
@@ -321,11 +321,11 @@ const About = () => {
             {/* Center Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 hidden lg:block rounded-full shadow-2xl"></div>
             
-            <div className="space-y-24">
+            <div className="space-y-12 lg:space-y-24">
               {timeline.map((item, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`} data-testid={`timeline-item-${index}`}>
+                <div key={index} className={`flex flex-col lg:flex-row items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`} data-testid={`timeline-item-${index}`}>
                   {/* Content */}
-                  <div className="flex-1 lg:px-12">
+                  <div className="w-full lg:flex-1 lg:px-12">
                     <div className="relative group">
                       <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
                       <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-200/50 dark:border-gray-700/50 group-hover:shadow-2xl transition-all duration-300">
@@ -365,21 +365,21 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50/50 to-cyan-50/30 dark:from-purple-950/20 dark:via-blue-950/10 dark:to-cyan-950/20"></div>
-        <div className="container relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-7xl font-black mb-6">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 lg:mb-20">
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6">
               <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
                 Our Values
               </span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               The principles that guide our work and define our culture
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {values.map((value, index) => (
               <div
                 key={index}
@@ -411,16 +411,16 @@ const About = () => {
       </section>
 
       {/* Enhanced Culture Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50/50 to-purple-50/30 dark:from-cyan-950/20 dark:via-blue-950/10 dark:to-purple-950/20"></div>
-        <div className="container relative z-10">
-          <h2 className="text-5xl lg:text-7xl font-black text-center mb-20" data-testid="culture-title">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-center mb-12 lg:mb-20" data-testid="culture-title">
             <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
               Our Culture
             </span>
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             <div 
               className="group relative overflow-hidden rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 p-8 hover:shadow-2xl transform hover:scale-105 transition-all duration-500"
               data-testid="culture-innovation"
@@ -476,7 +476,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 lg:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/20"></div>
         </div>
@@ -487,15 +487,15 @@ const About = () => {
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container relative z-10 text-center text-white">
-          <h2 className="text-5xl lg:text-7xl font-black mb-8">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8 text-center text-white">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-8">
             Ready to Transform
             <span className="block bg-gradient-to-r from-cyan-400 to-blue-200 bg-clip-text text-transparent">
               Your Business?
             </span>
           </h2>
           
-          <p className="text-xl lg:text-2xl max-w-3xl mx-auto mb-12 opacity-90 leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-12 opacity-90 leading-relaxed">
             Let's discuss how our expertise can drive your digital transformation journey 
             and create lasting impact for your organization.
           </p>
