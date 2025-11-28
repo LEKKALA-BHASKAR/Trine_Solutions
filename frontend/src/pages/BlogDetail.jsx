@@ -5,6 +5,50 @@ import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
+// Simple HTML sanitization to prevent XSS attacks
+const sanitizeHTML = (html) => {
+  if (!html) return '';
+  // Create a temporary element to parse the HTML
+  const tempDiv = document.createElement('div');
+  tempDiv.textContent = html;
+  // Allow safe tags by parsing and filtering
+  const allowedTags = ['p', 'br', 'b', 'i', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'blockquote', 'a', 'span', 'div'];
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  
+  const sanitize = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) return;
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      // Remove dangerous tags
+      if (!allowedTags.includes(node.tagName.toLowerCase())) {
+        node.replaceWith(...node.childNodes);
+        return;
+      }
+      // Remove event handlers and dangerous URL schemes (javascript:, data:, vbscript:)
+      Array.from(node.attributes).forEach(attr => {
+        const attrValue = attr.value.toLowerCase().trim();
+        if (attr.name.startsWith('on') || 
+            (attr.name === 'href' && (
+              attrValue.startsWith('javascript:') ||
+              attrValue.startsWith('data:') ||
+              attrValue.startsWith('vbscript:')
+            )) ||
+            (attr.name === 'src' && (
+              attrValue.startsWith('javascript:') ||
+              attrValue.startsWith('data:') ||
+              attrValue.startsWith('vbscript:')
+            ))) {
+          node.removeAttribute(attr.name);
+        }
+      });
+    }
+    Array.from(node.childNodes).forEach(sanitize);
+  };
+  
+  sanitize(doc.body);
+  return doc.body.innerHTML;
+};
+
 const BlogDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -199,7 +243,7 @@ const BlogDetail = () => {
           <div className="prose prose-lg max-w-none">
             <div 
               className="text-gray-700 leading-relaxed whitespace-pre-wrap"
-              dangerouslySetInnerHTML={{ __html: post.content || post.excerpt }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHTML(post.content || post.excerpt) }}
             />
           </div>
 

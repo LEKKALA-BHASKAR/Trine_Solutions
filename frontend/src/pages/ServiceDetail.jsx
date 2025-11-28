@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ArrowRight, ArrowLeft, CheckCircle2, Zap, Shield, Cloud, Server, Database, Lock, Globe, Code, Settings } from 'lucide-react';
 import { iconMap, getIconByName } from '@/utils/serviceIcons';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
 
 // Default service data for fallback
