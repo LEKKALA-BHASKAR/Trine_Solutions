@@ -1,8 +1,8 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Depends, status
+from fastapi import FastAPI, APIRouter, HTTPException, Depends, status, Request, Response
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
@@ -147,6 +147,23 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Custom CORS middleware to ensure preflight requests are handled correctly
+@app.middleware("http")
+async def add_cors_headers(request: Request, call_next):
+    response = await call_next(request)
+    
+    # Get the origin from the request
+    origin = request.headers.get("origin", "*")
+    
+    # Set CORS headers
+    response.headers["Access-Control-Allow-Origin"] = origin
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, Accept, Origin, X-Requested-With"
+    response.headers["Access-Control-Expose-Headers"] = "Content-Length, Content-Type"
+    
+    return response
+
 # Add CORS middleware BEFORE including routes
 app.add_middleware(
     CORSMiddleware,
@@ -156,6 +173,18 @@ app.add_middleware(
     allow_headers=["*"] if cors_origins == ["*"] else ["Content-Type", "Authorization", "Accept", "Origin", "X-Requested-With"],
     expose_headers=["Content-Length", "Content-Type"],
 )
+
+# Handle preflight OPTIONS requests explicitly
+@app.options("/{rest_of_path:path}")
+async def preflight_handler(request: Request):
+    response = Response()
+    origin = request.headers.get("origin", "*")
+    response.headers["Access-Control-Allow-Origin"] = origin
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, Accept, Origin, X-Requested-With"
+    response.headers["Access-Control-Expose-Headers"] = "Content-Length, Content-Type"
+    return response
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
