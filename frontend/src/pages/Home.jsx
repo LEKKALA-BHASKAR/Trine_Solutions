@@ -10,7 +10,7 @@ import TestimonialSlider from '@/components/TestimonialSlider';
 import { iconMap, getIconByName } from '@/utils/serviceIcons';
 import { defaultServices, getSimplifiedServices } from '@/constants/defaultServices';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
 
 // Simplified services for Home page (from shared constants)

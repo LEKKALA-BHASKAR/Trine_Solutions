@@ -3,7 +3,7 @@ import axios from 'axios';
 import { MapPin, Phone, Mail, Send, Clock, Users, Target, Star } from 'lucide-react';
 import { toast } from 'sonner';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
 
 const Contact = () => {

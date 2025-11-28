@@ -18,6 +18,9 @@ import secrets
 import cloudinary
 import cloudinary.uploader
 
+def generate_slug(title: str) -> str:
+    return re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+
 # Configure logging early
 logging.basicConfig(
     level=logging.INFO,
@@ -306,6 +309,7 @@ class BlogPost(BaseModel):
     model_config = ConfigDict(extra="ignore", populate_by_name=True)
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    slug: Optional[str] = None
     title: str
     excerpt: str
     content: str
@@ -320,6 +324,7 @@ class BlogPost(BaseModel):
     published: bool = True
 
 class BlogPostCreate(BaseModel):
+    slug: Optional[str] = None
     title: str
     excerpt: str
     content: str
@@ -555,6 +560,7 @@ DEFAULT_SERVICES_BY_ID = {service["id"]: service for service in DEFAULT_SERVICES
 DEFAULT_BLOG_POSTS = [
     {
         "id": "1",
+        "slug": "the-future-of-enterprise-ai-trends-shaping-2025",
         "title": "The Future of Enterprise AI: Trends Shaping 2025",
         "excerpt": "Explore how artificial intelligence is revolutionizing enterprise operations and what to expect in the coming years.",
         "content": "Artificial Intelligence continues to reshape the enterprise landscape in unprecedented ways. From predictive analytics to automated decision-making, AI is becoming the cornerstone of modern business operations. This comprehensive guide explores the key trends that will define enterprise AI in 2025 and beyond.",
@@ -568,6 +574,7 @@ DEFAULT_BLOG_POSTS = [
     },
     {
         "id": "2",
+        "slug": "zero-trust-security-a-comprehensive-implementation-guide",
         "title": "Zero Trust Security: A Comprehensive Implementation Guide",
         "excerpt": "Learn how zero trust architecture is becoming essential for modern cybersecurity strategies and how to implement it effectively.",
         "content": "As cyber threats become increasingly sophisticated, the traditional perimeter-based security model is no longer sufficient. Zero Trust Architecture represents a paradigm shift in how organizations approach security, assuming that threats can exist both inside and outside the network.",
@@ -581,6 +588,7 @@ DEFAULT_BLOG_POSTS = [
     },
     {
         "id": "3",
+        "slug": "cloud-migration-best-practices-for-enterprise-success",
         "title": "Cloud Migration Best Practices for Enterprise Success",
         "excerpt": "Navigate the complexities of cloud migration with our expert insights and proven strategies for 2025.",
         "content": "Cloud migration is no longer a question of 'if' but 'how' for modern enterprises. This comprehensive guide covers everything from assessment and planning to execution and optimization, ensuring your cloud journey is smooth and successful.",
@@ -594,6 +602,7 @@ DEFAULT_BLOG_POSTS = [
     },
     {
         "id": "4",
+        "slug": "data-privacy-regulations-global-compliance-strategies",
         "title": "Data Privacy Regulations: Global Compliance Strategies",
         "excerpt": "Stay compliant with evolving data privacy regulations across different jurisdictions with our expert guidance.",
         "content": "The regulatory landscape for data privacy is constantly evolving, with new laws and requirements emerging globally. Understanding and complying with regulations like GDPR, CCPA, and emerging frameworks is crucial for any organization handling personal data.",
@@ -733,9 +742,14 @@ async def get_blog_posts():
 
 @api_router.get("/blog/{blog_id}")
 async def get_blog_post(blog_id: str):
-    """Get a single blog post by ID"""
-    # First, try to find by ID in the database
-    post = await db.blog_posts.find_one({"id": blog_id}, {"_id": 0})
+    """Get a single blog post by ID or Slug"""
+    # First, try to find by ID or Slug in the database
+    post = await db.blog_posts.find_one({
+        "$or": [
+            {"id": blog_id},
+            {"slug": blog_id}
+        ]
+    }, {"_id": 0})
     
     if post:
         # Transform the post to include 'image' field for frontend compatibility
@@ -744,8 +758,14 @@ async def get_blog_post(blog_id: str):
         return post
     
     # If not in database, check default posts using the shared constant
+    # Check by ID
     if blog_id in DEFAULT_BLOG_POSTS_BY_ID:
         return DEFAULT_BLOG_POSTS_BY_ID[blog_id]
+        
+    # Check by slug in default posts (inefficient but fine for fallback)
+    for p in DEFAULT_BLOG_POSTS:
+        if p.get("slug") == blog_id:
+            return p
     
     # Not found
     raise HTTPException(status_code=404, detail="Blog post not found")
@@ -990,7 +1010,11 @@ async def admin_get_blog_posts(current_user: dict = Depends(get_current_user)):
 
 @admin_router.post("/blog", response_model=BlogPost)
 async def admin_create_blog_post(post_data: BlogPostCreate, current_user: dict = Depends(get_current_user)):
-    post = BlogPost(**post_data.model_dump())
+    post_dict = post_data.model_dump()
+    if not post_dict.get("slug"):
+        post_dict["slug"] = generate_slug(post_dict["title"])
+        
+    post = BlogPost(**post_dict)
     doc = post.model_dump()
     await db.blog_posts.insert_one(doc)
     return post
@@ -1002,6 +1026,9 @@ async def admin_update_blog_post(post_id: str, post_data: BlogPostCreate, curren
         raise HTTPException(status_code=404, detail="Blog post not found")
     
     update_data = post_data.model_dump()
+    if not update_data.get("slug"):
+        update_data["slug"] = generate_slug(update_data["title"])
+        
     await db.blog_posts.update_one({"id": post_id}, {"$set": update_data})
     
     updated = await db.blog_posts.find_one({"id": post_id}, {"_id": 0})
@@ -1494,6 +1521,7 @@ async def seed_mock_content():
             sample_blog_posts = [
                 BlogPost(
                     title="Transforming Finance with AI-Driven Insights",
+                    slug=generate_slug("Transforming Finance with AI-Driven Insights"),
                     excerpt="How intelligent automation delivers real-time visibility for enterprise finance teams.",
                     content=(
                         "Discover how Trine Solutions partnered with a global financial institution to modernize "
@@ -1515,6 +1543,7 @@ async def seed_mock_content():
                 ),
                 BlogPost(
                     title="Zero Trust Security for Distributed Workforces",
+                    slug=generate_slug("Zero Trust Security for Distributed Workforces"),
                     excerpt="A practical roadmap to securing hybrid workplaces without slowing productivity.",
                     content=(
                         "We break down the five foundational pillars for implementing Zero Trust at scale, lessons learned "
