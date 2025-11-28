@@ -1323,15 +1323,30 @@ async def submit_job_application(
     name: str = Form(...),
     email: str = Form(...),
     phone: str = Form(...),
-    cover_letter: Optional[str] = Form(None),
-    linkedin_url: Optional[str] = Form(None),
-    portfolio_url: Optional[str] = Form(None),
+    cover_letter: Optional[str] = Form(default=None),
+    linkedin_url: Optional[str] = Form(default=None),
+    portfolio_url: Optional[str] = Form(default=None),
     resume: UploadFile = File(...)
 ):
     """Submit job application with resume upload to Cloudinary"""
     try:
-        # Validate file type
-        if not resume.content_type.startswith('application/'):
+        # Validate file type - accept common document MIME types and also check extension
+        allowed_content_types = [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/octet-stream',  # Fallback type sent by some browsers
+        ]
+        allowed_extensions = ['.pdf', '.doc', '.docx']
+        
+        filename = resume.filename or ""
+        file_extension = filename.lower()[filename.rfind('.'):] if '.' in filename else ""
+        
+        content_type_valid = resume.content_type in allowed_content_types
+        extension_valid = file_extension in allowed_extensions
+        
+        if not (content_type_valid or extension_valid):
+            logger.warning(f"Invalid file upload - content_type: {resume.content_type}, filename: {filename}")
             raise HTTPException(status_code=400, detail="Only PDF, DOC, or DOCX files are allowed")
         
         # Validate file size (max 5MB)
@@ -1361,6 +1376,11 @@ async def submit_job_application(
             resume_url = f"pending_upload:{safe_filename}"
             logger.warning(f"Cloudinary not configured. Application saved with placeholder resume URL for {name}")
         
+        # Sanitize optional fields - convert empty strings to None
+        clean_cover_letter = cover_letter.strip() if cover_letter and cover_letter.strip() else None
+        clean_linkedin_url = linkedin_url.strip() if linkedin_url and linkedin_url.strip() else None
+        clean_portfolio_url = portfolio_url.strip() if portfolio_url and portfolio_url.strip() else None
+        
         # Create application record
         application = JobApplication(
             job_id=job_id,
@@ -1369,9 +1389,9 @@ async def submit_job_application(
             email=email,
             phone=phone,
             resume_url=resume_url,
-            cover_letter=cover_letter,
-            linkedin_url=linkedin_url,
-            portfolio_url=portfolio_url
+            cover_letter=clean_cover_letter,
+            linkedin_url=clean_linkedin_url,
+            portfolio_url=clean_portfolio_url
         )
         
         doc = application.model_dump()
