@@ -170,17 +170,17 @@ const Careers = () => {
     <div className="careers-page min-h-screen">
       {/* Hero Section - Premium Design */}
       <section className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-trine-black via-gray-900 to-trine-black">
-        {/* Animated Background Elements */}
+        {/* Animated Background Elements - Respects prefers-reduced-motion */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-trine-orange/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-trine-green/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-trine-orange/20 rounded-full blur-3xl motion-safe:animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-trine-green/15 rounded-full blur-3xl motion-safe:animate-pulse" style={{ animationDelay: '1s' }}></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-trine-orange/10 to-trine-green/10 rounded-full blur-3xl"></div>
         </div>
         
         <div className="container relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8 animate-fade-in-down">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8 motion-safe:animate-fade-in-down">
               <Sparkles className="w-4 h-4 text-trine-orange" />
               <span className="text-white/90 text-sm font-medium">We're Hiring!</span>
             </div>
@@ -525,7 +525,7 @@ const Careers = () => {
                 
                 {/* Resume Upload with Progress */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="resume-upload" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     Resume <span className="text-trine-orange">*</span>
                     <span className="text-gray-400 font-normal text-xs ml-1">(PDF/DOC, max 5MB)</span>
                   </label>
@@ -537,6 +537,7 @@ const Careers = () => {
                       disabled={uploading}
                       className="hidden"
                       id="resume-upload"
+                      aria-describedby="resume-validation-message"
                     />
                     <label
                       htmlFor="resume-upload"
@@ -637,7 +638,7 @@ const Careers = () => {
               {/* Action Buttons */}
               <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-6 border-t border-gray-100 dark:border-gray-700">
                 {!formData.resume && !uploading && (
-                  <p className="text-xs text-trine-orange self-center mr-auto">Please upload your resume to submit</p>
+                  <p id="resume-validation-message" role="alert" className="text-xs text-trine-orange self-center mr-auto">Please upload your resume to submit</p>
                 )}
                 <button
                   type="button"

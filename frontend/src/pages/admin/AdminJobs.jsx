@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Plus, Edit2, Trash2, X, Save, Eye, Briefcase, MapPin, Clock, DollarSign, Users, Search, Filter, CheckCircle, XCircle, FileText, Mail, Phone, ExternalLink, Download } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, Save, Eye, Briefcase, MapPin, Clock, DollarSign, Users, Search, Filter, CheckCircle, XCircle, FileText, Mail, Phone, ExternalLink, Download, Inbox, Target } from 'lucide-react';
 import { toast } from 'sonner';
 import AdminLayout from './AdminLayout';
 
@@ -615,13 +615,14 @@ const AdminJobs = () => {
                       <select
                         value={app.status}
                         onChange={(e) => updateApplicationStatus(app.id, e.target.value)}
+                        aria-label={`Update status for ${app.name}'s application`}
                         className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm font-medium focus:border-trine-orange outline-none cursor-pointer"
                       >
-                        <option value="new">📩 New</option>
-                        <option value="reviewing">👀 Reviewing</option>
-                        <option value="interview">🎯 Interview</option>
-                        <option value="accepted">✅ Accepted</option>
-                        <option value="rejected">❌ Rejected</option>
+                        <option value="new">New</option>
+                        <option value="reviewing">Reviewing</option>
+                        <option value="interview">Interview</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="rejected">Rejected</option>
                       </select>
                     </div>
                   </div>
@@ -968,17 +969,18 @@ const AdminJobs = () => {
                           updateApplicationStatus(selectedApplication.id, status);
                           setSelectedApplication({ ...selectedApplication, status });
                         }}
-                        className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                        aria-label={`Set status to ${status}`}
+                        className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 ${
                           selectedApplication.status === status
                             ? 'bg-gradient-to-r from-trine-orange to-trine-green text-white shadow-md'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                         }`}
                       >
-                        {status === 'new' && '📩 '}
-                        {status === 'reviewing' && '👀 '}
-                        {status === 'interview' && '🎯 '}
-                        {status === 'accepted' && '✅ '}
-                        {status === 'rejected' && '❌ '}
+                        {status === 'new' && <Inbox className="w-4 h-4" aria-hidden="true" />}
+                        {status === 'reviewing' && <Eye className="w-4 h-4" aria-hidden="true" />}
+                        {status === 'interview' && <Target className="w-4 h-4" aria-hidden="true" />}
+                        {status === 'accepted' && <CheckCircle className="w-4 h-4" aria-hidden="true" />}
+                        {status === 'rejected' && <XCircle className="w-4 h-4" aria-hidden="true" />}
                         {status.charAt(0).toUpperCase() + status.slice(1)}
                       </button>
                     ))}
