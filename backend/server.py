@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import re
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
@@ -1321,7 +1322,13 @@ async def submit_job_application(
                 logger.error(f"Cloudinary upload error: {e}")
                 raise HTTPException(status_code=500, detail="Failed to upload resume")
         else:
-            raise HTTPException(status_code=503, detail="Resume upload service not configured")
+            # Fallback: Store application with placeholder resume URL when Cloudinary is not configured
+            # The application is still saved so recruiters can contact the applicant
+            resume_filename = resume.filename or "resume.pdf"
+            # Sanitize filename: remove path separators and limit length
+            safe_filename = re.sub(r'[/\\<>:"|?*]', '_', resume_filename)[:100]
+            resume_url = f"pending_upload:{safe_filename}"
+            logger.warning(f"Cloudinary not configured. Application saved with placeholder resume URL for {name}")
         
         # Create application record
         application = JobApplication(
