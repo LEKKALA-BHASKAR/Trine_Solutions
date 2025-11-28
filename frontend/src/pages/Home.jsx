@@ -9,6 +9,7 @@ import {
 import TestimonialSlider from '@/components/TestimonialSlider';
 import { iconMap, getIconByName } from '@/utils/serviceIcons';
 import { defaultServices, getSimplifiedServices } from '@/constants/defaultServices';
+import SEO, { pageSEO, structuredDataSchemas } from '@/components/SEO';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
@@ -231,6 +232,14 @@ const Home = () => {
 
   return (
     <>
+      <SEO 
+        {...pageSEO.home}
+        canonicalUrl="https://trinesolutions.com/"
+        structuredData={structuredDataSchemas.organization}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' }
+        ]}
+      />
 
 <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-800 dark:to-black pt-32 transition-colors duration-500" aria-labelledby="hero-title">
   

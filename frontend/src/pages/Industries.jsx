@@ -1,5 +1,6 @@
 import { Building2, Heart, ShoppingBag, Factory, GraduationCap, Truck, Wifi, Satellite, Cloud, Server, Cpu, Shield, ArrowRight, CheckCircle, TrendingUp, Zap, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO, { pageSEO } from '@/components/SEO';
 
 const Industries = () => {
   const industries = [
@@ -134,6 +135,14 @@ const Industries = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50" data-testid="industries-page">
+      <SEO 
+        {...pageSEO.industries}
+        canonicalUrl="https://trinesolutions.com/industries"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Industries', url: 'https://trinesolutions.com/industries' }
+        ]}
+      />
       {/* Enhanced Hero with Modern Design */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-0">
         {/* Gradient Background */}

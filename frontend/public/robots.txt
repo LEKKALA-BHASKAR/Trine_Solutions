@@ -1,0 +1,33 @@
+# Trine Solutions - Robots.txt
+# https://trinesolutions.com/
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Allow specific search engines (no delay)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Disallow admin and private areas
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://trinesolutions.com/sitemap.xml
+
+# Additional information
+# Contact: trine@trinesolutions.com
+# Last updated: 2024
