@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Depends, status, Request, Response
+from fastapi import FastAPI, APIRouter, HTTPException, Depends, status, Request, Response, Form
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -1318,20 +1318,35 @@ async def get_active_jobs():
 
 @api_router.post("/jobs/apply")
 async def submit_job_application(
-    job_id: str,
-    job_title: str,
-    name: str,
-    email: str,
-    phone: str,
-    cover_letter: str = None,
-    linkedin_url: str = None,
-    portfolio_url: str = None,
+    job_id: str = Form(...),
+    job_title: str = Form(...),
+    name: str = Form(...),
+    email: str = Form(...),
+    phone: str = Form(...),
+    cover_letter: Optional[str] = Form(default=None),
+    linkedin_url: Optional[str] = Form(default=None),
+    portfolio_url: Optional[str] = Form(default=None),
     resume: UploadFile = File(...)
 ):
     """Submit job application with resume upload to Cloudinary"""
     try:
-        # Validate file type
-        if not resume.content_type.startswith('application/'):
+        # Validate file type - accept common document MIME types and also check extension
+        allowed_content_types = [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/octet-stream',  # Fallback type sent by some browsers
+        ]
+        allowed_extensions = ['.pdf', '.doc', '.docx']
+        
+        filename = resume.filename or ""
+        _, file_extension = os.path.splitext(filename.lower())
+        
+        content_type_valid = resume.content_type in allowed_content_types
+        extension_valid = file_extension in allowed_extensions
+        
+        if not (content_type_valid or extension_valid):
+            logger.warning(f"Invalid file upload - content_type: {resume.content_type}, filename: {filename}")
             raise HTTPException(status_code=400, detail="Only PDF, DOC, or DOCX files are allowed")
         
         # Validate file size (max 5MB)
@@ -1361,6 +1376,18 @@ async def submit_job_application(
             resume_url = f"pending_upload:{safe_filename}"
             logger.warning(f"Cloudinary not configured. Application saved with placeholder resume URL for {name}")
         
+        # Sanitize optional fields - convert empty strings to None
+        def sanitize_optional(value: Optional[str]) -> Optional[str]:
+            """Strip whitespace and return None if empty."""
+            if value:
+                stripped = value.strip()
+                return stripped if stripped else None
+            return None
+        
+        clean_cover_letter = sanitize_optional(cover_letter)
+        clean_linkedin_url = sanitize_optional(linkedin_url)
+        clean_portfolio_url = sanitize_optional(portfolio_url)
+        
         # Create application record
         application = JobApplication(
             job_id=job_id,
@@ -1369,9 +1396,9 @@ async def submit_job_application(
             email=email,
             phone=phone,
             resume_url=resume_url,
-            cover_letter=cover_letter,
-            linkedin_url=linkedin_url,
-            portfolio_url=portfolio_url
+            cover_letter=clean_cover_letter,
+            linkedin_url=clean_linkedin_url,
+            portfolio_url=clean_portfolio_url
         )
         
         doc = application.model_dump()
