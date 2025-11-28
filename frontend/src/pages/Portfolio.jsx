@@ -159,7 +159,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen" data-testid="portfolio-page">
       {/* Hero Section with Parallax Effect */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{

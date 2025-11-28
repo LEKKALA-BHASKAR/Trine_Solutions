@@ -232,7 +232,7 @@ const Home = () => {
   return (
     <>
 
-<section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-800 dark:to-black pt-20 transition-colors duration-500" aria-labelledby="hero-title">
+<section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-800 dark:to-black pt-32 transition-colors duration-500" aria-labelledby="hero-title">
   
   {/* Left-side Content */}
   <div className="container mx-auto px-6 relative z-10">

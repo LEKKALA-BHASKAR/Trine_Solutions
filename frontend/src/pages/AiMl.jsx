@@ -142,7 +142,7 @@ const AiMl = () => {
   return (
     <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=800&fit=crop"

@@ -105,7 +105,7 @@ const Insights = () => {
   return (
     <div className="min-h-screen" data-testid="insights-page">
       {/* Hero */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-trine-black via-gray-900 to-trine-black"></div>
           <div className="absolute inset-0 opacity-20">

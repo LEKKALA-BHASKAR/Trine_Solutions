@@ -135,7 +135,7 @@ const Industries = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50" data-testid="industries-page">
       {/* Enhanced Hero with Modern Design */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 lg:pb-0">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-0">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/20 via-transparent to-black/30"></div>

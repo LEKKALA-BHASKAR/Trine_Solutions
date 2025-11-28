@@ -203,7 +203,7 @@ const Careers = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+      <section className="relative pt-32 pb-24 md:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">

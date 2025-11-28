@@ -209,7 +209,7 @@ const BlogDetail = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50">
       {/* Hero Section with Image Background */}
       <section 
-        className="relative pt-24 pb-16 overflow-hidden min-h-[400px] max-h-[600px] flex items-end"
+        className="relative pt-32 pb-16 overflow-hidden min-h-[400px] max-h-[600px] flex items-end"
         style={{
           backgroundImage: post.image ? `url(${post.image})` : undefined,
           backgroundSize: 'cover',

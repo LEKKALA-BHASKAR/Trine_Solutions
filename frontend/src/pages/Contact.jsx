@@ -68,7 +68,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-cyan-50/20 dark:from-gray-900 dark:via-blue-950/30 dark:to-cyan-950/20" data-testid="contact-page">
       {/* Enhanced Hero */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/10 to-black/20"></div>
         </div>
@@ -85,28 +85,28 @@ const Contact = () => {
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
         </div>
 
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left text-white">
-              <h1 className="text-6xl lg:text-8xl font-black mb-8 animate-fade-in-up bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent" data-testid="contact-hero-title">
+              <h1 className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 animate-fade-in-up bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent" data-testid="contact-hero-title">
                 Let's Build
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Something Great</span>
               </h1>
               
-              <p className="text-xl lg:text-2xl max-w-4xl mx-auto lg:mx-0 mb-12 opacity-90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto lg:mx-0 mb-12 opacity-90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                 Ready to transform your business? Let's discuss how our expertise can drive your digital transformation journey.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                 <button 
                   onClick={() => document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold hover:bg-cyan-50 transform hover:scale-105 transition-all duration-300 shadow-2xl"
+                  className="w-full sm:w-auto px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold hover:bg-cyan-50 transform hover:scale-105 transition-all duration-300 shadow-2xl"
                 >
                   Send Message
                 </button>
                 <a 
                   href="tel:+14252025165"
-                  className="px-8 py-4 border-2 border-white/30 text-white rounded-2xl font-bold backdrop-blur-sm hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
+                  className="w-full sm:w-auto px-8 py-4 border-2 border-white/30 text-white rounded-2xl font-bold backdrop-blur-sm hover:bg-white/10 transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
                 >
                   Call Now
                 </a>
@@ -114,8 +114,8 @@ const Contact = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="hidden lg:block relative animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-               <div className="relative w-full h-[600px] flex items-center justify-center">
+            <div className="relative block mt-12 lg:mt-0 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+               <div className="relative w-full h-[300px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
                  <img 
                    src="/contact-img.svg" 
                    alt="Contact Us" 
@@ -127,7 +127,7 @@ const Contact = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
           </div>
@@ -135,10 +135,10 @@ const Contact = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 relative">
+      <section className="py-12 lg:py-20 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-100/50 to-gray-200/30 dark:via-gray-800/50 dark:to-gray-900/30"></div>
-        <div className="container relative z-10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
@@ -173,27 +173,27 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section id="contact-form" className="py-20 relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <section id="contact-form" className="py-12 lg:py-20 relative bg-white dark:bg-gray-900">
         {/* Background overlay for better contrast */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-green-500/10"></div>
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Enhanced Form */}
             <div className="relative group">
-              <div className="relative bg-white rounded-2xl p-10 shadow-2xl border border-gray-200/50" data-testid="contact-form">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 lg:p-10 shadow-2xl border border-gray-200/50 dark:border-gray-700/50" data-testid="contact-form">
                 <div className="text-center mb-8">
-                  <h2 className="text-4xl font-black mb-4 bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
+                  <h2 className="text-3xl lg:text-4xl font-black mb-4 bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">
                     Send Message
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-300">
                     Fill out the form below and we'll get back to you within 2 hours
                   </p>
                 </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold mb-3 text-gray-700">Name *</label>
+                      <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">Name *</label>
                       <input
                         type="text"
                         name="name"
@@ -201,12 +201,12 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         data-testid="contact-name-input"
-                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300"
+                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300"
                         placeholder="Your full name"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold mb-3 text-gray-700">Email *</label>
+                      <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">Email *</label>
                       <input
                         type="email"
                         name="email"
@@ -214,27 +214,27 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         data-testid="contact-email-input"
-                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300"
+                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300"
                         placeholder="your.email@company.com"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-semibold mb-3 text-gray-700">Company</label>
+                    <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">Company</label>
                     <input
                       type="text"
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
                       data-testid="contact-company-input"
-                      className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300"
+                      className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300"
                       placeholder="Your company name"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-semibold mb-3 text-gray-700">Message *</label>
+                    <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">Message *</label>
                     <textarea
                       name="message"
                       value={formData.message}
@@ -242,7 +242,7 @@ const Contact = () => {
                       required
                       rows={6}
                       data-testid="contact-message-input"
-                      className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-200 text-gray-900 outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300 resize-none"
+                      className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/20 transition-all duration-300 resize-none"
                       placeholder="Tell us about your project or inquiry..."
                     ></textarea>
                   </div>
@@ -270,20 +270,20 @@ const Contact = () => {
             <div className="space-y-8">
               {/* Single Location Card */}
               <div className="relative group">
-                <div className="relative bg-white rounded-2xl p-10 shadow-2xl border border-gray-200/50">
-                  <h2 className="text-4xl font-black mb-8 bg-gradient-to-r from-green-500 to-orange-500 bg-clip-text text-transparent">
+                <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 lg:p-10 shadow-2xl border border-gray-200/50 dark:border-gray-700/50">
+                  <h2 className="text-3xl lg:text-4xl font-black mb-8 bg-gradient-to-r from-green-500 to-orange-500 bg-clip-text text-transparent">
                     Our Office
                   </h2>
                   
                   <div className="space-y-8">
                     {/* Address */}
-                    <div className="group/item flex items-start space-x-6 p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-pointer border border-transparent hover:border-orange-500/20">
+                    <div className="group/item flex items-start space-x-6 p-6 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 cursor-pointer border border-transparent hover:border-orange-500/20">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-green-500/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
                         <MapPin className="w-7 h-7 text-orange-500" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-lg mb-2 text-gray-800">Headquarters</h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">Headquarters</h3>
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                           14042 NE 8th Street, #201C<br />
                           Bellevue, WA 98007
                         </p>
@@ -291,15 +291,15 @@ const Contact = () => {
                     </div>
 
                     {/* Phone */}
-                    <div className="group/item flex items-center space-x-6 p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-pointer border border-transparent hover:border-green-500/20">
+                    <div className="group/item flex items-center space-x-6 p-6 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 cursor-pointer border border-transparent hover:border-green-500/20">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-orange-500/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
                         <Phone className="w-7 h-7 text-green-500 group-hover/item:rotate-12 transition-all duration-300" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-lg mb-2 text-gray-800">Phone</h3>
+                        <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">Phone</h3>
                         <a 
                           href="tel:+14252025165" 
-                          className="text-gray-600 hover:text-orange-500 transition-colors text-lg font-semibold"
+                          className="text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors text-lg font-semibold"
                         >
                           +1 (425) 202-5165
                         </a>
@@ -307,15 +307,15 @@ const Contact = () => {
                     </div>
 
                     {/* Email */}
-                    <div className="group/item flex items-center space-x-6 p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-pointer border border-transparent hover:border-orange-500/20">
+                    <div className="group/item flex items-center space-x-6 p-6 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 cursor-pointer border border-transparent hover:border-orange-500/20">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-green-500/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
                         <Mail className="w-7 h-7 text-orange-500" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-lg mb-2 text-gray-800">Email</h3>
+                        <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">Email</h3>
                         <a 
                           href="mailto:trine@trinesolutions.com" 
-                          className="text-gray-600 hover:text-orange-500 transition-colors text-lg font-semibold"
+                          className="text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors text-lg font-semibold"
                         >
                           trine@trinesolutions.com
                         </a>
@@ -324,12 +324,12 @@ const Contact = () => {
                   </div>
 
                   {/* Office Hours */}
-                  <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-orange-50 border border-gray-200/50">
-                    <h4 className="font-bold text-lg mb-3 text-gray-800 flex items-center gap-2">
+                  <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-orange-50 dark:from-gray-700 dark:to-gray-800 border border-gray-200/50 dark:border-gray-600/50">
+                    <h4 className="font-bold text-lg mb-3 text-gray-800 dark:text-white flex items-center gap-2">
                       <Clock className="w-5 h-5 text-orange-500" />
                       Office Hours
                     </h4>
-                    <div className="space-y-2 text-sm text-gray-600">
+                    <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                       <div className="flex justify-between">
                         <span>Monday - Friday</span>
                         <span className="font-semibold">9:00 AM - 6:00 PM PST</span>
@@ -340,7 +340,7 @@ const Contact = () => {
                       </div>
                       <div className="flex justify-between">
                         <span>Sunday</span>
-                        <span className="font-semibold text-gray-900">Closed</span>
+                        <span className="font-semibold text-gray-900 dark:text-white">Closed</span>
                       </div>
                     </div>
                   </div>
@@ -370,16 +370,16 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-12 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50/50 to-purple-50/30 dark:from-cyan-950/20 dark:via-blue-950/10 dark:to-purple-950/20"></div>
-        <div className="container relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl lg:text-7xl font-black mb-6">
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-3xl lg:text-5xl font-black mb-4 lg:mb-6">
               <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Visit Our Office
               </span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Located in the heart of Bellevue's tech corridor, our office is designed for collaboration and innovation.
             </p>
           </div>
@@ -387,7 +387,7 @@ const Contact = () => {
           {/* Enhanced Map Placeholder */}
           <div className="relative group rounded-3xl overflow-hidden shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-cyan-600/20 z-10"></div>
-            <div className="h-96 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center relative">
+            <div className="h-64 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center relative">
               {/* Map Grid Pattern */}
               <div className="absolute inset-0 opacity-30">
                 <div className="absolute inset-0" style={{
@@ -399,13 +399,13 @@ const Contact = () => {
               
               {/* Map Center Marker */}
               <div className="relative z-20 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mx-auto mb-4 shadow-2xl group-hover:scale-110 transition-transform duration-500">
-                  <MapPin className="w-10 h-10 text-white" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mx-auto mb-4 shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                  <MapPin className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
                 </div>
-                <div className="text-white bg-black/50 backdrop-blur-sm rounded-2xl p-6 inline-block">
-                  <div className="text-2xl font-black mb-2">Trine Solutions</div>
-                  <div className="text-sm opacity-90">14042 NE 8th Street, #201C</div>
-                  <div className="text-sm opacity-90">Bellevue, WA 98007</div>
+                <div className="text-white bg-black/50 backdrop-blur-sm rounded-2xl p-4 lg:p-6 inline-block">
+                  <div className="text-xl lg:text-2xl font-black mb-2">Trine Solutions</div>
+                  <div className="text-xs lg:text-sm opacity-90">14042 NE 8th Street, #201C</div>
+                  <div className="text-xs lg:text-sm opacity-90">Bellevue, WA 98007</div>
                 </div>
               </div>
 

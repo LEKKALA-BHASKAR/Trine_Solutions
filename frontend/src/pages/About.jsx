@@ -137,7 +137,7 @@ const About = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-cyan-50/20 dark:from-gray-900 dark:via-blue-950/30 dark:to-cyan-950/20" data-testid="about-page">
       
       {/* Hero Section with Right Side Transparent Image */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 lg:pb-0">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/20"></div>
         </div>

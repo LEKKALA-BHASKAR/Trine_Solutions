@@ -45,7 +45,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 lg:pb-16">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-16">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-400/20 via-transparent to-black/30"></div>

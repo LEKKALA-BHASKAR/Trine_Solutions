@@ -69,7 +69,7 @@ const CaseStudies = () => {
   return (
     <div className="min-h-screen" data-testid="case-studies-page">
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0 bg-gradient-to-br from-trine-orange via-trine-orange/80 to-trine-lightblue"></div>
         <div className="absolute inset-0 opacity-20" aria-hidden="true">
           <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl animate-float"></div>
