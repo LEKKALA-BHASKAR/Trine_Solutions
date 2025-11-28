@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ArrowLeft, ArrowRight, CheckCircle2, Mail, Phone, Send, User, Building, MessageSquare } from 'lucide-react';
 import { toast } from 'sonner';
 import { getIconByName } from '@/utils/serviceIcons';
-import { getDefaultServiceImage } from '@/constants/defaultServices';
+import { getDefaultServiceImage, defaultServices } from '@/constants/defaultServices';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -32,7 +32,13 @@ const ServiceDetail = () => {
         setService(response.data);
       } catch (err) {
         console.error('Error fetching service:', err);
-        setError('Service not found');
+        // Try to find the service in default services as fallback
+        const defaultService = defaultServices.find(s => s.id === id);
+        if (defaultService) {
+          setService(defaultService);
+        } else {
+          setError('Service not found');
+        }
       } finally {
         setLoading(false);
       }
