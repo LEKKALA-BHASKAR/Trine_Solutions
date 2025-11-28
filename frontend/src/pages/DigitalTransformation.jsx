@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, Users, Target, TrendingUp, Layers, Monitor, Smartphone, Globe, ArrowLeft, PlayCircle, Star, Quote } from 'lucide-react';
+import SEO, { pageSEO } from '@/components/SEO';
 
 const DigitalTransformation = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -90,12 +91,21 @@ const DigitalTransformation = () => {
 
   return (
     <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <SEO 
+        {...pageSEO.digitalTransformation}
+        canonicalUrl="https://trinesolutions.com/services/digital-transformation"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Services', url: 'https://trinesolutions.com/services' },
+          { name: 'Digital Transformation', url: 'https://trinesolutions.com/services/digital-transformation' }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&h=800&fit=crop"
-            alt="Digital Transformation"
+            alt="Digital Transformation Services - Enterprise Business Modernization"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-900/80 to-teal-900/90"></div>

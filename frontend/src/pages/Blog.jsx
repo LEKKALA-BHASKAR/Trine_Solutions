@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, Search, Tag, Clock, TrendingUp, Sparkles, BookOpen } from 'lucide-react';
 import axios from 'axios';
+import SEO, { pageSEO } from '@/components/SEO';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
@@ -44,6 +45,14 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50">
+      <SEO 
+        {...pageSEO.blog}
+        canonicalUrl="https://trinesolutions.com/blog"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Blog', url: 'https://trinesolutions.com/blog' }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-16">
         {/* Gradient Background */}

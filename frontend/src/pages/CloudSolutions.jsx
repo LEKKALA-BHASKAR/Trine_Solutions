@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Cloud, Server, Shield, Database, ArrowLeft, PlayCircle, Star, Quote, Zap, Globe, Lock, BarChart3 } from 'lucide-react';
+import SEO, { pageSEO } from '@/components/SEO';
 
 const CloudSolutions = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -106,12 +107,21 @@ const CloudSolutions = () => {
 
   return (
     <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <SEO 
+        {...pageSEO.cloudSolutions}
+        canonicalUrl="https://trinesolutions.com/services/cloud-solutions"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Services', url: 'https://trinesolutions.com/services' },
+          { name: 'Cloud Solutions', url: 'https://trinesolutions.com/services/cloud-solutions' }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=800&fit=crop"
-            alt="Cloud Infrastructure"
+            alt="Enterprise Cloud Infrastructure - AWS, Azure, Google Cloud Services"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-900/80 to-cyan-900/90"></div>

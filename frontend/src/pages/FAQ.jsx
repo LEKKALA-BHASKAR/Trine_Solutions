@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HelpCircle, ChevronDown, ChevronUp, Search, MessageCircle, Phone, Mail, ArrowRight, Zap, Shield, Cloud, Users } from 'lucide-react';
+import SEO, { pageSEO, structuredDataSchemas } from '@/components/SEO';
 
 const FAQ = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -133,8 +134,20 @@ const FAQ = () => {
     return matchesCategory && matchesSearch;
   });
 
+  // Generate FAQ schema for structured data
+  const faqSchemaData = structuredDataSchemas.faqPage(faqs);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-orange-50">
+      <SEO 
+        {...pageSEO.faq}
+        canonicalUrl="https://trinesolutions.com/faq"
+        structuredData={faqSchemaData}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'FAQ', url: 'https://trinesolutions.com/faq' }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600">
