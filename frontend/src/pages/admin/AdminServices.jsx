@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Plus, Edit2, Trash2, X, Save, Zap, Search, ChevronDown } from 'lucide-react';
@@ -28,7 +28,8 @@ const AdminServices = () => {
     fullDescription: '',
   });
 
-  const token = localStorage.getItem('adminToken');
+  // Helper function to get fresh token from localStorage
+  const getToken = () => localStorage.getItem('adminToken');
 
   // Memoize filtered icons to avoid recalculating on every render
   const filteredIcons = useMemo(() => {
@@ -36,15 +37,8 @@ const AdminServices = () => {
       .filter(opt => opt.name.toLowerCase().includes(iconSearch.toLowerCase()));
   }, [iconCategory, iconSearch]);
 
-  useEffect(() => {
-    if (!token) {
-      navigate('/admin/login');
-      return;
-    }
-    fetchServices();
-  }, [token, navigate]);
-
-  const fetchServices = async () => {
+  const fetchServices = useCallback(async () => {
+    const token = getToken();
     try {
       const response = await axios.get(`${API}/services`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -54,11 +48,21 @@ const AdminServices = () => {
     } catch (error) {
       console.error('Error fetching services:', error);
       if (error.response?.status === 401) {
+        localStorage.removeItem('adminToken');
         navigate('/admin/login');
       }
       setLoading(false);
     }
-  };
+  }, [navigate]);
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      navigate('/admin/login');
+      return;
+    }
+    fetchServices();
+  }, [navigate, fetchServices]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -102,6 +106,7 @@ const AdminServices = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = getToken();
     const payload = {
       ...formData,
       capabilities: formData.capabilities.split(',').map(t => t.trim()).filter(t => t),
@@ -126,12 +131,19 @@ const AdminServices = () => {
       fetchServices();
     } catch (error) {
       console.error('Error saving service:', error);
-      toast.error('Failed to save service');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please login again.');
+        localStorage.removeItem('adminToken');
+        navigate('/admin/login');
+      } else {
+        toast.error('Failed to save service');
+      }
     }
   };
 
   const handleDelete = async (serviceId) => {
     if (!window.confirm('Are you sure you want to delete this service?')) return;
+    const token = getToken();
     
     try {
       await axios.delete(`${API}/services/${serviceId}`, {
@@ -141,7 +153,13 @@ const AdminServices = () => {
       fetchServices();
     } catch (error) {
       console.error('Error deleting service:', error);
-      toast.error('Failed to delete service');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please login again.');
+        localStorage.removeItem('adminToken');
+        navigate('/admin/login');
+      } else {
+        toast.error('Failed to delete service');
+      }
     }
   };
 
