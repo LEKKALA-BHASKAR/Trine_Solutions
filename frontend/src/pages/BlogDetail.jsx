@@ -64,39 +64,28 @@ const filterRelatedPosts = (allPosts, currentPost) => {
   const currentCategory = currentPost.category?.toLowerCase();
   const currentTags = (currentPost.tags || []).map(tag => tag.toLowerCase());
   
-  // Filter posts that match category or have common tags
-  const related = allPosts.filter(p => {
-    // Exclude current post
-    if (p.slug === currentSlug) return false;
-    
-    // Check if same category
-    const sameCategory = p.category?.toLowerCase() === currentCategory;
-    
-    // Check if any tags match
-    const postTags = (p.tags || []).map(tag => tag.toLowerCase());
-    const hasMatchingTags = postTags.some(tag => currentTags.includes(tag));
-    
-    return sameCategory || hasMatchingTags;
-  });
+  // Filter posts that match category or have common tags, and pre-compute relevance scores
+  const relatedWithScores = allPosts
+    .filter(p => p.slug !== currentSlug)
+    .map(p => {
+      const sameCategory = p.category?.toLowerCase() === currentCategory;
+      const postTags = (p.tags || []).map(tag => tag.toLowerCase());
+      const matchingTagCount = postTags.filter(tag => currentTags.includes(tag)).length;
+      
+      // Only include posts that match category or have at least one matching tag
+      if (!sameCategory && matchingTagCount === 0) return null;
+      
+      // Pre-compute score: category match (1 point) + number of matching tags
+      const score = (sameCategory ? 1 : 0) + matchingTagCount;
+      return { post: p, score };
+    })
+    .filter(item => item !== null);
   
-  // Sort by relevance (posts with both category and tag match first)
-  related.sort((a, b) => {
-    const aCategory = a.category?.toLowerCase() === currentCategory ? 1 : 0;
-    const bCategory = b.category?.toLowerCase() === currentCategory ? 1 : 0;
-    
-    const aTags = (a.tags || []).map(tag => tag.toLowerCase());
-    const bTags = (b.tags || []).map(tag => tag.toLowerCase());
-    const aTagMatch = aTags.filter(tag => currentTags.includes(tag)).length;
-    const bTagMatch = bTags.filter(tag => currentTags.includes(tag)).length;
-    
-    const aScore = aCategory + aTagMatch;
-    const bScore = bCategory + bTagMatch;
-    
-    return bScore - aScore;
-  });
+  // Sort by pre-computed relevance score (higher scores first)
+  relatedWithScores.sort((a, b) => b.score - a.score);
   
   // Return up to 3 related posts
-  return related.slice(0, 3);
+  return relatedWithScores.slice(0, 3).map(item => item.post);
 };
 
 const BlogDetail = () => {
@@ -107,7 +96,7 @@ const BlogDetail = () => {
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
-  const [relatedLoading, setRelatedLoading] = useState(true);
+  const [relatedLoading, setRelatedLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -129,9 +118,10 @@ const BlogDetail = () => {
   };
 
   // Fetch related posts when the main post is loaded
+  // Using post?.slug as dependency to prevent unnecessary API calls when post object is recreated
   useEffect(() => {
     const fetchRelatedPosts = async () => {
-      if (!post) return;
+      if (!post?.slug) return;
       
       try {
         setRelatedLoading(true);
@@ -148,7 +138,7 @@ const BlogDetail = () => {
     };
 
     fetchRelatedPosts();
-  }, [post]);
+  }, [post?.slug, post?.category, post?.tags]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
