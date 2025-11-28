@@ -37,15 +37,6 @@ const AdminServices = () => {
       .filter(opt => opt.name.toLowerCase().includes(iconSearch.toLowerCase()));
   }, [iconCategory, iconSearch]);
 
-  useEffect(() => {
-    const token = getToken();
-    if (!token) {
-      navigate('/admin/login');
-      return;
-    }
-    fetchServices();
-  }, [navigate, fetchServices]);
-
   const fetchServices = useCallback(async () => {
     const token = getToken();
     try {
@@ -63,6 +54,15 @@ const AdminServices = () => {
       setLoading(false);
     }
   }, [navigate]);
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      navigate('/admin/login');
+      return;
+    }
+    fetchServices();
+  }, [navigate, fetchServices]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
