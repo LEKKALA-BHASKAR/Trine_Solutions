@@ -1340,7 +1340,7 @@ async def submit_job_application(
         allowed_extensions = ['.pdf', '.doc', '.docx']
         
         filename = resume.filename or ""
-        file_extension = filename.lower()[filename.rfind('.'):] if '.' in filename else ""
+        _, file_extension = os.path.splitext(filename.lower())
         
         content_type_valid = resume.content_type in allowed_content_types
         extension_valid = file_extension in allowed_extensions
@@ -1377,9 +1377,14 @@ async def submit_job_application(
             logger.warning(f"Cloudinary not configured. Application saved with placeholder resume URL for {name}")
         
         # Sanitize optional fields - convert empty strings to None
-        clean_cover_letter = cover_letter.strip() if cover_letter and cover_letter.strip() else None
-        clean_linkedin_url = linkedin_url.strip() if linkedin_url and linkedin_url.strip() else None
-        clean_portfolio_url = portfolio_url.strip() if portfolio_url and portfolio_url.strip() else None
+        stripped_cover_letter = cover_letter.strip() if cover_letter else None
+        clean_cover_letter = stripped_cover_letter if stripped_cover_letter else None
+        
+        stripped_linkedin_url = linkedin_url.strip() if linkedin_url else None
+        clean_linkedin_url = stripped_linkedin_url if stripped_linkedin_url else None
+        
+        stripped_portfolio_url = portfolio_url.strip() if portfolio_url else None
+        clean_portfolio_url = stripped_portfolio_url if stripped_portfolio_url else None
         
         # Create application record
         application = JobApplication(
