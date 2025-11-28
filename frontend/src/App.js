@@ -12,6 +12,10 @@ import IndustryDetail from "@/pages/IndustryDetail";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
 import Blog from "@/pages/Blog";
+import BlogDetail from "@/pages/BlogDetail";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
+import FAQ from "@/pages/FAQ";
 import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminBlog from "@/pages/admin/AdminBlog";
@@ -73,6 +77,10 @@ function App() {
             <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/faq" element={<FAQ />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />

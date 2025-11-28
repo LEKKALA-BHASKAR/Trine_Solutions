@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Linkedin, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
 const Footer = () => {
   const footerSections = [
@@ -8,26 +8,25 @@ const Footer = () => {
       links: [
         { name: 'About Us', path: '/about' },
         { name: 'Careers', path: '/careers' },
-        { name: 'Case Studies', path: '/case-studies' },
         { name: 'Blog', path: '/blog' },
       ],
     },
     {
       title: 'Services',
       links: [
-        { name: 'Digital Transformation', path: '/services' },
-        { name: 'Cloud Solutions', path: '/services' },
-        { name: 'AI & ML', path: '/services' },
-        { name: 'Cybersecurity', path: '/services' },
+        { name: 'Digital Transformation', path: '/services/digital-transformation' },
+        { name: 'Cloud Solutions', path: '/services/cloud-solutions' },
+        { name: 'AI & ML', path: '/services/ai-ml' },
+        { name: 'Cybersecurity', path: '/services/cybersecurity' },
       ],
     },
     {
       title: 'Industries',
       links: [
-        { name: 'Telecommunications', path: '/industries' },
-        { name: 'Healthcare', path: '/industries' },
-        { name: 'Finance', path: '/industries' },
-        { name: 'Retail', path: '/industries' },
+        { name: 'Telecommunications', path: '/industries/telecommunications' },
+        { name: 'Healthcare', path: '/industries/healthcare' },
+        { name: 'Finance', path: '/industries/banking-finance' },
+        { name: 'Retail', path: '/industries/retail-ecommerce' },
       ],
     },
     {
@@ -42,10 +41,7 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, url: 'https://twitter.com', label: 'Twitter' },
-    { icon: Facebook, url: 'https://facebook.com', label: 'Facebook' },
-    { icon: Instagram, url: 'https://instagram.com', label: 'Instagram' },
+    { icon: Linkedin, url: 'https://www.linkedin.com/company/trinesolutions', label: 'LinkedIn' },
   ];
 
   return (

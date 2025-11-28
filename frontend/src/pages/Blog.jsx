@@ -281,10 +281,13 @@ const Blog = () => {
                         <Clock className="w-4 h-4" />
                         <span>{post.readTime || '5 min read'}</span>
                       </div>
-                      <button className="group/btn flex items-center gap-2 text-orange-600 font-semibold hover:gap-3 transition-all duration-300">
+                      <Link 
+                        to={`/blog/${post.slug || post.id}`}
+                        className="group/btn flex items-center gap-2 text-orange-600 font-semibold hover:gap-3 transition-all duration-300"
+                      >
                         Read More
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </article>
