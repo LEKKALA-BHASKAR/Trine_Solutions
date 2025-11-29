@@ -587,12 +587,9 @@ const Home = () => {
       <div className="group relative">
         <div className="absolute inset-0 bg-gradient-to-r from-trine-orange/15 to-trine-lightblue/15 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
 
-        <div className="relative rounded-3xl bg-gradient-to-br from-slate-900/80 to-slate-800/90 border border-white/10 backdrop-blur-xl shadow-2xl shadow-black/30 p-8 transition-all duration-500 group-hover:border-trine-orange/30 group-hover:shadow-trine-orange/20 group-hover:scale-[1.02]">
+        <div className="relative rounded-3xl bg-gradient-to-br from-slate-900/80 to-slate-800/90 border border-white/10 backdrop-blur-xl shadow-2xl shadow-black/30 p-8 transition-all duration-500 group-hover:border-trine-orange/30 group-hover:shadow-trine-orange/20 group-hover:scale-[1.02] min-h-[520px] flex flex-col">
 
-          {/* Top Accent Line */}
-          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green"></div>
-
-          <div className="flex flex-col space-y-7">
+          <div className="flex flex-col space-y-7 flex-grow">
 
             {/* Icon Header */}
             <div className="flex items-center gap-4">
@@ -612,7 +609,7 @@ const Home = () => {
             </p>
 
             {/* List */}
-            <div className="space-y-3">
+            <div className="space-y-3 flex-grow">
               {defaultServices.slice(0, 4).map((service, index) => (
                 <div
                   key={service.id}
@@ -626,7 +623,7 @@ const Home = () => {
             </div>
 
             {/* CTA */}
-            <Link to="/services">
+            <Link to="/services" className="mt-auto">
               <button className="w-full px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-trine-orange/20 hover:border-trine-orange/40 transition-all duration-300 shadow-lg hover:shadow-orange-500/20 flex items-center justify-center gap-2">
                 Explore Services
                 <ArrowRight className="w-4 h-4" />
@@ -641,12 +638,9 @@ const Home = () => {
       <div className="group relative">
         <div className="absolute inset-0 bg-gradient-to-r from-trine-green/15 to-trine-orange/15 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
 
-        <div className="relative rounded-3xl bg-gradient-to-br from-slate-900/80 to-slate-800/90 border border-white/10 backdrop-blur-xl shadow-2xl shadow-black/30 p-8 transition-all duration-500 group-hover:border-trine-green/30 group-hover:shadow-trine-green/20 group-hover:scale-[1.02]">
+        <div className="relative rounded-3xl bg-gradient-to-br from-slate-900/80 to-slate-800/90 border border-white/10 backdrop-blur-xl shadow-2xl shadow-black/30 p-8 transition-all duration-500 group-hover:border-trine-green/30 group-hover:shadow-trine-green/20 group-hover:scale-[1.02] min-h-[520px] flex flex-col">
 
-          {/* Accent Line */}
-          <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-trine-green via-trine-orange to-trine-lightblue"></div>
-
-          <div className="flex flex-col space-y-7">
+          <div className="flex flex-col space-y-7 flex-grow">
 
             {/* Icon Header */}
             <div className="flex items-center gap-4">
@@ -666,7 +660,7 @@ const Home = () => {
             </p>
 
             {/* List */}
-            <div className="space-y-3">
+            <div className="space-y-3 flex-grow">
               {[
                 "Contingent Staffing",
                 "Permanent Hiring",
@@ -687,7 +681,7 @@ const Home = () => {
             </div>
 
             {/* CTA */}
-            <Link to="/consulting">
+            <Link to="/consulting" className="mt-auto">
               <button className="w-full px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-trine-green/20 hover:border-trine-green/40 transition-all duration-300 shadow-lg hover:shadow-green-500/20 flex items-center justify-center gap-2">
                 Learn More
                 <ArrowRight className="w-4 h-4" />
@@ -729,7 +723,7 @@ const Home = () => {
     <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
       {/* Feature 1 */}
       <div className="group relative animate-on-scroll opacity-0">
-        <div className="relative overflow-hidden rounded-2xl p-8 border border-transparent bg-gradient-to-br from-orange-50/80 via-trine-orange/30 to-orange-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+        <div className="relative overflow-hidden rounded-2xl p-6 border border-transparent bg-gradient-to-br from-orange-50/80 via-trine-orange/30 to-orange-100 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[340px] flex flex-col">
           <div className="absolute -right-8 -top-8 w-36 h-36 bg-gradient-to-br from-trine-orange/30 to-orange-300/10 rounded-full blur-3xl opacity-90"></div>
           <div className="relative z-10">
             <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-trine-orange to-orange-500 shadow-xl flex items-center justify-center mb-6 transform group-hover:scale-105 transition-all duration-300">
@@ -747,7 +741,7 @@ const Home = () => {
 
       {/* Feature 2 */}
       <div className="group relative animate-on-scroll opacity-0" style={{ animationDelay: '0.1s' }}>
-        <div className="relative overflow-hidden rounded-2xl p-8 border border-transparent bg-gradient-to-br from-cyan-50/80 via-trine-lightblue/30 to-cyan-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+        <div className="relative overflow-hidden rounded-2xl p-6 border border-transparent bg-gradient-to-br from-cyan-50/80 via-trine-lightblue/30 to-cyan-100 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[340px] flex flex-col">
           <div className="absolute -right-6 -top-6 w-36 h-36 bg-gradient-to-br from-trine-lightblue/25 to-cyan-300/10 rounded-full blur-3xl opacity-90"></div>
           <div className="relative z-10">
             <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-trine-lightblue to-cyan-500 shadow-xl flex items-center justify-center mb-6 transform group-hover:scale-105 transition-all duration-300">
@@ -765,7 +759,7 @@ const Home = () => {
 
       {/* Feature 3 */}
       <div className="group relative animate-on-scroll opacity-0" style={{ animationDelay: '0.2s' }}>
-        <div className="relative overflow-hidden rounded-2xl p-8 border border-transparent bg-gradient-to-br from-emerald-50/80 via-trine-green/30 to-emerald-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+        <div className="relative overflow-hidden rounded-2xl p-6 border border-transparent bg-gradient-to-br from-emerald-50/80 via-trine-green/30 to-emerald-100 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[340px] flex flex-col">
           <div className="absolute -left-6 -bottom-6 w-32 h-32 bg-gradient-to-br from-trine-green/25 to-emerald-300/10 rounded-full blur-3xl opacity-90"></div>
           <div className="relative z-10">
             <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-trine-green to-emerald-500 shadow-xl flex items-center justify-center mb-6 transform group-hover:scale-105 transition-all duration-300">
@@ -783,7 +777,7 @@ const Home = () => {
 
       {/* Feature 4 */}
       <div className="group relative animate-on-scroll opacity-0" style={{ animationDelay: '0.3s' }}>
-        <div className="relative overflow-hidden rounded-2xl p-8 border border-transparent bg-gradient-to-br from-pink-50/80 via-purple-50/30 to-pink-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+        <div className="relative overflow-hidden rounded-2xl p-6 border border-transparent bg-gradient-to-br from-pink-50/80 via-purple-50/30 to-pink-100 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[340px] flex flex-col">
           <div className="absolute -right-8 -bottom-8 w-36 h-36 bg-gradient-to-br from-purple-400/25 to-pink-300/10 rounded-full blur-3xl opacity-90"></div>
           <div className="relative z-10">
             <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 shadow-xl flex items-center justify-center mb-6 transform group-hover:scale-105 transition-all duration-300">
@@ -879,7 +873,7 @@ const Home = () => {
             
             {/* Model 1: Dedicated Engineering Teams */}
             <div className="group relative animate-on-scroll opacity-0">
-              <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-orange-50/90 via-white to-orange-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-700/30 hover:border-trine-orange/60 dark:hover:border-trine-orange/50 shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 dark:hover:shadow-orange-500/10 transition-all duration-500 hover:scale-[1.02]">
+              <div className="relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-orange-50/90 via-white to-orange-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-700/30 hover:border-trine-orange/60 dark:hover:border-trine-orange/50 shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 dark:hover:shadow-orange-500/10 transition-all duration-500 hover:scale-[1.02] min-h-[400px] flex flex-col">
                 {/* Decorative gradient orb */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-trine-orange/30 to-orange-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
@@ -916,7 +910,7 @@ const Home = () => {
 
             {/* Model 2: Fixed-Price Projects */}
             <div className="group relative animate-on-scroll opacity-0" style={{ animationDelay: '0.1s' }}>
-              <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-cyan-50/90 via-white to-cyan-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-cyan-900/20 border border-cyan-200/50 dark:border-cyan-700/30 hover:border-trine-lightblue/60 dark:hover:border-trine-lightblue/50 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/10 transition-all duration-500 hover:scale-[1.02]">
+              <div className="relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-cyan-50/90 via-white to-cyan-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-cyan-900/20 border border-cyan-200/50 dark:border-cyan-700/30 hover:border-trine-lightblue/60 dark:hover:border-trine-lightblue/50 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 dark:hover:shadow-cyan-500/10 transition-all duration-500 hover:scale-[1.02] min-h-[400px] flex flex-col">
                 {/* Decorative gradient orb */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-trine-lightblue/30 to-cyan-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
@@ -953,7 +947,7 @@ const Home = () => {
 
             {/* Model 3: Staff Augmentation */}
             <div className="group relative animate-on-scroll opacity-0" style={{ animationDelay: '0.2s' }}>
-              <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-green-50/90 via-white to-emerald-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-green-900/20 border border-green-200/50 dark:border-green-700/30 hover:border-trine-green/60 dark:hover:border-trine-green/50 shadow-lg hover:shadow-2xl hover:shadow-green-500/20 dark:hover:shadow-green-500/10 transition-all duration-500 hover:scale-[1.02]">
+              <div className="relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-green-50/90 via-white to-emerald-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-green-900/20 border border-green-200/50 dark:border-green-700/30 hover:border-trine-green/60 dark:hover:border-trine-green/50 shadow-lg hover:shadow-2xl hover:shadow-green-500/20 dark:hover:shadow-green-500/10 transition-all duration-500 hover:scale-[1.02] min-h-[400px] flex flex-col">
                 {/* Decorative gradient orb */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-trine-green/30 to-emerald-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
@@ -990,7 +984,7 @@ const Home = () => {
 
             {/* Model 4: End-to-End Solution Delivery */}
             <div className="group relative animate-on-scroll opacity-0" style={{ animationDelay: '0.3s' }}>
-              <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-purple-50/90 via-white to-pink-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-purple-900/20 border border-purple-200/50 dark:border-purple-700/30 hover:border-purple-500/60 dark:hover:border-purple-500/50 shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 dark:hover:shadow-purple-500/10 transition-all duration-500 hover:scale-[1.02]">
+              <div className="relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br from-purple-50/90 via-white to-pink-50/50 dark:from-gray-800 dark:via-gray-800/90 dark:to-purple-900/20 border border-purple-200/50 dark:border-purple-700/30 hover:border-purple-500/60 dark:hover:border-purple-500/50 shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 dark:hover:shadow-purple-500/10 transition-all duration-500 hover:scale-[1.02] min-h-[400px] flex flex-col">
                 {/* Decorative gradient orb */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-pink-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
