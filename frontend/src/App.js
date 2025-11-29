@@ -34,6 +34,11 @@ import Cybersecurity from "@/pages/Cybersecurity";
 import Portfolio from "@/pages/Portfolio";
 import Insights from "@/pages/Insights";
 import CaseStudies from "@/pages/CaseStudies";
+import ContingentStaffing from "@/pages/ContingentStaffing";
+import PermanentHiring from "@/pages/PermanentHiring";
+import ContractToHiring from "@/pages/ContractToHiring";
+import StatementOfWork from "@/pages/StatementOfWork";
+import ManagedServices from "@/pages/ManagedServices";
 import { Toaster } from "@/components/ui/sonner";
 
 // Layout wrapper to conditionally show navbar/footer
@@ -100,6 +105,13 @@ function App() {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/insights" element={<Insights />} />
+              
+              {/* Consulting Services Routes */}
+              <Route path="/consulting/contingent-staffing" element={<ContingentStaffing />} />
+              <Route path="/consulting/permanent-hiring" element={<PermanentHiring />} />
+              <Route path="/consulting/contract-to-hire" element={<ContractToHiring />} />
+              <Route path="/consulting/statement-of-work" element={<StatementOfWork />} />
+              <Route path="/consulting/managed-services" element={<ManagedServices />} />
               
               {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
