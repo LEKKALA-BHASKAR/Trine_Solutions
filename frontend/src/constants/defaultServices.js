@@ -25,63 +25,83 @@ export const getDefaultServiceImage = (index = 0) => {
 export const defaultServices = [
   {
     id: "1",
-    title: "Digital Transformation",
-    description: "Transform your business with cutting-edge digital solutions that drive innovation and efficiency.",
-    icon: "Zap",
-    capabilities: ["Enterprise Architecture", "Process Automation", "Digital Strategy", "Change Management"],
-    tools: ["Cloud Platforms", "AI/ML", "IoT", "Blockchain"],
+    title: "Software Development",
+    description: "Custom software solutions tailored to your business needs, from web and mobile apps to enterprise systems.",
+    icon: "Code2",
+    capabilities: ["Custom Application Development", "Mobile App Development", "API Integration", "Legacy Modernization"],
+    tools: ["React", "Node.js", "Python", "Java", ".NET"],
     image: defaultServiceImages[0],
-    fullDescription: "Our Digital Transformation services help organizations reimagine their business processes and customer experiences through innovative technology solutions. We guide you through every step of your digital journey, from strategy development to implementation and optimization, ensuring sustainable growth and competitive advantage in the digital age."
+    fullDescription: "We build robust, scalable, and secure software solutions that drive business growth. Our expert developers leverage the latest technologies to deliver custom applications, mobile apps, and enterprise systems that meet your unique requirements and exceed user expectations."
   },
   {
     id: "2",
-    title: "Cybersecurity",
-    description: "Protect your enterprise with comprehensive security solutions and risk management strategies.",
-    icon: "Shield",
-    capabilities: ["Security Assessment", "Threat Intelligence", "Incident Response", "Compliance Management"],
-    tools: ["SIEM", "Penetration Testing", "Security Operations Center", "Identity Management"],
+    title: "AI/ML",
+    description: "Harness the power of Artificial Intelligence and Machine Learning to unlock actionable insights and automate processes.",
+    icon: "Cpu",
+    capabilities: ["Predictive Analytics", "Natural Language Processing", "Computer Vision", "Recommendation Systems"],
+    tools: ["TensorFlow", "PyTorch", "Scikit-learn", "OpenCV"],
     image: defaultServiceImages[1],
-    fullDescription: "In today's threat landscape, cybersecurity is not optional—it's essential. Our comprehensive security solutions protect your enterprise from evolving cyber threats while ensuring compliance with industry regulations. From vulnerability assessments to 24/7 monitoring, we provide end-to-end security services that safeguard your digital assets and reputation."
+    fullDescription: "Transform your data into a strategic asset with our AI and Machine Learning services. We help you build intelligent systems that predict trends, automate complex tasks, and provide deep insights, enabling you to make smarter, data-driven decisions."
   },
   {
     id: "3",
-    title: "Cloud & DevOps",
-    description: "Accelerate delivery with modern cloud infrastructure and DevOps best practices.",
-    icon: "Cloud",
-    capabilities: ["Cloud Migration", "Infrastructure as Code", "CI/CD Pipelines", "Container Orchestration"],
-    tools: ["AWS", "Azure", "GCP", "Kubernetes", "Terraform"],
+    title: "GenAI",
+    description: "Leverage Generative AI to create content, code, and designs, revolutionizing creativity and productivity.",
+    icon: "Sparkles",
+    capabilities: ["Content Generation", "Code Assistant Implementation", "Conversational AI Agents", "Image & Design Generation"],
+    tools: ["OpenAI GPT", "Llama", "Midjourney", "LangChain"],
     image: defaultServiceImages[2],
-    fullDescription: "Embrace the power of cloud computing and modern DevOps practices to accelerate your software delivery and operational efficiency. Our experts help you design, migrate, and optimize cloud infrastructure while implementing CI/CD pipelines and container orchestration for faster, more reliable deployments."
+    fullDescription: "Step into the future of innovation with our Generative AI solutions. We help organizations integrate GenAI to automate content creation, enhance customer interactions with intelligent agents, and accelerate development cycles, unlocking new levels of creativity and efficiency."
   },
   {
     id: "4",
-    title: "Data Analytics & AI",
-    description: "Unlock insights from your data with advanced analytics and artificial intelligence solutions.",
-    icon: "BarChart3",
-    capabilities: ["Data Warehousing", "Machine Learning", "Predictive Analytics", "Business Intelligence"],
-    tools: ["Python", "TensorFlow", "Tableau", "Power BI", "Snowflake"],
+    title: "Cloud & DevOps Solutions",
+    description: "Accelerate delivery and optimize infrastructure with our comprehensive Cloud and DevOps services.",
+    icon: "Cloud",
+    capabilities: ["Cloud Migration & Strategy", "CI/CD Pipeline Automation", "Infrastructure as Code", "Containerization & Orchestration"],
+    tools: ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "Jenkins"],
     image: defaultServiceImages[3],
-    fullDescription: "Transform raw data into actionable insights with our advanced analytics and AI solutions. We help organizations build data-driven cultures by implementing modern data architectures, machine learning models, and business intelligence tools that enable smarter, faster decision-making across all levels of your organization."
+    fullDescription: "Modernize your infrastructure and streamline your development lifecycle. Our Cloud and DevOps experts assist with seamless cloud migrations, automated deployment pipelines, and scalable infrastructure management, ensuring faster time-to-market and higher reliability."
   },
   {
     id: "5",
-    title: "Risk & Compliance",
-    description: "Navigate regulatory landscapes with expert risk management and compliance solutions.",
-    icon: "FileCheck",
-    capabilities: ["Regulatory Compliance", "Risk Assessment", "Audit Support", "Policy Development"],
-    tools: ["GRC Platforms", "Audit Tools", "Compliance Management Systems"],
+    title: "Cybersecurity",
+    description: "Protect your digital assets with robust security strategies, threat detection, and compliance management.",
+    icon: "Shield",
+    capabilities: ["Vulnerability Assessments", "Penetration Testing", "Security Operations Center (SOC)", "Compliance Audits"],
+    tools: ["SIEM", "Firewalls", "Identity & Access Management (IAM)", "Encryption"],
     image: defaultServiceImages[4],
-    fullDescription: "Stay ahead of regulatory requirements and manage enterprise risk effectively with our comprehensive GRC solutions. We help organizations develop robust compliance frameworks, conduct risk assessments, and implement policies that protect your business while enabling growth in complex regulatory environments."
+    fullDescription: "Safeguard your enterprise against evolving cyber threats. Our cybersecurity services provide end-to-end protection, from risk assessments and threat monitoring to incident response and compliance management, ensuring your business remains secure and resilient."
   },
   {
     id: "6",
-    title: "Managed IT Services",
-    description: "Focus on your business while we manage your IT infrastructure and support needs.",
-    icon: "Wrench",
-    capabilities: ["24/7 Support", "Infrastructure Management", "Service Desk", "Performance Monitoring"],
-    tools: ["Monitoring Tools", "Service Management", "Remote Support", "Asset Management"],
+    title: "ERP Solutions",
+    description: "Streamline your business operations with integrated Enterprise Resource Planning systems.",
+    icon: "Layers",
+    capabilities: ["ERP Implementation", "Module Customization", "System Integration", "Data Migration & Support"],
+    tools: ["SAP", "Oracle NetSuite", "Microsoft Dynamics 365", "Odoo"],
     image: defaultServiceImages[5],
-    fullDescription: "Let our experienced team manage your IT infrastructure so you can focus on what matters most—growing your business. Our managed services include 24/7 monitoring and support, proactive maintenance, and strategic IT planning to ensure your technology investments deliver maximum value and reliability."
+    fullDescription: "Optimize your resources and improve operational efficiency with our ERP solutions. We specialize in implementing and customizing ERP systems that integrate finance, HR, supply chain, and customer relations into a unified platform for better visibility and control."
+  },
+  {
+    id: "7",
+    title: "Project Management",
+    description: "Ensure project success with our expert management methodologies, from planning to execution and delivery.",
+    icon: "Target",
+    capabilities: ["Agile & Waterfall Methodologies", "Resource Planning", "Risk Management", "Quality Assurance"],
+    tools: ["Jira", "Asana", "Trello", "Microsoft Project"],
+    image: defaultServiceImages[0],
+    fullDescription: "Deliver projects on time and within budget with our professional project management services. Our certified project managers utilize proven methodologies to lead teams, manage risks, and ensure quality deliverables, aligning project outcomes with your strategic business goals."
+  },
+  {
+    id: "8",
+    title: "Digital Transformation",
+    description: "Reimagine your business for the digital age with strategic innovation and technology adoption.",
+    icon: "Zap",
+    capabilities: ["Digital Strategy Consulting", "Process Digitization", "Customer Experience Transformation", "Legacy System Modernization"],
+    tools: ["IoT", "Big Data", "Mobile Technologies", "Cloud Computing"],
+    image: defaultServiceImages[1],
+    fullDescription: "Drive sustainable growth and stay competitive by embracing digital transformation. We guide organizations through the adoption of digital technologies to reinvent business models, enhance customer experiences, and improve operational agility."
   }
 ];
 

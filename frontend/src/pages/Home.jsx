@@ -298,103 +298,40 @@ const Home = () => {
     <div className="absolute inset-0 bg-black/60"></div>
   </div>
 
-  {/* Left-side Content */}
-  <div className="container mx-auto px-6 relative z-10">
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
-      
-      {/* Left Column - Text Content */}
-      <div className="text-left">
-<br/>
-<br/>
-<br/>
-<br/>
+  {/* Centered Content */}
+  <div className="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center text-center">
+    <div className="max-w-5xl mx-auto">
+      <h1
+        id="hero-title"
+        className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight"
+      >
+        <span className="block text-white">Transforming Ideas Into</span>
+        <span className="block bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent mt-4 animate-pulse">
+          Intelligent Digital Solutions
+        </span>
+      </h1>
 
+      <p className="text-xl lg:text-2xl mb-12 leading-relaxed text-white/90 font-light max-w-4xl mx-auto">
+        Empowering businesses with scalable IT services, cloud solutions, and expert consulting to accelerate innovation and growth.
+      </p>
 
-        <h1
-          id="hero-title"
-          className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight"
-        >
-          <span className="block text-white">Transforming</span>
-          <span className="block bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent mt-4 animate-pulse">
-            Vision Into Reality
-          </span>
-        </h1>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
+        <Link to="/services" className="group relative">
+          <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-all duration-300"></div>
+          <button className="relative px-12 py-6 rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <span className="flex items-center gap-3">
+              Explore Solutions
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+            </span>
+          </button>
+        </Link>
 
-        <p className="text-xl lg:text-2xl mb-12 leading-relaxed text-white/90 font-light">
-          IT Services, Consulting, <span className="font-bold text-cyan-400">AI solutions</span>, enterprise
-          <span className="font-bold text-blue-400"> cybersecurity</span>, and innovation that accelerates business growth.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-start gap-6 mb-16">
-          <Link to="/services" className="group relative">
-            <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-all duration-300"></div>
-            <button className="relative px-12 py-6 rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-              <span className="flex items-center gap-3">
-                Explore Solutions
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-              </span>
-            </button>
-          </Link>
-
-          <Link to="/contact" className="group relative">
-            <button className="relative px-12 py-6 rounded-2xl bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3 hover:scale-105">
-              Get Started
-              <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-            </button>
-          </Link>
-        </div>
-      </div>
-
-      {/* Right Column - MacBook M4 Laptop Showcase */}
-      <div className="relative">
-        {/* MacBook M4 Laptop Container */}
-        <div className="relative w-full max-w-lg mx-auto">
-          {/* Laptop Screen */}
-          <div className="relative mx-auto w-[90%]">
-            {/* Screen Bezel */}
-            <div className="relative rounded-t-[20px] bg-gray-900 p-3 shadow-2xl border border-gray-800">
-              {/* Camera Notch */}
-              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-black rounded-b-lg z-10"></div>
-              
-              {/* Screen Area - Replace the image source with your own */}
-              <div className="aspect-[16/10] rounded-t-[12px] overflow-hidden bg-gray-800 relative">
-                {/* Your image goes here */}
-                <img 
-                  src="./unnamed.jpg" 
-                  alt="Dashboard Preview" 
-                  className="w-full h-full object-cover"
-                />
-                
-          
-              </div>
-            </div>
-            
-            {/* Laptop Body */}
-            <div className="relative h-6 bg-gradient-to-b from-gray-300 to-gray-400 dark:from-gray-700 dark:to-gray-800 rounded-b-[18px] shadow-2xl mx-auto w-[99%]">
-              {/* Keyboard Area */}
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-[85%] h-2 bg-gray-200 dark:bg-gray-600 rounded-b-md"></div>
-              
-              {/* Trackpad Indentation */}
-              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-            </div>
-            
-            {/* Laptop Base Shadow */}
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-[110%] h-4 bg-black/20 rounded-full blur-md"></div>
-          </div>
-
-         
-          {/* Connection Lines Animation */}
-          <div className="absolute -inset-4 pointer-events-none">
-            <div className="absolute top-1/2 left-0 w-4 h-0.5 bg-gradient-to-r from-cyan-500 to-transparent animate-pulse"></div>
-            <div className="absolute top-1/4 right-0 w-4 h-0.5 bg-gradient-to-l from-purple-500 to-transparent animate-pulse" style={{ animationDelay: '1s' }}></div>
-          </div>
-        </div>
-
-        {/* Background Orbs for Laptop Area */}
-        <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96">
-          <div className="absolute top-0 left-0 w-full h-full bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
+        <Link to="/contact" className="group relative">
+          <button className="relative px-12 py-6 rounded-2xl bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-3 hover:scale-105">
+            Get Started
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+          </button>
+        </Link>
       </div>
     </div>
   </div>
