@@ -455,7 +455,7 @@ const Home = () => {
   <div className="container">
     <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-      {/* IMAGE — Larger Height + More Top/Bottom Breathing Space */}
+      {/* IMAGE Larger Height + More Top/Bottom Breathing Space */}
       <div className="animate-on-scroll opacity-0">
         <div className="relative group">
 
@@ -608,7 +608,7 @@ const Home = () => {
             {/* Description */}
             <p className="text-slate-300 text-[15px] leading-relaxed">
               Enterprise technology services across development, cloud, automation, AI/ML,
-              system integration, and cybersecurity — built for scale & performance.
+              system integration, and cybersecurity built for scale & performance.
             </p>
 
             {/* List */}
@@ -757,7 +757,7 @@ const Home = () => {
               Scalable, Future-Ready Solutions
             </h3>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              We design technology solutions that grow with your business. Our architectures ensure long-term stability, seamless scalability, and continuous innovation—so your organization stays ahead in a fast-changing digital world.
+              We design technology solutions that grow with your business. Our architectures ensure long-term stability, seamless scalability, and continuous innovation so your organization stays ahead in a fast-changing digital world.
             </p>
           </div>
         </div>
@@ -870,7 +870,7 @@ const Home = () => {
               <span className="bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green bg-clip-text text-transparent">Models</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
-              Flexible Ways to Partner With Us — Choose the model that best fits your project needs and business goals
+              Flexible ways to partner with us. Choose the model that best fits your project needs and business goals.
             </p>
           </div>
 
@@ -970,7 +970,7 @@ const Home = () => {
                   
                   {/* Description */}
                   <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
-                    Strengthen your existing team with specialized engineers, developers, or consultants. Our skilled professionals help you accelerate development, meet deadlines, and enhance technical capacity—without long-term hiring overhead.
+                    Strengthen your existing team with specialized engineers, developers, or consultants. Our skilled professionals help you accelerate development, meet deadlines, and enhance technical capacity without long-term hiring overhead.
                   </p>
                   
                   {/* Key Features */}
