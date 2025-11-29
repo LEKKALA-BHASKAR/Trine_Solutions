@@ -628,42 +628,31 @@ const Home = () => {
 
                     {/* Mobile Service Items (visible only on small screens) */}
                     <div className="mt-6 grid grid-cols-2 gap-3 lg:hidden">
-                      {[
-                        { name: 'Custom Software Development', icon: Cpu },
-                        { name: 'Cloud & DevOps Solutions', icon: Globe },
-                        { name: 'AI & Machine Learning', icon: Zap },
-                        { name: 'Cybersecurity Services', icon: Shield }
-                      ].map((service, idx) => (
+                      {defaultServices.slice(0, 4).map((service, idx) => (
                         <div 
-                          key={idx}
-                          className="flex items-center gap-2 p-2 rounded-lg bg-white/5 group-hover:bg-white/20 border border-white/10 group-hover:border-white/30 transition-all duration-300"
+                          key={service.id}
+                          className="flex items-center gap-2 p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0"
+                          style={{ transitionDelay: `${idx * 100}ms` }}
                         >
-                          <service.icon className="w-4 h-4 text-trine-orange group-hover:text-white flex-shrink-0 transition-colors duration-300" />
-                          <span className="text-white text-xs font-medium">{service.name}</span>
+                          <ChevronRight className="w-4 h-4 text-trine-orange group-hover:text-white flex-shrink-0 transition-colors duration-300" />
+                          <span className="text-white text-xs font-medium">{service.title}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Right Side - Services List (appears on hover) */}
-                  <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10">
-                    <div className="space-y-4 w-full max-w-sm">
-                      <p className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Available Services</p>
-                      {[
-                        { name: 'Custom Software Development', icon: Cpu },
-                        { name: 'Cloud & DevOps Solutions', icon: Globe },
-                        { name: 'AI & Machine Learning', icon: Zap },
-                        { name: 'Cybersecurity Services', icon: Shield }
-                      ].map((service, idx) => (
+                  <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 z-10">
+                    <div className="space-y-3 w-full max-w-sm">
+                      <p className="text-sm font-semibold text-white uppercase tracking-wider mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300">Available Services</p>
+                      {defaultServices.slice(0, 6).map((service, idx) => (
                         <div 
-                          key={idx}
-                          className="flex items-center gap-4 p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
-                          style={{ transitionDelay: `${idx * 50}ms` }}
+                          key={service.id}
+                          className="flex items-center gap-3 py-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                          style={{ transitionDelay: `${idx * 100}ms` }}
                         >
-                          <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <service.icon className="w-5 h-5 text-white" />
-                          </div>
-                          <span className="text-white font-medium text-sm">{service.name}</span>
+                          <ChevronRight className="w-4 h-4 text-trine-orange flex-shrink-0" />
+                          <span className="text-white font-medium text-sm">{service.title}</span>
                         </div>
                       ))}
                     </div>
@@ -678,14 +667,14 @@ const Home = () => {
                 {/* Default Dark Background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 to-gray-900/80 backdrop-blur-xl transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
                 
-                {/* Hover Background - Consulting Hero Style (Blue/Purple/Cyan) */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">
+                {/* Hover Background - Consulting Hero Style (Trine Brand Colors) */}
+                <div className="absolute inset-0 bg-gradient-to-br from-trine-green via-trine-green/80 to-trine-orange opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">
                   {/* Radial Gradient Overlay */}
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/10 to-black/20"></div>
                   {/* Floating Animated Blobs */}
                   <div className="absolute top-10 left-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
-                  <div className="absolute bottom-10 right-10 w-44 h-44 bg-cyan-400/20 rounded-full blur-3xl"></div>
-                  <div className="absolute top-1/2 right-1/4 w-36 h-36 bg-purple-400/20 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-10 right-10 w-44 h-44 bg-trine-green/20 rounded-full blur-3xl"></div>
+                  <div className="absolute top-1/2 right-1/4 w-36 h-36 bg-trine-orange/20 rounded-full blur-3xl"></div>
                   {/* Grid Pattern */}
                   <div className="absolute inset-0 opacity-10">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
@@ -698,9 +687,9 @@ const Home = () => {
                 {/* Main Content Container */}
                 <div className="relative h-full flex min-h-[320px]">
                   {/* Left Side - Consulting Services List (appears on hover) */}
-                  <div className="hidden lg:flex absolute left-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10">
+                  <div className="hidden lg:flex absolute left-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 z-10">
                     <div className="space-y-3 w-full max-w-sm">
-                      <p className="text-sm font-semibold text-cyan-300 uppercase tracking-wider mb-4">Consulting Services</p>
+                      <p className="text-sm font-semibold text-trine-green uppercase tracking-wider mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300">Consulting Services</p>
                       {[
                         { name: 'Contingent Staffing', icon: Users },
                         { name: 'Permanent Hiring', icon: Briefcase },
@@ -710,12 +699,10 @@ const Home = () => {
                       ].map((service, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-4 p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
-                          style={{ transitionDelay: `${idx * 50}ms` }}
+                          className="flex items-center gap-3 py-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                          style={{ transitionDelay: `${idx * 100}ms` }}
                         >
-                          <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                            <service.icon className="w-5 h-5 text-cyan-300" />
-                          </div>
+                          <ChevronRight className="w-4 h-4 text-trine-green flex-shrink-0" />
                           <span className="text-white font-medium text-sm">{service.name}</span>
                         </div>
                       ))}
@@ -725,9 +712,9 @@ const Home = () => {
                   {/* Right Side - Always Visible Content */}
                   <div className="w-full lg:w-1/2 lg:ml-auto p-8 lg:p-10 flex flex-col justify-center transition-all duration-500 ease-out z-10">
                     {/* Consulting Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-trine-lightblue/10 group-hover:bg-white/10 border border-trine-lightblue/30 group-hover:border-white/20 mb-6 w-fit transition-all duration-500">
-                      <Briefcase className="w-4 h-4 text-trine-lightblue group-hover:text-cyan-300 transition-colors duration-500" />
-                      <span className="text-sm font-semibold text-trine-lightblue group-hover:text-white transition-colors duration-500">Expert Guidance</span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-trine-green/10 group-hover:bg-white/10 border border-trine-green/30 group-hover:border-white/20 mb-6 w-fit transition-all duration-500">
+                      <Briefcase className="w-4 h-4 text-trine-green group-hover:text-trine-green transition-colors duration-500" />
+                      <span className="text-sm font-semibold text-trine-green group-hover:text-white transition-colors duration-500">Expert Guidance</span>
                     </div>
 
                     <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
@@ -741,8 +728,8 @@ const Home = () => {
                     {/* CTA Button */}
                     <Link to="/consulting" className="group/btn inline-flex w-fit">
                       <button className="relative px-8 py-4 rounded-xl overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-trine-lightblue to-trine-green group-hover:from-white group-hover:to-white transition-all duration-300 group-hover/btn:scale-105"></div>
-                        <span className="relative flex items-center gap-2 text-white group-hover:text-blue-600 font-semibold transition-colors duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-r from-trine-green to-trine-orange group-hover:from-white group-hover:to-white transition-all duration-300 group-hover/btn:scale-105"></div>
+                        <span className="relative flex items-center gap-2 text-white group-hover:text-trine-green font-semibold transition-colors duration-300">
                           Explore Consulting
                           <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-300" />
                         </span>
@@ -760,9 +747,10 @@ const Home = () => {
                       ].map((service, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-2 p-2 rounded-lg bg-white/5 group-hover:bg-white/20 border border-white/10 group-hover:border-white/30 transition-all duration-300"
+                          className="flex items-center gap-2 p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0"
+                          style={{ transitionDelay: `${idx * 100}ms` }}
                         >
-                          <service.icon className="w-4 h-4 text-trine-lightblue group-hover:text-cyan-300 flex-shrink-0 transition-colors duration-300" />
+                          <ChevronRight className="w-4 h-4 text-trine-green group-hover:text-white flex-shrink-0 transition-colors duration-300" />
                           <span className="text-white text-xs font-medium">{service.name}</span>
                         </div>
                       ))}
