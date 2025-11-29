@@ -3,19 +3,32 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#002C5F" />
+        <meta name="theme-color" content="#F78B1F" />
         <meta name="color-scheme" content="light dark" />
+        <meta name="msapplication-TileColor" content="#F78B1F" />
         
         <!-- SEO Meta Tags -->
         <title>Trine Solutions – Digital Transformation, Cloud, Cybersecurity, IT Consulting</title>
-        <meta name="description" content="Trine Solutions provides digital transformation, cybersecurity, cloud services, AI solutions, DevOps, and enterprise IT consulting. Premium consulting powered by expert teams." />
-        <meta name="keywords" content="Digital Transformation, Cybersecurity, Cloud, DevOps, AI Solutions, IT Consulting, Enterprise IT, Software Development, Risk Management, Compliance" />
+        <meta name="description" content="Trine Solutions delivers enterprise-grade digital transformation, cybersecurity, cloud computing, and AI solutions. Partner with expert IT consultants for sustainable business growth. Located in Bellevue, WA." />
+        <meta name="keywords" content="Digital Transformation, Cybersecurity Solutions, Cloud Computing, AI Solutions, IT Consulting, Enterprise Technology, DevOps, Machine Learning, Business Innovation, Tech Consulting, AWS, Azure, GCP, Data Analytics, Software Development" />
         <meta name="author" content="Trine Solutions" />
-        <meta name="robots" content="index, follow" />
+        <meta name="publisher" content="Trine Solutions" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow" />
+        
+        <!-- Geographic Meta Tags -->
+        <meta name="geo.region" content="US-WA" />
+        <meta name="geo.placename" content="Bellevue" />
+        <meta name="geo.position" content="47.6205;-122.1851" />
+        <meta name="ICBM" content="47.6205, -122.1851" />
         
         <!-- Canonical Link -->
         <link rel="canonical" href="https://trinesolutions.com/" />
+        
+        <!-- Alternate Language (if applicable) -->
+        <link rel="alternate" hreflang="en-us" href="https://trinesolutions.com/" />
+        <link rel="alternate" hreflang="x-default" href="https://trinesolutions.com/" />
         
         <!-- Favicon Links -->
         <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/trine_logo.png" />
@@ -28,25 +41,27 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.pexels.com" />
         
         <!-- Open Graph Tags -->
-        <meta property="og:title" content="Trine Solutions – Premium IT Consulting & Digital Services" />
-        <meta property="og:description" content="We deliver enterprise-grade digital transformation, cybersecurity, cloud and AI services." />
+        <meta property="og:title" content="Trine Solutions – Enterprise Digital Transformation & IT Consulting" />
+        <meta property="og:description" content="Transform your business with enterprise-grade digital transformation, cybersecurity, cloud computing, and AI solutions. Expert IT consulting for sustainable growth." />
         <meta property="og:url" content="https://trinesolutions.com/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="%PUBLIC_URL%/trine_logo.png" />
+        <meta property="og:image" content="https://trinesolutions.com/trine_logo.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Trine Solutions - Enterprise IT Consulting" />
+        <meta property="og:image:alt" content="Trine Solutions - Enterprise IT Consulting & Digital Transformation" />
         <meta property="og:site_name" content="Trine Solutions" />
         <meta property="og:locale" content="en_US" />
         
         <!-- Twitter Card Tags -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Trine Solutions – Premium IT Consulting & Digital Services" />
-        <meta name="twitter:description" content="We deliver enterprise-grade digital transformation, cybersecurity, cloud and AI services." />
-        <meta name="twitter:image" content="%PUBLIC_URL%/trine_logo.png" />
+        <meta name="twitter:title" content="Trine Solutions – Enterprise Digital Transformation & IT Consulting" />
+        <meta name="twitter:description" content="Transform your business with enterprise-grade digital transformation, cybersecurity, cloud computing, and AI solutions." />
+        <meta name="twitter:image" content="https://trinesolutions.com/trine_logo.png" />
         <meta name="twitter:site" content="@trinesolutions" />
+        <meta name="twitter:creator" content="@trinesolutions" />
         
         <!-- Structured Data (JSON-LD) - Organization -->
         <script type="application/ld+json">
@@ -55,51 +70,110 @@
             "@type": "Organization",
             "@id": "https://trinesolutions.com/#organization",
             "name": "Trine Solutions",
+            "legalName": "Trine Solutions LLC",
             "url": "https://trinesolutions.com",
             "logo": {
                 "@type": "ImageObject",
-                "url": "%PUBLIC_URL%/trine_logo.png",
+                "url": "https://trinesolutions.com/trine_logo.png",
                 "width": 512,
                 "height": 512
             },
+            "image": "https://trinesolutions.com/trine_logo.png",
             "sameAs": [
-                "https://www.linkedin.com/company/trine-solutions/",
-                "https://twitter.com/trinesolutions"
+                "https://www.linkedin.com/company/trinesolutions/"
             ],
-            "description": "Trine Solutions provides digital transformation, cybersecurity, cloud services, AI solutions, DevOps, and enterprise IT consulting.",
+            "description": "Trine Solutions provides enterprise-grade digital transformation, cybersecurity, cloud services, AI solutions, DevOps, and IT consulting for businesses worldwide.",
+            "foundingDate": "2015",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "123 Innovation Drive, Tech Park",
-                "addressLocality": "Silicon Valley",
-                "addressRegion": "CA",
-                "postalCode": "94025",
+                "streetAddress": "14042 NE 8th Street, #201C",
+                "addressLocality": "Bellevue",
+                "addressRegion": "WA",
+                "postalCode": "98007",
                 "addressCountry": "US"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 47.6205,
+                "longitude": -122.1851
             },
             "contactPoint": [
                 {
                     "@type": "ContactPoint",
-                    "telephone": "+1-555-123-4567",
+                    "telephone": "+1-425-202-5165",
                     "contactType": "customer service",
-                    "availableLanguage": ["English", "Spanish"]
+                    "email": "trine@trinesolutions.com",
+                    "availableLanguage": ["English"],
+                    "areaServed": "US"
                 },
                 {
                     "@type": "ContactPoint",
-                    "telephone": "+1-555-123-4568",
+                    "telephone": "+1-425-202-5165",
                     "contactType": "sales",
-                    "availableLanguage": ["English"]
+                    "email": "trine@trinesolutions.com",
+                    "availableLanguage": ["English"],
+                    "areaServed": "Worldwide"
                 }
             ],
-            "areaServed": "Worldwide",
-            "serviceType": [
+            "areaServed": {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 47.6205,
+                    "longitude": -122.1851
+                },
+                "geoRadius": "50000"
+            },
+            "knowsAbout": [
                 "Digital Transformation",
                 "Cybersecurity",
                 "Cloud Computing",
                 "DevOps",
-                "AI Solutions",
+                "Artificial Intelligence",
+                "Machine Learning",
                 "IT Consulting",
-                "Risk Management",
-                "Compliance"
-            ]
+                "Enterprise Technology",
+                "Software Development",
+                "Data Analytics"
+            ],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "IT Services",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Digital Transformation",
+                            "description": "Enterprise digital transformation consulting and implementation"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Cloud Solutions",
+                            "description": "AWS, Azure, and GCP cloud migration and management"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Cybersecurity",
+                            "description": "Enterprise security assessment and protection services"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "AI & Machine Learning",
+                            "description": "Artificial intelligence and ML solutions implementation"
+                        }
+                    }
+                ]
+            }
         }
         </script>
         
@@ -108,17 +182,67 @@
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "@id": "https://trine-solutions.vercel.app/#website",
+            "@id": "https://trinesolutions.com/#website",
             "name": "Trine Solutions",
-            "url": "https://trine-solutions.vercel.app",
+            "alternateName": "Trine Solutions LLC",
+            "url": "https://trinesolutions.com",
             "publisher": {
-                "@id": "https://trine-solutions.vercel.app/#organization"
+                "@id": "https://trinesolutions.com/#organization"
             },
+            "inLanguage": "en-US",
             "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://trine-solutions.vercel.app/search?q={search_term_string}",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://trinesolutions.com/search?q={search_term_string}"
+                },
                 "query-input": "required name=search_term_string"
             }
+        }
+        </script>
+
+        <!-- Structured Data (JSON-LD) - Local Business -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "@id": "https://trinesolutions.com/#localbusiness",
+            "name": "Trine Solutions",
+            "image": "https://trinesolutions.com/trine_logo.png",
+            "url": "https://trinesolutions.com",
+            "telephone": "+1-425-202-5165",
+            "email": "trine@trinesolutions.com",
+            "priceRange": "$$$$",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "14042 NE 8th Street, #201C",
+                "addressLocality": "Bellevue",
+                "addressRegion": "WA",
+                "postalCode": "98007",
+                "addressCountry": "US"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 47.6205,
+                "longitude": -122.1851
+            },
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    "opens": "09:00",
+                    "closes": "18:00"
+                },
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": "Saturday",
+                    "opens": "10:00",
+                    "closes": "14:00"
+                }
+            ],
+            "sameAs": [
+                "https://www.linkedin.com/company/trinesolutions/"
+            ]
         }
         </script>
         
@@ -132,43 +256,37 @@
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://trine-solutions.vercel.app/"
+                    "item": "https://trinesolutions.com/"
                 },
                 {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Services",
-                    "item": "https://trine-solutions.vercel.app/services"
+                    "item": "https://trinesolutions.com/services"
                 },
                 {
                     "@type": "ListItem",
                     "position": 3,
                     "name": "Industries",
-                    "item": "https://trine-solutions.vercel.app/industries"
+                    "item": "https://trinesolutions.com/industries"
                 },
                 {
                     "@type": "ListItem",
                     "position": 4,
-                    "name": "Case Studies",
-                    "item": "https://trine-solutions.vercel.app/case-studies"
+                    "name": "About Us",
+                    "item": "https://trinesolutions.com/about"
                 },
                 {
                     "@type": "ListItem",
                     "position": 5,
-                    "name": "Insights",
-                    "item": "https://trine-solutions.vercel.app/insights"
+                    "name": "Careers",
+                    "item": "https://trinesolutions.com/careers"
                 },
                 {
                     "@type": "ListItem",
                     "position": 6,
-                    "name": "Careers",
-                    "item": "https://trine-solutions.vercel.app/careers"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 7,
                     "name": "Contact",
-                    "item": "https://trine-solutions.vercel.app/contact"
+                    "item": "https://trinesolutions.com/contact"
                 }
             ]
         }
@@ -180,7 +298,7 @@
                 position: absolute;
                 top: -40px;
                 left: 0;
-                background: #002C5F;
+                background: #F78B1F;
                 color: white;
                 padding: 8px 16px;
                 z-index: 100000;
@@ -191,7 +309,7 @@
             }
             .skip-link:focus {
                 top: 0;
-                outline: 2px solid #F78B1F;
+                outline: 2px solid #002C5F;
                 outline-offset: 2px;
             }
             /* Reduced Motion Support */

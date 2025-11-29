@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Shield, Lock, Eye, AlertTriangle, ArrowLeft, PlayCircle, Star, Quote, Zap, Users, Target, TrendingUp } from 'lucide-react';
+import SEO, { pageSEO } from '@/components/SEO';
 
 const Cybersecurity = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -153,12 +154,21 @@ const Cybersecurity = () => {
 
   return (
     <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      <SEO 
+        {...pageSEO.cybersecurity}
+        canonicalUrl="https://trinesolutions.com/services/cybersecurity"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Services', url: 'https://trinesolutions.com/services' },
+          { name: 'Cybersecurity', url: 'https://trinesolutions.com/services/cybersecurity' }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=800&fit=crop"
-            alt="Cybersecurity Operations"
+            alt="Enterprise Cybersecurity Operations Center - Threat Detection and Security Monitoring"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-red-900/90 via-orange-900/80 to-blue-900/90"></div>

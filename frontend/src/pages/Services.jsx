@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ArrowRight, CheckCircle2, Zap, AlertCircle } from 'lucide-react';
 import { iconMap, getIconByName } from '@/utils/serviceIcons';
 import { defaultServices, getDefaultServiceImage } from '@/constants/defaultServices';
+import SEO, { pageSEO, structuredDataSchemas } from '@/components/SEO';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
@@ -38,6 +39,15 @@ const Services = () => {
 
   return (
     <div className="min-h-screen" data-testid="services-page">
+      <SEO 
+        {...pageSEO.services}
+        canonicalUrl="https://trinesolutions.com/services"
+        structuredData={structuredDataSchemas.services}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Services', url: 'https://trinesolutions.com/services' }
+        ]}
+      />
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0 bg-gradient-to-br from-trine-orange via-trine-orange/80 to-trine-lightblue"></div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Briefcase, Mail,MapPin, Clock, DollarSign, Users, Heart, Zap, Award, X, Upload, Loader2, Check, FileText, Link as LinkIcon, CheckCircle, ArrowRight, Sparkles, Building2, GraduationCap, Cpu, Search } from 'lucide-react';
 import { toast } from 'sonner';
+import SEO, { pageSEO } from '@/components/SEO';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
@@ -209,6 +210,14 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <SEO 
+        {...pageSEO.careers}
+        canonicalUrl="https://trinesolutions.com/careers"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Careers', url: 'https://trinesolutions.com/careers' }
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 md:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
         <div className="absolute inset-0 bg-black/40"></div>

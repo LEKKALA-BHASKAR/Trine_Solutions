@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { MapPin, Phone, Mail, Send, Clock, Users, Target, Star } from 'lucide-react';
 import { toast } from 'sonner';
+import SEO, { pageSEO, structuredDataSchemas } from '@/components/SEO';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
@@ -67,6 +68,15 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-cyan-50/20 dark:from-gray-900 dark:via-blue-950/30 dark:to-cyan-950/20" data-testid="contact-page">
+      <SEO 
+        {...pageSEO.contact}
+        canonicalUrl="https://trinesolutions.com/contact"
+        structuredData={structuredDataSchemas.localBusiness}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'Contact Us', url: 'https://trinesolutions.com/contact' }
+        ]}
+      />
       {/* Enhanced Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600">

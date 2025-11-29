@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Target, Eye, Award, Users, Globe2, TrendingUp, Star, Zap, Heart, Shield, Clock, Code2, Cloud, Database, Cpu, Network, ArrowRight } from 'lucide-react';
+import SEO, { pageSEO } from '@/components/SEO';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
@@ -135,6 +136,14 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-cyan-50/20 dark:from-gray-900 dark:via-blue-950/30 dark:to-cyan-950/20" data-testid="about-page">
+      <SEO 
+        {...pageSEO.about}
+        canonicalUrl="https://trinesolutions.com/about"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://trinesolutions.com/' },
+          { name: 'About Us', url: 'https://trinesolutions.com/about' }
+        ]}
+      />
       
       {/* Hero Section with Right Side Transparent Image */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-12 lg:pb-0">
