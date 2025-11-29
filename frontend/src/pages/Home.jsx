@@ -637,7 +637,7 @@ const Home = () => {
                     </div>
 
                     <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
-                      Our Services
+                      IT Services
                     </h3>
                     
                     <p className={`text-gray-300 group-hover:text-white/90 mb-6 leading-relaxed max-w-xl transition-colors duration-500 ${servicesInView ? 'text-white/90' : ''}`}>
