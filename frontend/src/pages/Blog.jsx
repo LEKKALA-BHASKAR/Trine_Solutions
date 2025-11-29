@@ -41,7 +41,7 @@ const Blog = () => {
     setSubmitting(true);
     try {
       await axios.post(`${BACKEND_URL}/api/newsletter/subscribe`, { email });
-      toast.success('Successfully subscribed to newsletter!');
+      toast.success('You have been successfully subscribed');
       setEmail('');
     } catch (error) {
       console.error('Subscription error:', error);

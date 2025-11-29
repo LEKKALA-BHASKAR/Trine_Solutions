@@ -1025,6 +1025,7 @@ async def get_dashboard_stats(current_user: dict = Depends(get_current_user)):
 
     announcement_count = await db.announcements.count_documents({"active": True})
     testimonial_count = await db.testimonials.count_documents({})
+    subscriber_count = await db.subscribers.count_documents({})
     
     return {
         "blog_posts": blog_count,
@@ -1037,7 +1038,8 @@ async def get_dashboard_stats(current_user: dict = Depends(get_current_user)):
         "total_contacts": contact_count,
         "unread_contacts": unread_contacts,
         "active_announcements": announcement_count,
-        "testimonials": testimonial_count
+        "testimonials": testimonial_count,
+        "subscribers": subscriber_count
     }
 
 # Blog Posts CRUD

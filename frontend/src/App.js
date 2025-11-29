@@ -39,6 +39,7 @@ import PermanentHiring from "@/pages/PermanentHiring";
 import ContractToHiring from "@/pages/ContractToHiring";
 import StatementOfWork from "@/pages/StatementOfWork";
 import ManagedServices from "@/pages/ManagedServices";
+import ConsultingServices from "@/pages/ConsultingServices";
 import { Toaster } from "@/components/ui/sonner";
 
 // Layout wrapper to conditionally show navbar/footer
@@ -107,6 +108,7 @@ function App() {
               <Route path="/insights" element={<Insights />} />
               
               {/* Consulting Services Routes */}
+              <Route path="/consulting" element={<ConsultingServices />} />
               <Route path="/consulting/contingent-staffing" element={<ContingentStaffing />} />
               <Route path="/consulting/permanent-hiring" element={<PermanentHiring />} />
               <Route path="/consulting/contract-to-hire" element={<ContractToHiring />} />
@@ -128,6 +130,7 @@ function App() {
           
           </Layout>
         </BrowserRouter>
+        <Toaster />
       </div>
     </HelmetProvider>
   );

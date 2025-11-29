@@ -4,7 +4,7 @@ import axios from 'axios';
 import { 
   LayoutDashboard, FileText, Briefcase,
   LogOut, Menu, X, ChevronRight, TrendingUp,
-  Mail, Megaphone, Wrench, UserCheck, Handshake
+  Mail, Megaphone, Wrench, UserCheck, Handshake, Users
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -17,22 +17,6 @@ const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const token = localStorage.getItem('adminToken');
-    const userData = localStorage.getItem('adminUser');
-    
-    if (!token) {
-      navigate('/admin/login');
-      return;
-    }
-
-    if (userData) {
-      setUser(JSON.parse(userData));
-    }
-
-    fetchStats(token);
-  }, [navigate]);
 
   const fetchStats = async (token) => {
     try {
@@ -52,6 +36,29 @@ const AdminDashboard = () => {
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    const userData = localStorage.getItem('adminUser');
+    
+    if (!token) {
+      navigate('/admin/login');
+      return;
+    }
+
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+
+    fetchStats(token);
+
+    // Poll for updates every 5 seconds
+    const interval = setInterval(() => {
+      fetchStats(token);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [navigate]);
+
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminUser');
@@ -67,6 +74,7 @@ const AdminDashboard = () => {
     { icon: UserCheck, label: 'Careers', path: '/admin/jobs' },
     { icon: Megaphone, label: 'Announcements', path: '/admin/announcements' },
     { icon: Mail, label: 'Contacts', path: '/admin/contacts' },
+    { icon: Users, label: 'Subscribers', path: '/admin/subscribers' },
   ];
 
   const statCards = stats ? [
@@ -76,6 +84,7 @@ const AdminDashboard = () => {
     { label: 'Services', value: stats.services ?? 0, icon: Wrench, color: 'from-orange-500 to-orange-600' },
     { label: 'Unread Messages', value: stats.unread_contacts ?? 0, icon: Mail, color: 'from-red-500 to-red-600' },
     { label: 'Active Announcements', value: stats.active_announcements ?? 0, icon: Megaphone, color: 'from-teal-500 to-teal-600' },
+    { label: 'Subscribers', value: stats.subscribers ?? 0, icon: Users, color: 'from-indigo-500 to-indigo-600' },
   ] : [];
 
   return (
@@ -222,6 +231,16 @@ const AdminDashboard = () => {
                     <div className="flex items-center space-x-3">
                       <Mail className="w-5 h-5 text-red-500" />
                       <span className="font-medium">View Messages</span>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-orange-500 transition-colors" />
+                  </Link>
+                  <Link
+                    to="/admin/subscribers"
+                    className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors group"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <Users className="w-5 h-5 text-indigo-500" />
+                      <span className="font-medium">Manage Subscribers</span>
                     </div>
                     <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-orange-500 transition-colors" />
                   </Link>

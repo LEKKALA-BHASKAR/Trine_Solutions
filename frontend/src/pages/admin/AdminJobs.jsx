@@ -20,6 +20,7 @@ const AdminJobs = () => {
   const [activeTab, setActiveTab] = useState('jobs');
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [jobTitleFilter, setJobTitleFilter] = useState('all');
   const [formData, setFormData] = useState({
     title: '',
     department: '',
@@ -235,8 +236,41 @@ const AdminJobs = () => {
                           app.job_title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           app.email.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === 'all' || app.status === statusFilter;
-    return matchesSearch && matchesStatus;
+    const matchesJobTitle = jobTitleFilter === 'all' || app.job_title === jobTitleFilter;
+    return matchesSearch && matchesStatus && matchesJobTitle;
   });
+
+  // Get unique job titles for filter
+  const uniqueJobTitles = [...new Set(applications.map(app => app.job_title))];
+
+  const handleExport = () => {
+    const headers = ['Name', 'Email', 'Phone', 'Job Title', 'Status', 'Applied Date', 'LinkedIn', 'Portfolio', 'Resume URL', 'Cover Letter'];
+    const csvContent = [
+      headers.join(','),
+      ...filteredApplications.map(app => [
+        `"${app.name}"`,
+        `"${app.email}"`,
+        `"${app.phone}"`,
+        `"${app.job_title}"`,
+        `"${app.status}"`,
+        `"${new Date(app.applied_at).toLocaleDateString()}"`,
+        `"${app.linkedin_url || ''}"`,
+        `"${app.portfolio_url || ''}"`,
+        `"${app.resume_url || ''}"`,
+        `"${(app.cover_letter || '').replace(/"/g, '""')}"` // Escape quotes in cover letter
+      ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `job_applications_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   // Stats
   const stats = {
@@ -490,20 +524,42 @@ const AdminJobs = () => {
                   className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-trine-orange focus:ring-2 focus:ring-trine-orange/20 outline-none transition-all"
                 />
               </div>
-              <div className="relative">
-                <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className="pl-12 pr-8 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-trine-orange outline-none appearance-none cursor-pointer min-w-[180px]"
+              <div className="flex gap-4 overflow-x-auto pb-2 md:pb-0">
+                <div className="relative min-w-[180px]">
+                  <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <select
+                    value={jobTitleFilter}
+                    onChange={(e) => setJobTitleFilter(e.target.value)}
+                    className="w-full pl-12 pr-8 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-trine-orange outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="all">All Job Titles</option>
+                    {uniqueJobTitles.map((title) => (
+                      <option key={title} value={title}>{title}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="relative min-w-[160px]">
+                  <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="w-full pl-12 pr-8 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-trine-orange outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="all">All Status</option>
+                    <option value="new">New</option>
+                    <option value="reviewing">Reviewing</option>
+                    <option value="interview">Interview</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+                </div>
+                <button
+                  onClick={handleExport}
+                  className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all whitespace-nowrap"
                 >
-                  <option value="all">All Status</option>
-                  <option value="new">New</option>
-                  <option value="reviewing">Reviewing</option>
-                  <option value="interview">Interview</option>
-                  <option value="accepted">Accepted</option>
-                  <option value="rejected">Rejected</option>
-                </select>
+                  <Download className="w-5 h-5" />
+                  Export CSV
+                </button>
               </div>
             </div>
 

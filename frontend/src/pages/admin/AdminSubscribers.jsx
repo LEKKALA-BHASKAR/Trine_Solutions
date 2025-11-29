@@ -17,14 +17,6 @@ const AdminSubscribers = () => {
 
   const token = localStorage.getItem('adminToken');
 
-  useEffect(() => {
-    if (!token) {
-      navigate('/admin/login');
-      return;
-    }
-    fetchSubscribers();
-  }, [token, navigate]);
-
   const fetchSubscribers = async () => {
     try {
       const response = await axios.get(`${API}/subscribers`, {
@@ -37,11 +29,27 @@ const AdminSubscribers = () => {
       if (error.response?.status === 401) {
         navigate('/admin/login');
       } else {
-        toast.error('Failed to load subscribers');
+        // Only show error toast on initial load, not during polling
+        if (loading) toast.error('Failed to load subscribers');
       }
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/admin/login');
+      return;
+    }
+    fetchSubscribers();
+
+    // Poll for updates every 5 seconds
+    const interval = setInterval(() => {
+      fetchSubscribers();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [token, navigate]);
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to remove this subscriber?')) return;
