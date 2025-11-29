@@ -4,8 +4,7 @@ import axios from 'axios';
 import {
   ArrowRight, Zap, Shield,
   Sparkles, TrendingUp, Award, Users, Globe, Rocket, ChevronRight,
-  Target, Lightbulb, Star, Heart,
-  Cloud, BarChart3, FileCheck, Wrench, Briefcase, Calendar, FileText, Settings
+  Target, Lightbulb, Star, Heart
 } from 'lucide-react';
 import TestimonialSlider from '@/components/TestimonialSlider';
 import { iconMap, getIconByName } from '@/utils/serviceIcons';
@@ -516,130 +515,6 @@ const Home = () => {
                 </button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services & Consulting Intro Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" aria-labelledby="services-consulting-title">
-        <div className="container">
-          {/* Section Header */}
-          <div className="text-center mb-16 animate-on-scroll opacity-0">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-trine-orange/10 dark:bg-trine-orange/20 border border-trine-orange/20 mb-6">
-              <Zap className="w-4 h-4 text-trine-orange" />
-              <span className="text-sm font-semibold text-trine-orange">WHAT WE DO</span>
-            </div>
-            
-            <h2 id="services-consulting-title" className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-trine-black dark:text-white block">Solutions That</span>
-              <span className="bg-gradient-to-r from-trine-orange to-trine-green bg-clip-text text-transparent mt-2 block">Power Your Growth</span>
-            </h2>
-            
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              From cutting-edge technology services to strategic consulting, we deliver comprehensive solutions that transform businesses and drive measurable results.
-            </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold text-center mb-10 text-trine-black dark:text-white animate-on-scroll opacity-0">
-              Our Core Services
-            </h3>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-              {[
-                { icon: Zap, name: 'Digital Transformation', description: 'Modernize your operations with cutting-edge digital solutions' },
-                { icon: Shield, name: 'Cybersecurity', description: 'Protect your assets with enterprise-grade security' },
-                { icon: Cloud, name: 'Cloud & DevOps', description: 'Scale seamlessly with cloud infrastructure' },
-                { icon: BarChart3, name: 'Data Analytics & AI', description: 'Turn data into actionable insights' },
-                { icon: FileCheck, name: 'Risk & Compliance', description: 'Navigate regulations with confidence' },
-                { icon: Wrench, name: 'Managed IT Services', description: 'End-to-end IT support and management' },
-              ].map((service, index) => (
-                <div 
-                  key={index}
-                  className="group relative animate-on-scroll opacity-0"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="relative h-full p-6 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-trine-orange/50 transition-all duration-300 hover:shadow-xl hover:shadow-trine-orange/10 hover:-translate-y-2">
-                    {/* Icon Container */}
-                    <div className="w-14 h-14 mb-4 rounded-xl bg-gradient-to-br from-trine-orange/10 to-trine-green/10 dark:from-trine-orange/20 dark:to-trine-green/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <service.icon className="w-7 h-7 text-trine-orange" />
-                    </div>
-                    
-                    {/* Content */}
-                    <h4 className="font-semibold text-trine-black dark:text-white mb-2 text-sm md:text-base leading-tight">
-                      {service.name}
-                    </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {service.description}
-                    </p>
-                    
-                    {/* Hover Accent */}
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-trine-orange to-trine-green rounded-full group-hover:w-3/4 transition-all duration-300"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Consulting Services Section */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-center mb-10 text-trine-black dark:text-white animate-on-scroll opacity-0">
-              Consulting Services
-            </h3>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {[
-                { name: 'Contingent Staffing', path: '/consulting/contingent-staffing', icon: Users, description: 'Flexible workforce solutions' },
-                { name: 'Permanent Hiring', path: '/consulting/permanent-hiring', icon: Briefcase, description: 'Find your ideal candidates' },
-                { name: 'Contract to Hire', path: '/consulting/contract-to-hire', icon: Calendar, description: 'Try before you commit' },
-                { name: 'Statement of Work', path: '/consulting/statement-of-work', icon: FileText, description: 'Project-based engagement' },
-                { name: 'Managed Services', path: '/consulting/managed-services', icon: Settings, description: 'End-to-end service management' },
-              ].map((consulting, index) => (
-                <Link 
-                  key={index}
-                  to={consulting.path}
-                  className="group block animate-on-scroll opacity-0"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="relative h-full p-6 rounded-2xl bg-gradient-to-br from-trine-black to-gray-900 border border-gray-800 hover:border-trine-green/50 transition-all duration-300 hover:shadow-xl hover:shadow-trine-green/10 hover:-translate-y-2 overflow-hidden">
-                    {/* Background Pattern */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-trine-orange/10 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
-                    
-                    {/* Icon Container */}
-                    <div className="relative w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-trine-green/20 to-trine-orange/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <consulting.icon className="w-6 h-6 text-trine-green" />
-                    </div>
-                    
-                    {/* Content */}
-                    <h4 className="relative font-semibold text-white mb-2 text-sm md:text-base leading-tight group-hover:text-trine-green transition-colors duration-300">
-                      {consulting.name}
-                    </h4>
-                    <p className="relative text-sm text-gray-400 leading-relaxed mb-3">
-                      {consulting.description}
-                    </p>
-                    
-                    {/* Learn More Link */}
-                    <div className="relative flex items-center gap-1 text-trine-orange text-xs font-medium group-hover:gap-2 transition-all duration-300">
-                      <span>Learn More</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center animate-on-scroll opacity-0">
-            <Link to="/services" className="group inline-block">
-              <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-trine-orange to-trine-green text-white font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-trine-orange/30 hover:scale-105">
-                <span className="flex items-center gap-3">
-                  View All Services
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-                </span>
-              </button>
-            </Link>
           </div>
         </div>
       </section>
