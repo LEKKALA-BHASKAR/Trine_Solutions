@@ -24,7 +24,7 @@ const ConsultingServices = () => {
       features: ['Executive Search', 'Cultural Fit Assessment', 'Technical Screening', 'Retention Focus'],
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-gradient-to-br from-green-500/10 to-emerald-500/10',
-      stats: '95% Success Rate'
+      stats: '92% Success Rate'
     },
     {
       id: 'contract-to-hire',
@@ -46,7 +46,7 @@ const ConsultingServices = () => {
       features: ['Defined Deliverables', 'Milestone Tracking', 'Project Management', 'Quality Assurance'],
       color: 'from-purple-500 to-indigo-500',
       bgColor: 'bg-gradient-to-br from-purple-500/10 to-indigo-500/10',
-      stats: '200+ Projects'
+      stats: '50+ Projects'
     },
     {
       id: 'managed-services',

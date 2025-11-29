@@ -119,7 +119,7 @@ const StatementOfWork = () => {
   const successMetrics = [
     {
       metric: "Project Success Rate",
-      value: "98%",
+      value: "92%",
       description: "Projects delivered meeting all defined criteria"
     },
     {

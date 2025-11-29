@@ -130,39 +130,13 @@ const ContingentStaffing = () => {
   ];
 
   const stats = [
-    { value: '500+', label: 'Annual Contingent Placements' },
-    { value: '95%', label: 'Client Satisfaction Score' },
+    { value: '50+', label: 'Annual Contingent Placements' },
+    { value: '92%', label: 'Success Rate' },
     { value: '48 hrs', label: 'Average Shortlist Turnaround' },
     { value: '85%', label: 'Engagement Retention Rate' },
   ];
 
-  const faqs = [
-    {
-      question: 'What is contingent staffing?',
-      answer:
-        'Contingent staffing is a flexible staffing model that uses contract, temporary, or project-based talent instead of—or in addition to—permanent employees. It enables organizations to respond faster to demand, control costs, and access highly specialized skills.',
-    },
-    {
-      question: 'How quickly can you provide contingent workers?',
-      answer:
-        'For most common technology and business roles, we can present a curated shortlist of qualified profiles within 24–48 hours. Highly specialized or niche roles may require additional time to ensure quality and fit.',
-    },
-    {
-      question: 'Who manages payroll and compliance?',
-      answer:
-        'Trine Solutions manages payroll, statutory compliances, tax withholdings, contracts, and associated documentation for contingent workers, so your teams stay focused on delivery rather than administration.',
-    },
-    {
-      question: 'Can contingent workers convert to permanent employees?',
-      answer:
-        'Yes. We support contract-to-hire models that allow you to evaluate performance and cultural fit before converting talent into permanent roles, with clear commercial terms and transition frameworks.',
-    },
-    {
-      question: 'Which geographies and industries do you support?',
-      answer:
-        'We support clients across multiple regions and industries including Technology, Healthcare, Financial Services, Engineering, Professional Services, and Education, with region-aware compliance and engagement practices.',
-    },
-  ];
+
 
   return (
     <div
@@ -380,9 +354,9 @@ const ContingentStaffing = () => {
                 contingent talent.
               </p>
               <p className="text-sm text-slate-600 dark:text-slate-300 sm:text-base leading-relaxed">
-                At Trine Solutions, we operate as an extension of your talent and delivery functions—curating skills,
-                managing engagement, and embedding governance so contingent talent can deliver outcomes, not just fill
-                seats.
+              At Trine Solutions, we operate as an extension of your talent and delivery functions - curating skills,
+              managing engagement, and embedding governance so contingent talent can deliver outcomes, not just fill
+              seats.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-900/60 p-4">
@@ -400,13 +374,13 @@ const ContingentStaffing = () => {
                   </p>
                   <p className="mt-2 text-sm text-slate-800 dark:text-slate-100">
                     We combine talent intelligence, delivery experience, and compliance rigor to make contingent talent
-                    a strategic lever—not a last-minute fix.
+                    a strategic lever - not a last-minute fix.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Benefits – premium grid */}
+            {/* Benefits - premium grid */}
             <div className="space-y-5 rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950/60 p-5 shadow-xl">
               <div className="flex items-center justify-between">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
@@ -494,10 +468,6 @@ const ContingentStaffing = () => {
                     <Shield className="h-3 w-3 text-trine-green" />
                     Governed engagements
                   </span>
-                  <span className="inline-flex items-center gap-1 opacity-80 group-hover:text-trine-lightblue">
-                    Learn more
-                    <ArrowRight className="h-3 w-3" />
-                  </span>
                 </div>
               </div>
             ))}
@@ -568,62 +538,18 @@ const ContingentStaffing = () => {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ - Removed */}
+
+      {/* Bottom CTA */}
       <section className="relative border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950/85 py-16 lg:py-20">
         <div className="mx-auto max-w-4xl px-4 lg:px-6 xl:px-0">
-          <div className="mb-8 text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">FAQ</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              Frequently asked
-              <span className="bg-gradient-to-r from-trine-lightblue to-trine-green bg-clip-text pl-2 text-transparent">
-                questions
-              </span>
-            </h2>
-            <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 sm:text-base">
-              Clarity on how contingent staffing works with Trine Solutions, and what to expect at each stage.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
-              return (
-                <div
-                  key={index}
-                  className="overflow-hidden rounded-2xl border border-slate-300 dark:border-white/8 bg-white dark:bg-slate-950/80 transition hover:border-trine-lightblue/40"
-                >
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left sm:px-5 sm:py-5 hover:bg-slate-50 dark:hover:bg-slate-900/50"
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                  >
-                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-50">{faq.question}</span>
-                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-900/80 text-slate-600 dark:text-slate-200">
-                      {isOpen ? (
-                        <ChevronUp className="h-4 w-4 text-trine-lightblue" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-trine-lightblue" />
-                      )}
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div className="px-4 pb-4 text-sm text-slate-600 dark:text-slate-300 sm:px-5 sm:pb-5">
-                      <p className="text-xs sm:text-sm leading-relaxed">{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="mt-10 rounded-3xl border border-trine-lightblue/40 bg-gradient-to-br from-trine-lightblue/20 dark:from-trine-lightblue/10 via-white dark:via-slate-950 to-slate-100 dark:to-slate-950 px-5 py-6 text-center sm:px-8">
+          <div className="rounded-3xl border border-trine-lightblue/40 bg-gradient-to-br from-trine-lightblue/20 dark:from-trine-lightblue/10 via-white dark:via-slate-950 to-slate-100 dark:to-slate-950 px-5 py-6 text-center sm:px-8">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
               Ready to design your contingent talent model?
             </h3>
             <p className="mt-2 text-xs text-slate-700 dark:text-slate-200 sm:text-sm">
               Share your current portfolio, hiring challenges, and timelines. We&apos;ll respond with a structured
-              approach—not just profiles.
+              approach - not just profiles.
             </p>
             <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <Link
