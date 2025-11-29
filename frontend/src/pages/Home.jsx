@@ -56,6 +56,9 @@ const industries = [
   }
 ];
 
+// Max characters for industry description preview
+const INDUSTRY_DESCRIPTION_MAX_LENGTH = 100;
+
 // Remove the static partners array as we'll fetch from the backend
 
 const features = [
@@ -628,6 +631,79 @@ const Home = () => {
                 </div>
                 <div className="text-gray-300 font-medium">
                   {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries We Serve */}
+      <section className="py-20 bg-white dark:bg-gray-900" aria-labelledby="industries-title">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 
+              id="industries-title" 
+              className="text-3xl md:text-4xl font-bold text-[#0A0A0A] dark:text-white mb-4"
+              data-testid="industries-title"
+            >
+              Industries We Serve
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Delivering tailored solutions across diverse sectors.
+            </p>
+          </div>
+
+          {/* Horizontal Industry Cards Row */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            {industries.map((industry, index) => (
+              <div
+                key={index}
+                className="group relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(16.666%-20px)] min-w-[160px] max-w-[200px]"
+                data-testid={`industry-card-${index}`}
+              >
+                {/* Card Container */}
+                <div className="relative overflow-hidden rounded-xl bg-[#0A0A0A] aspect-[3/4] cursor-pointer transition-all duration-300 ease-out hover:shadow-xl hover:shadow-[#F78B1F]/20 hover:scale-[1.02]">
+                  {/* Background Image */}
+                  <img
+                    src={industry.image}
+                    alt={`${industry.name} industry`}
+                    className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-30 transition-opacity duration-300"
+                    loading="lazy"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent"></div>
+                  
+                  {/* Default Content (Title) */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-2">
+                    <h3 className="text-white font-semibold text-sm md:text-base leading-tight">
+                      {industry.name}
+                    </h3>
+                  </div>
+                  
+                  {/* Hover Content (Description + Read More) */}
+                  <div className="absolute inset-0 p-4 flex flex-col justify-end opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
+                    <h3 className="text-white font-semibold text-sm mb-2">
+                      {industry.name}
+                    </h3>
+                    <p className="text-gray-300 text-xs leading-relaxed mb-3 line-clamp-3">
+                      {industry.description.length > INDUSTRY_DESCRIPTION_MAX_LENGTH 
+                        ? `${industry.description.substring(0, INDUSTRY_DESCRIPTION_MAX_LENGTH)}...` 
+                        : industry.description
+                      }
+                    </p>
+                    <Link
+                      to={`/industries/${industry.slug}`}
+                      className="inline-flex items-center gap-1 text-[#F78B1F] hover:text-[#22C55E] font-medium text-xs transition-colors duration-200"
+                    >
+                      Read More
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-200" />
+                    </Link>
+                  </div>
+                  
+                  {/* Orange accent border on hover */}
+                  <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-[#F78B1F]/50 transition-colors duration-300 pointer-events-none"></div>
                 </div>
               </div>
             ))}
