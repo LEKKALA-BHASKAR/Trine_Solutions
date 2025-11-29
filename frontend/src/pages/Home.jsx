@@ -16,7 +16,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000'
 const API = `${BACKEND_URL}/api`;
 
 // Hero background video path
-const HERO_VIDEO_PATH = '/vecteezy_black-geometric-shapes-repeating-3d-rending_43199429.mp4';
+const HERO_VIDEO_PATH = '/HERObGvideo.mp4';
 
 // Simplified services for Home page (from shared constants)
 const mockServices = getSimplifiedServices(defaultServices);
