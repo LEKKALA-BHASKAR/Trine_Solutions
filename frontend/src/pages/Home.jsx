@@ -11,10 +11,12 @@ import { iconMap, getIconByName } from '@/utils/serviceIcons';
 import { defaultServices, getSimplifiedServices } from '@/constants/defaultServices';
 import { staticClients } from '@/constants/defaultClients';
 import SEO, { pageSEO, structuredDataSchemas } from '@/components/SEO';
-import HERObGvideo from '@/constants/HERObGvideo.mp4';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
+
+// Hero background video path
+const HERO_VIDEO_PATH = '/HERObGvideo.mp4';
 
 // Simplified services for Home page (from shared constants)
 const mockServices = getSimplifiedServices(defaultServices);
