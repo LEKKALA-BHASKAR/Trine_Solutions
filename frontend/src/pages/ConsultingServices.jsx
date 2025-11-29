@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Users, Briefcase, Calendar, FileText, Settings, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Users, Briefcase, Calendar, FileText, Settings, ArrowRight, CheckCircle2, Star, Zap, Target, Shield, Globe } from 'lucide-react';
 import SEO from '@/components/SEO';
 
 const ConsultingServices = () => {
@@ -11,8 +11,9 @@ const ConsultingServices = () => {
       icon: Users,
       path: '/consulting/contingent-staffing',
       features: ['Rapid Deployment', 'Scalable Workforce', 'Vetted Professionals', 'Cost-Effective'],
-      color: 'from-orange-500 to-orange-600',
-      hoverColor: 'hover:shadow-orange-500/50'
+      color: 'from-orange-500 to-red-500',
+      bgColor: 'bg-gradient-to-br from-orange-500/10 to-red-500/10',
+      stats: '500+ Placements'
     },
     {
       id: 'permanent-hiring',
@@ -21,8 +22,9 @@ const ConsultingServices = () => {
       icon: Briefcase,
       path: '/consulting/permanent-hiring',
       features: ['Executive Search', 'Cultural Fit Assessment', 'Technical Screening', 'Retention Focus'],
-      color: 'from-green-500 to-green-600',
-      hoverColor: 'hover:shadow-green-500/50'
+      color: 'from-green-500 to-emerald-500',
+      bgColor: 'bg-gradient-to-br from-green-500/10 to-emerald-500/10',
+      stats: '95% Success Rate'
     },
     {
       id: 'contract-to-hire',
@@ -31,8 +33,9 @@ const ConsultingServices = () => {
       icon: Calendar,
       path: '/consulting/contract-to-hire',
       features: ['Risk Mitigation', 'Performance Evaluation', 'Seamless Transition', 'Flexible Terms'],
-      color: 'from-cyan-500 to-cyan-600',
-      hoverColor: 'hover:shadow-cyan-500/50'
+      color: 'from-cyan-500 to-blue-500',
+      bgColor: 'bg-gradient-to-br from-cyan-500/10 to-blue-500/10',
+      stats: '85% Conversion Rate'
     },
     {
       id: 'statement-of-work',
@@ -41,8 +44,9 @@ const ConsultingServices = () => {
       icon: FileText,
       path: '/consulting/statement-of-work',
       features: ['Defined Deliverables', 'Milestone Tracking', 'Project Management', 'Quality Assurance'],
-      color: 'from-purple-500 to-purple-600',
-      hoverColor: 'hover:shadow-purple-500/50'
+      color: 'from-purple-500 to-indigo-500',
+      bgColor: 'bg-gradient-to-br from-purple-500/10 to-indigo-500/10',
+      stats: '200+ Projects'
     },
     {
       id: 'managed-services',
@@ -51,13 +55,14 @@ const ConsultingServices = () => {
       icon: Settings,
       path: '/consulting/managed-services',
       features: ['24/7 Support', 'SLA Adherence', 'Process Optimization', 'Strategic Partnership'],
-      color: 'from-indigo-500 to-indigo-600',
-      hoverColor: 'hover:shadow-indigo-500/50'
+      color: 'from-violet-500 to-purple-500',
+      bgColor: 'bg-gradient-to-br from-violet-500/10 to-purple-500/10',
+      stats: '99.9% Uptime'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-cyan-50/20 dark:from-gray-900 dark:via-blue-950/30 dark:to-cyan-950/20">
       <SEO 
         title="Consulting Services - Trine Solutions"
         description="Expert consulting services including Contingent Staffing, Permanent Hiring, Contract to Hire, Statement of Work, and Managed Services."
@@ -65,75 +70,137 @@ const ConsultingServices = () => {
       />
       
       {/* Hero Section */}
-      <section className="relative py-24 lg:py-40 overflow-hidden pt-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"></div>
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '0s'}}></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/10 to-black/20"></div>
         </div>
-        <div className="container relative z-10 text-center text-white px-4">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-            <span className="flex w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <span className="text-sm font-semibold">Strategic Solutions</span>
+        
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl"></div>
+        </div>
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
+        </div>
+
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Content */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
+                <Target className="w-4 h-4 text-cyan-300" />
+                <span className="text-sm font-medium text-white">Strategic Consulting Solutions</span>
+              </div>
+              
+              <h1 className="text-6xl lg:text-8xl font-black mb-8 bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent">
+                Consulting
+                <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Services</span>
+              </h1>
+              
+              <p className="text-xl lg:text-2xl mb-12 opacity-90 leading-relaxed text-white">
+                Empower your business with specialized talent, strategic solutions, and proven expertise 
+                to drive transformation and sustainable growth.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+                <Link to="/contact">
+                  <button className="px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold hover:bg-cyan-50 transform hover:scale-105 transition-all duration-300 shadow-2xl">
+                    Schedule Consultation
+                  </button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Side - Image */}
+            <div className="relative hidden lg:flex justify-center items-center">
+              <img 
+                src="/sample-Group1810.svg" 
+                alt="Consulting Services Illustration" 
+                className="w-full h-auto max-w-[600px] object-contain drop-shadow-2xl"
+              />
+            </div>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 animate-fade-in-up leading-tight">
-            Strategic <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-green-300 bg-clip-text text-transparent">Consulting</span> Services
-          </h1>
-          <p className="text-lg md:text-2xl max-w-4xl mx-auto opacity-95 animate-fade-in-up delay-100 leading-relaxed">
-            Empower your business with specialized talent, strategic solutions, and proven expertise to drive transformation and sustainable growth.
-          </p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 px-4">
-        <div className="container mx-auto">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+        <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              Our <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Service</span> Portfolio
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-full text-sm font-semibold mb-4">
+              <Shield className="w-4 h-4" />
+              Our Service Portfolio
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-black mb-6 text-gray-900 dark:text-white">
+              Strategic <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Consulting</span> Solutions
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Choose the right engagement model for your unique business needs
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Choose the right engagement model for your unique business needs and drive sustainable growth
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
                 <div 
                   key={service.id}
-                  className={`group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg ${service.hoverColor} hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 flex flex-col overflow-hidden`}
+                  className="group relative overflow-hidden rounded-3xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:shadow-2xl transform hover:scale-105 transition-all duration-500"
                 >
-                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.color} opacity-10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500`}></div>
+                  {/* Background Gradient */}
+                  <div className={`absolute inset-0 ${service.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                   
-                  <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <h3 className="relative text-2xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-indigo-600 group-hover:bg-clip-text transition-all duration-300">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="relative text-gray-600 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
-                    {service.description}
-                  </p>
+                  <div className="relative z-10 p-8">
+                    {/* Icon */}
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
+                      {service.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
 
-                  <div className="relative space-y-3 mb-8">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                        <span>{feature}</span>
+                    {/* Stats */}
+                    <div className="mb-6">
+                      <div className="text-sm font-semibold text-cyan-600 dark:text-cyan-400">
+                        {service.stats}
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Features */}
+                    <div className="space-y-3 mb-8">
+                      {service.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                          <CheckCircle2 className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <Link 
+                      to={service.path}
+                      className={`inline-flex items-center justify-center w-full px-6 py-4 rounded-xl font-semibold transition-all duration-300 bg-gradient-to-r ${service.color} text-white shadow-lg hover:shadow-xl hover:scale-105`}
+                    >
+                      <span>Explore Service</span>
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
 
-                  <Link 
-                    to={service.path}
-                    className={`relative inline-flex items-center justify-center w-full px-6 py-4 rounded-xl font-semibold transition-all duration-300 bg-gradient-to-r ${service.color} text-white shadow-lg group-hover:shadow-xl hover:scale-105`}
-                  >
-                    <span>Explore Service</span>
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  {/* Hover Effect Border */}
+                  <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}>
+                    <div className="absolute inset-[2px] rounded-3xl bg-white dark:bg-gray-900"></div>
+                  </div>
                 </div>
               );
             })}
@@ -142,36 +209,36 @@ const ConsultingServices = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800"></div>
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-300 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/20"></div>
         </div>
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-white leading-tight">
-              Ready to Transform Your Workforce Strategy?
-            </h2>
-            <p className="text-lg md:text-xl text-white/90 mb-12 leading-relaxed">
-              Partner with Trine Solutions to find the perfect consulting solution for your unique business needs. Let us help you achieve exceptional results.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                to="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-gray-900 font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-              >
+        
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container relative z-10 text-center text-white">
+          <h2 className="text-5xl lg:text-7xl font-black mb-8">
+            Ready to Transform
+            <span className="block bg-gradient-to-r from-cyan-400 to-blue-200 bg-clip-text text-transparent">
+              Your Business?
+            </span>
+          </h2>
+          
+          <p className="text-xl lg:text-2xl max-w-3xl mx-auto mb-12 opacity-90 leading-relaxed">
+            Partner with Trine Solutions to find the perfect consulting solution for your unique business needs. 
+            Let us help you achieve exceptional results and drive sustainable growth.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Link to="/contact">
+              <button className="px-12 py-5 bg-white text-blue-600 rounded-2xl font-bold text-lg hover:bg-cyan-50 transform hover:scale-105 transition-all duration-300 shadow-2xl">
                 Schedule Consultation
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-              <Link 
-                to="/services"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-lg hover:bg-white/30 transition-all duration-300"
-              >
-                View Core Services
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
+              </button>
+            </Link>
           </div>
         </div>
       </section>

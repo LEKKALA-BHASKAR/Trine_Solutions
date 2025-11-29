@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  Users, 
-  Clock, 
-  Eye, 
+import {
+  ArrowRight,
+  CheckCircle2,
+  Users,
+  Clock,
+  Eye,
   ThumbsUp,
   Calendar,
   Briefcase,
@@ -16,7 +16,7 @@ import {
   Building2,
   Award,
   UserCheck,
-  User
+  User,
 } from 'lucide-react';
 import SEO, { pageSEO } from '@/components/SEO';
 
@@ -29,382 +29,595 @@ const ContractToHiring = () => {
 
   const howItWorks = [
     {
-      step: "1",
-      title: "Contract Phase",
-      description: "Candidate starts as a contractor, working on your projects while both parties evaluate fit.",
-      duration: "Typically 3-6 months"
+      step: '1',
+      title: 'Contract Phase',
+      description:
+        'Candidate begins as a contractor, embedded in your team and delivery environment while both sides evaluate fit.',
+      duration: 'Typically 3–6 months',
     },
     {
-      step: "2",
-      title: "Evaluation Period",
-      description: "Assess skills, work ethic, cultural alignment, and team dynamics in real work scenarios.",
-      duration: "Ongoing assessment"
+      step: '2',
+      title: 'Evaluation Period',
+      description:
+        'Assess skills, delivery quality, stakeholder management, and cultural alignment in real-world scenarios.',
+      duration: 'Ongoing assessment',
     },
     {
-      step: "3",
-      title: "Conversion Decision",
-      description: "Based on performance and mutual interest, decide whether to extend a permanent offer.",
-      duration: "End of contract"
+      step: '3',
+      title: 'Conversion Decision',
+      description:
+        'Using structured feedback and performance data, decide whether to extend a permanent offer.',
+      duration: 'End of contract period',
     },
     {
-      step: "4",
-      title: "Permanent Hire",
-      description: "Seamless transition to full-time employment with your organization.",
-      duration: "New beginning"
-    }
+      step: '4',
+      title: 'Permanent Hire',
+      description:
+        'Seamless transition to full-time employee with continuity in role, context, and relationships.',
+      duration: 'New beginning',
+    },
   ];
 
   const employerBenefits = [
     {
       icon: Eye,
-      title: "Try Before You Commit",
-      description: "Evaluate candidates in real work situations before making long-term commitments."
+      title: 'See Real-World Performance',
+      description:
+        'Observe how talent delivers against real priorities—not just how they interview.',
     },
     {
       icon: Target,
-      title: "Performance Evaluation",
-      description: "Assess actual job performance, problem-solving abilities, and work quality firsthand."
+      title: 'Evidence-Based Decisions',
+      description:
+        'Use performance evidence, stakeholder feedback, and cultural alignment to inform hiring decisions.',
     },
     {
       icon: Users,
-      title: "Cultural Fit Assessment",
-      description: "Determine how well candidates integrate with your team and company culture."
+      title: 'Cultural & Team Fit',
+      description:
+        'Understand how individuals collaborate across squads, leaders, and stakeholders before conversion.',
     },
     {
       icon: Shield,
-      title: "Reduced Hiring Risk",
-      description: "Minimize costly bad hires by having extended evaluation periods."
+      title: 'Lower Hiring Risk',
+      description:
+        'Reduce the cost and disruption of mis-hires with a structured evaluation window.',
     },
     {
       icon: Clock,
-      title: "Time to Train",
-      description: "Use the contract period to train and develop employees for your specific needs."
+      title: 'Time to Onboard & Train',
+      description:
+        'Leverage the contract period to onboard, train, and align talent to your way of working.',
     },
     {
       icon: TrendingUp,
-      title: "Budget Flexibility",
-      description: "Manage hiring budgets more effectively with staged commitment approach."
-    }
+      title: 'Budget & Headcount Flexibility',
+      description:
+        'Stage financial commitments and headcount decisions in line with portfolio and budget cycles.',
+    },
   ];
 
   const candidateBenefits = [
     {
       icon: Building2,
-      title: "Test Company Culture",
-      description: "Experience the work environment, team dynamics, and company values before committing."
+      title: 'Experience Culture First',
+      description:
+        'Work with the team, leadership, and stakeholders before deciding on a long-term commitment.',
     },
     {
       icon: Zap,
-      title: "Demonstrate Skills",
-      description: "Showcase your abilities through actual work rather than just interviews."
+      title: 'Showcase What You Can Do',
+      description:
+        'Demonstrate capability through real delivery, not just CVs and interviews.',
     },
     {
       icon: Briefcase,
-      title: "Career Exploration",
-      description: "Explore different roles and industries while maintaining employment."
+      title: 'Explore Roles & Domains',
+      description:
+        'Experience different functions, squads, or domains while maintaining continuity of employment.',
     },
     {
       icon: Award,
-      title: "Earn While Learning",
-      description: "Gain valuable experience and skills while earning competitive compensation."
+      title: 'Earn & Grow Simultaneously',
+      description:
+        'Build experience, expand your skills, and earn competitive compensation throughout the contract phase.',
     },
     {
       icon: UserCheck,
-      title: "Pathway to Permanence",
-      description: "Clear route to permanent employment with proven track record."
+      title: 'Clear Path to Permanence',
+      description:
+        'A transparent route to permanent roles, with expectations defined from day one.',
     },
     {
       icon: ThumbsUp,
-      title: "Mutual Selection",
-      description: "Make informed decisions about your career fit before long-term commitment."
-    }
+      title: 'Mutual Choice',
+      description:
+        'You choose the organization as much as they choose you, with real context and clarity.',
+    },
   ];
 
   const timeline = [
-    { phase: "Week 1-2", activity: "Onboarding & Integration", color: "from-trine-orange to-trine-lightblue" },
-    { phase: "Month 1-2", activity: "Skills Assessment & Training", color: "from-trine-lightblue to-trine-green" },
-    { phase: "Month 3-4", activity: "Performance Evaluation", color: "from-trine-green to-trine-orange" },
-    { phase: "Month 5-6", activity: "Conversion Discussion", color: "from-trine-orange to-trine-green" }
+    {
+      phase: 'Week 1–2',
+      activity: 'Onboarding & Integration',
+      color: 'from-trine-orange to-trine-lightblue',
+      detail: 'Environment setup, introductions, role clarity, and immediate sprint alignment.',
+    },
+    {
+      phase: 'Month 1–2',
+      activity: 'Skills Assessment & Coaching',
+      color: 'from-trine-lightblue to-trine-green',
+      detail: 'Observe delivery quality, coach where needed, and confirm role alignment.',
+    },
+    {
+      phase: 'Month 3–4',
+      activity: 'Performance Deep-Dive',
+      color: 'from-trine-green to-trine-orange',
+      detail: 'Formalize feedback from managers, peers, and stakeholders against defined outcomes.',
+    },
+    {
+      phase: 'Month 5–6',
+      activity: 'Conversion Decision & Offer',
+      color: 'from-trine-orange to-trine-green',
+      detail: 'Structure the conversion decision, calibrate compensation, and finalize full-time offer.',
+    },
   ];
 
   const stats = [
-    { value: "78%", label: "Conversion Rate" },
-    { value: "95%", label: "Retention After Conversion" },
-    { value: "60%", label: "Faster Time-to-Productivity" },
-    { value: "40%", label: "Reduced Hiring Costs" }
+    { value: '78%', label: 'Average conversion rate' },
+    { value: '95%', label: 'Retention after conversion' },
+    { value: '60%', label: 'Faster time-to-productivity' },
+    { value: '40%', label: 'Reduction in hiring cost' },
   ];
 
   const successMetrics = [
     {
-      category: "Technology Sector",
-      conversion: "82%",
-      retention: "96%",
-      avgDuration: "4 months"
+      category: 'Technology & Digital',
+      conversion: '82%',
+      retention: '96%',
+      avgDuration: '4 months',
     },
     {
-      category: "Healthcare Industry",
-      conversion: "75%",
-      retention: "94%",
-      avgDuration: "5 months"
+      category: 'Healthcare & Life Sciences',
+      conversion: '75%',
+      retention: '94%',
+      avgDuration: '5 months',
     },
     {
-      category: "Finance & Banking",
-      conversion: "80%",
-      retention: "97%",
-      avgDuration: "4.5 months"
-    }
+      category: 'Finance & Banking',
+      conversion: '80%',
+      retention: '97%',
+      avgDuration: '4.5 months',
+    },
   ];
 
   return (
-    <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      <SEO 
+    <div
+      className={`min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-opacity duration-700 ease-out ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      <SEO
         {...pageSEO.contractToHire}
         canonicalUrl="https://trinesolutions.com/consulting/contract-to-hire"
         breadcrumbs={[
           { name: 'Home', url: 'https://trinesolutions.com/' },
           { name: 'Consulting Services', url: 'https://trinesolutions.com/consulting' },
-          { name: 'Contract to Hire', url: 'https://trinesolutions.com/consulting/contract-to-hire' }
+          { name: 'Contract to Hire', url: 'https://trinesolutions.com/consulting/contract-to-hire' },
         ]}
       />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&h=800&fit=crop"
-            alt="Contract to Hire - Try Before You Hire"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-trine-black/90 via-trine-black/80 to-trine-lightblue/40"></div>
-        </div>
-        
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-trine-lightblue to-trine-green rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-trine-orange to-trine-lightblue rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        </div>
+      {/* Global background accents */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-40 -right-24 h-96 w-96 rounded-full bg-gradient-to-bl from-trine-lightblue/25 via-trine-green/10 to-transparent dark:from-trine-lightblue/25 dark:via-trine-green/10 blur-3xl" />
+        <div className="absolute top-1/3 -left-24 h-[420px] w-[420px] rounded-full bg-gradient-to-tr from-trine-orange/25 via-trine-lightblue/10 to-transparent dark:from-trine-orange/25 dark:via-trine-lightblue/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-80 w-[600px] -translate-x-1/2 rounded-[999px] bg-gradient-to-t from-slate-100 via-slate-100 to-transparent dark:from-slate-900 dark:via-slate-900 blur-2xl" />
+      </div>
 
-        <div className="container relative z-10 text-center text-white px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-6">
-              <Calendar className="w-16 h-16 text-trine-lightblue mr-4" />
-              <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-trine-lightblue via-trine-green to-trine-orange bg-clip-text text-transparent">
-                Contract to Hire
-              </h1>
+      {/* Hero Section (variation: image/metrics panel left, narrative right) */}
+      <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-24">
+        <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 lg:flex-row lg:items-center lg:px-6 xl:px-0">
+          {/* Left: Experience panel */}
+          <div className="flex-1">
+            <div className="relative">
+              <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-tr from-trine-lightblue/40 via-trine-green/20 to-trine-orange/40 opacity-60 blur-2xl" />
+              <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 bg-gradient-to-b from-slate-50 dark:from-slate-900/90 via-white dark:via-slate-950/95 to-slate-100 dark:to-slate-950/100 p-6 shadow-2xl backdrop-blur-xl">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
+                      CONTRACT TO HIRE
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-slate-900 dark:text-slate-100">
+                      A controlled path from contract to permanent hire.
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-900/80 px-3 py-1 text-[11px] text-trine-lightblue">
+                    <Calendar className="mr-1.5 h-3.5 w-3.5" />
+                    3–6 month evaluation
+                  </span>
+                </div>
+
+                {/* Stats */}
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {stats.map((stat, index) => (
+                    <div
+                      key={index}
+                      className="rounded-2xl border border-slate-300 dark:border-white/5 bg-white dark:bg-white/5 p-3.5 shadow-sm"
+                    >
+                      <p className="text-lg font-semibold text-slate-900 dark:text-white">{stat.value}</p>
+                      <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Snapshot row */}
+                <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-slate-300 dark:border-white/8 bg-slate-100 dark:bg-slate-950/60 p-4 text-xs text-slate-700 dark:text-slate-300">
+                    <p className="mb-2 flex items-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
+                      <Eye className="mr-1.5 h-3.5 w-3.5 text-trine-lightblue" />
+                      EMPLOYER VIEW
+                    </p>
+                    <p>
+                      See how talent performs across sprints, stakeholders, and changing priorities before extending a
+                      permanent offer.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-slate-300 dark:border-white/8 bg-slate-100 dark:bg-slate-950/60 p-4 text-xs text-slate-700 dark:text-slate-300">
+                    <p className="mb-2 flex items-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
+                      <User className="mr-1.5 h-3.5 w-3.5 text-trine-green" />
+                      CANDIDATE VIEW
+                    </p>
+                    <p>
+                      Experience culture, leadership, and ways of working with full context—then decide on permanence
+                      with confidence.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom strip */}
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-600 dark:text-slate-300">
+                  <div className="inline-flex items-center gap-2">
+                    <Shield className="h-3.5 w-3.5 text-trine-green" />
+                    <span>Governed conversion frameworks</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2">
+                    <TrendingUp className="h-3.5 w-3.5 text-trine-orange" />
+                    <span>Aligned to portfolio & budget cycles</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-xl lg:text-2xl mb-4 text-trine-lightblue font-semibold">
-              The Best of Both Worlds
+          </div>
+
+          {/* Right: Narrative */}
+          <div className="flex-1 space-y-7">
+            <div className="inline-flex items-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/5 px-3 py-1 text-xs font-medium text-slate-700 dark:text-slate-200 backdrop-blur-sm">
+              <CheckCircle2 className="mr-2 h-3.5 w-3.5 text-trine-lightblue" />
+              Contract-first. Evidence-based permanent hiring.
+            </div>
+
+            <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
+              Contract to Hire for
+              <span className="bg-gradient-to-r from-trine-lightblue via-trine-green to-trine-orange bg-clip-text pl-2 text-transparent">
+                high-confidence hiring decisions
+              </span>
+            </h1>
+
+            <p className="max-w-xl text-sm text-slate-600 dark:text-slate-300 sm:text-base leading-relaxed">
+              Instead of relying solely on interviews, contract-to-hire lets you evaluate real performance, team fit,
+              and cultural alignment over time—before making long-term commitments.
             </p>
-            <p className="text-lg lg:text-xl mb-8 opacity-90 leading-relaxed">
-              Minimize hiring risks with our contract-to-hire solutions. Evaluate talent in real 
-              work scenarios before making permanent commitments.
+
+            <p className="max-w-xl text-xs text-slate-500 dark:text-slate-400 sm:text-sm">
+              Trine Solutions designs contract-to-hire models that work for both employers and candidates, aligning
+              conversion decisions with delivery milestones, budget cycles, and career goals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="px-8 py-4 bg-gradient-to-r from-trine-lightblue to-trine-green rounded-full font-semibold hover:shadow-lg hover:shadow-trine-lightblue/30 transition-all duration-300 hover:scale-105 flex items-center justify-center">
-                Get Started
-                <ArrowRight className="w-5 h-5 ml-2" />
+
+            <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center justify-center rounded-full bg-slate-950 dark:bg-white px-7 py-3 text-sm font-semibold text-white dark:text-slate-950 shadow-lg shadow-trine-lightblue/30 transition hover:-translate-y-0.5 hover:bg-slate-800 dark:hover:bg-slate-100"
+              >
+                Discuss a contract-to-hire brief
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link to="/services" className="px-8 py-4 border-2 border-white/30 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 flex items-center justify-center">
-                View All Services
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+              <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-600 dark:text-slate-400">
+                <Link
+                  to="/services"
+                  className="inline-flex items-center text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white"
+                >
+                  View all consulting services
+                  <ArrowRight className="ml-1.5 h-3 w-3" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Breadcrumb */}
-      <section className="py-4 bg-gray-50 dark:bg-gray-900">
-        <div className="container">
-          <nav className="flex items-center text-sm">
-            <Link to="/" className="text-gray-600 dark:text-gray-400 hover:text-trine-orange transition-colors">Home</Link>
-            <ArrowRight className="w-4 h-4 mx-2 text-gray-400" />
-            <span className="text-gray-600 dark:text-gray-400">Consulting Services</span>
-            <ArrowRight className="w-4 h-4 mx-2 text-gray-400" />
-            <span className="text-trine-lightblue font-medium">Contract to Hire</span>
+      {/* Breadcrumb bar */}
+      <section className="border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950/85">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 text-xs text-slate-600 dark:text-slate-400 lg:px-6 xl:px-0">
+          <nav className="flex items-center gap-2">
+            <Link to="/" className="hover:text-slate-900 dark:hover:text-slate-100">
+              Home
+            </Link>
+            <span className="text-slate-400 dark:text-slate-600">/</span>
+            <span className="hover:text-slate-900 dark:hover:text-slate-100">Consulting Services</span>
+            <span className="text-slate-400 dark:text-slate-600">/</span>
+            <span className="font-medium text-slate-900 dark:text-slate-200">Contract to Hire</span>
           </nav>
+          <span className="hidden items-center gap-2 sm:inline-flex">
+            <span className="h-1 w-1 rounded-full bg-trine-lightblue" />
+            <span>Contract-first, permanent-ready hiring models</span>
+          </span>
         </div>
       </section>
 
-      {/* What is Contract to Hire */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-                What is <span className="text-trine-lightblue">Contract to Hire</span>?
+      {/* What is Contract to Hire + stats */}
+      <section className="relative py-16 lg:py-20 bg-white dark:bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-start">
+            <div className="space-y-6">
+              <h2 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                What is
+                <span className="bg-gradient-to-r from-trine-lightblue to-trine-green bg-clip-text pl-2 text-transparent">
+                  contract to hire
+                </span>
+                in a modern enterprise?
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                Contract-to-hire is a staffing arrangement where a candidate initially works as a 
-                contractor for a specified period before transitioning to a permanent position. 
-                This model allows both employers and candidates to evaluate fit before making 
-                long-term commitments.
+              <p className="text-sm text-slate-600 dark:text-slate-300 sm:text-base leading-relaxed">
+                Contract-to-hire is a structured staffing model where talent joins as a contractor first, with a clear
+                pathway to permanent employment. It offers a controlled environment for both sides to validate
+                capability, culture, and long-term fit.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                At Trine Solutions, we facilitate seamless contract-to-hire arrangements that 
-                benefit both parties. Our approach reduces hiring risks while ensuring candidates 
-                find roles where they can truly thrive and grow.
+              <p className="text-sm text-slate-600 dark:text-slate-300 sm:text-base leading-relaxed">
+                For employers, it de-risks critical hiring decisions in transformation and run-the-business roles. For
+                candidates, it provides real visibility into how an organization operates before they commit.
               </p>
-              
-              <div className="grid grid-cols-2 gap-6 mb-8">
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950/70 p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
+                    WHY EMPLOYERS USE IT
+                  </p>
+                  <p className="mt-2 text-xs text-slate-700 dark:text-slate-200 sm:text-sm">
+                    Align hiring decisions with delivery proof points, reduce mis-hires, and maintain flexibility as
+                    portfolios change.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-trine-lightblue/40 dark:border-trine-lightblue/30 bg-trine-lightblue/10 dark:bg-gradient-to-br dark:from-trine-lightblue/10 dark:via-slate-950/80 dark:to-slate-950/95 p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-trine-lightblue">
+                    WHY CANDIDATES VALUE IT
+                  </p>
+                  <p className="mt-2 text-xs text-slate-800 dark:text-slate-100 sm:text-sm">
+                    Make decisions about long-term roles based on real work, real leadership, and real culture—not just
+                    interview impressions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Compact metrics card */}
+            <div className="space-y-4 rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950/70 p-5 shadow-xl">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
+                    IMPACT SNAPSHOT
+                  </p>
+                  <p className="mt-1 text-sm text-slate-800 dark:text-slate-200">
+                    Contract-to-hire outcomes across our engagements.
+                  </p>
+                </div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-lightblue/50 via-trine-green/40 to-trine-orange/50">
+                  <TrendingUp className="h-4.5 w-4.5 text-white" />
+                </div>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
                 {stats.map((stat, index) => (
-                  <div key={index} className="text-center p-6 rounded-2xl bg-gradient-to-br from-trine-lightblue/10 to-trine-green/10 dark:from-gray-800 dark:to-gray-700">
-                    <div className="text-3xl font-bold text-trine-lightblue mb-2">{stat.value}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</div>
+                  <div
+                    key={index}
+                    className="rounded-2xl border border-slate-300 dark:border-white/5 bg-white dark:bg-white/5 p-3 text-left"
+                  >
+                    <p className="text-lg font-semibold text-slate-900 dark:text-white">{stat.value}</p>
+                    <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-300">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-2 text-[11px] text-slate-600 dark:text-slate-400">
+                Figures represent typical outcomes across multi-role contract-to-hire engagements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Two-sided benefits: Employers & Candidates */}
+      <section className="relative border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950/85 py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
+          <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">
+                TWO-SIDED VALUE
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                Designed for both
+                <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text pl-2 text-transparent">
+                  employers and candidates
+                </span>
+              </h2>
+              <p className="mt-3 max-w-xl text-sm text-slate-600 dark:text-slate-300 sm:text-base">
+                Contract-to-hire works best when both sides benefit. Our model ensures clarity, structure, and
+                transparency across the full engagement.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950/80 px-4 py-3 text-xs text-slate-700 dark:text-slate-200">
+              <p className="font-medium">Single framework. Two perspectives.</p>
+              <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-400">
+                We orchestrate expectations, touchpoints, and conversion criteria for both organizations and talent.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Employers */}
+            <div className="space-y-4 rounded-3xl border border-slate-300 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-950/95 dark:to-slate-950/100 p-5">
+              <div className="mb-2 flex items-center justify-between">
+                <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-900/80 px-3 py-1 text-[11px] text-trine-orange">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  For employers
+                </div>
+                <span className="text-[11px] text-slate-600 dark:text-slate-400">Hiring with evidence, not guesswork.</span>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {employerBenefits.map((benefit, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 rounded-2xl border border-slate-300 dark:border-white/5 bg-slate-50 dark:bg-white/5 p-3.5 hover:border-trine-lightblue/40 hover:bg-slate-100 dark:hover:border-trine-lightblue/40 dark:hover:bg-white/10"
+                  >
+                    <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-orange/40 via-trine-lightblue/30 to-trine-green/40">
+                      <benefit.icon className="h-4.5 w-4.5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-slate-900 dark:text-slate-50">{benefit.title}</p>
+                      <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1552581234-26160f608093?w=600&h=400&fit=crop"
-                  alt="Contract evaluation meeting"
-                  className="w-full h-[400px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-white text-xl font-bold mb-2">Evaluate with Confidence</h3>
-                  <p className="text-white/90 text-sm">Make informed hiring decisions</p>
+            {/* Candidates */}
+            <div className="space-y-4 rounded-3xl border border-slate-300 dark:border-white/10 bg-white dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-950/95 dark:to-slate-950/100 p-5">
+              <div className="mb-2 flex items-center justify-between">
+                <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-900/80 px-3 py-1 text-[11px] text-trine-green">
+                  <User className="h-3.5 w-3.5" />
+                  For candidates
                 </div>
+                <span className="text-[11px] text-slate-600 dark:text-slate-400">Careers built on informed choices.</span>
               </div>
-              
-              <div className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl">
-                <div className="flex items-center mb-2">
-                  <TrendingUp className="w-8 h-8 text-trine-lightblue mr-3" />
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">78%</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Conversion Rate</div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {candidateBenefits.map((benefit, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 rounded-2xl border border-slate-300 dark:border-white/5 bg-slate-50 dark:bg-white/5 p-3.5 hover:border-trine-lightblue/40 hover:bg-slate-100 dark:hover:border-trine-lightblue/40 dark:hover:bg-white/10"
+                  >
+                    <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-green/40 via-trine-lightblue/30 to-trine-orange/40">
+                      <benefit.icon className="h-4.5 w-4.5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-slate-900 dark:text-slate-50">{benefit.title}</p>
+                      <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              How <span className="bg-gradient-to-r from-trine-lightblue to-trine-green bg-clip-text text-transparent">It Works</span>
+      {/* How it works / process */}
+      <section className="relative py-16 lg:py-20 bg-white dark:bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">
+              STRUCTURED JOURNEY
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+              How our
+              <span className="bg-gradient-to-r from-trine-lightblue to-trine-orange bg-clip-text pl-2 text-transparent">
+                contract-to-hire model
+              </span>
+              works
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A straightforward process designed for success
+            <p className="mt-3 max-w-2xl mx-auto text-sm text-slate-600 dark:text-slate-300 sm:text-base">
+              A four-stage journey that balances flexibility, clarity, and governance for both organizations and
+              talent.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {howItWorks.map((step, index) => (
               <div key={index} className="relative">
-                <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-trine-lightblue to-trine-green flex items-center justify-center text-white font-bold text-xl mb-6">
-                    {step.step}
+                <div className="h-full rounded-3xl border border-slate-300 dark:border-white/8 bg-white dark:bg-slate-950/85 p-5 shadow-md hover:border-trine-lightblue/40">
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-trine-lightblue/50 via-trine-green/40 to-trine-orange/50 text-sm font-semibold text-white">
+                      {step.step}
+                    </div>
+                    <span className="rounded-full bg-slate-200 dark:bg-slate-900/80 px-2 py-0.5 text-[10px] text-slate-700 dark:text-slate-300">
+                      {step.duration}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{step.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">{step.description}</p>
-                  <span className="inline-block px-3 py-1 bg-trine-lightblue/10 text-trine-lightblue rounded-full text-sm font-medium">
-                    {step.duration}
-                  </span>
-                </div>
-                {index < howItWorks.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-trine-lightblue to-trine-green"></div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits for Employers */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="container">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-lightblue/10 text-trine-orange font-semibold text-sm mb-4">
-              <CheckCircle2 className="w-4 h-4 inline mr-2" />
-              For Employers
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Benefits for <span className="text-trine-orange">Employers</span>
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Why leading companies choose contract-to-hire
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {employerBenefits.map((benefit, index) => (
-              <div key={index} className="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-trine-orange/20 to-trine-lightblue/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-trine-orange/20 to-trine-lightblue/10 flex items-center justify-center mb-6 group-hover:from-trine-orange group-hover:to-trine-lightblue group-hover:shadow-lg transition-all duration-300">
-                    <benefit.icon className="w-8 h-8 text-trine-orange group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-trine-orange transition-colors">{benefit.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{benefit.description}</p>
+                  <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50">{step.title}</h3>
+                  <p className="mt-2 text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Benefits for Candidates */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-trine-green/10 to-trine-lightblue/10 text-trine-green font-semibold text-sm mb-4">
-              <User className="w-4 h-4 inline mr-2" />
-              For Candidates
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Benefits for <span className="text-trine-green">Candidates</span>
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Why professionals choose contract-to-hire opportunities
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {candidateBenefits.map((benefit, index) => (
-              <div key={index} className="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-trine-green/20 to-trine-lightblue/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-trine-green/20 to-trine-lightblue/10 flex items-center justify-center mb-6 group-hover:from-trine-green group-hover:to-trine-lightblue group-hover:shadow-lg transition-all duration-300">
-                    <benefit.icon className="w-8 h-8 text-trine-green group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-trine-green transition-colors">{benefit.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{benefit.description}</p>
-                </div>
+          {/* Micro CTA */}
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950/85 px-4 py-4 text-xs text-slate-600 dark:text-slate-300 sm:flex-row sm:px-6">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-lightblue/50 via-trine-green/40 to-trine-orange/50">
+                <Briefcase className="h-4.5 w-4.5 text-white" />
               </div>
-            ))}
+              <p className="max-w-xl text-[11px] sm:text-xs">
+                We can design contract-to-hire programs around single roles, full squads, or multi-tower transformation
+                initiatives.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center rounded-full border border-slate-400 dark:border-white/15 px-4 py-1.5 text-[11px] font-semibold text-slate-800 dark:text-slate-50 hover:border-trine-lightblue dark:hover:text-white"
+            >
+              Explore a structured contract-to-hire program
+              <ArrowRight className="ml-1.5 h-3 w-3" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Typical <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text text-transparent">Timeline</span>
+      <section className="relative border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950/85 py-16 lg:py-20">
+        <div className="mx-auto max-w-5xl px-4 lg:px-6 xl:px-0">
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">
+              TYPICAL ENGAGEMENT FLOW
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+              A clear, predictable
+              <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text pl-2 text-transparent">
+                timeline
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              What to expect during a contract-to-hire engagement
+            <p className="mt-3 max-w-2xl mx-auto text-sm text-slate-600 dark:text-slate-300 sm:text-base">
+              We tailor timelines by role and context, but most contract-to-hire journeys follow this broad pattern.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="relative max-w-3xl mx-auto">
+            <div className="pointer-events-none absolute left-[8.5rem] top-0 hidden h-full w-px bg-gradient-to-b from-trine-orange via-trine-lightblue to-trine-green opacity-50 sm:block" />
             <div className="space-y-6">
               {timeline.map((item, index) => (
-                <div key={index} className="flex items-center">
-                  <div className={`w-32 flex-shrink-0 text-right pr-6 font-bold text-lg bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}>
-                    {item.phase}
+                <div key={index} className="flex items-start gap-4">
+                  <div className="w-28 flex-shrink-0 text-right pr-3 text-xs font-semibold text-slate-700 dark:text-slate-200 sm:text-sm">
+                    <span className={`bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}>
+                      {item.phase}
+                    </span>
                   </div>
-                  <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${item.color} flex-shrink-0`}></div>
-                  <div className="flex-grow pl-6 py-4 ml-2 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                    <p className="font-medium text-gray-900 dark:text-white">{item.activity}</p>
+                  <div
+                    className={`mt-1 hidden h-3.5 w-3.5 flex-shrink-0 rounded-full bg-gradient-to-r ${item.color} sm:block`}
+                  />
+                  <div className="flex-grow rounded-2xl border border-slate-300 dark:border-white/8 bg-white dark:bg-slate-950/80 px-4 py-3 text-xs text-slate-600 dark:text-slate-300 sm:text-sm">
+                    <p className="font-semibold text-slate-900 dark:text-slate-50">{item.activity}</p>
+                    <p className="mt-1 text-[11px] sm:text-xs">{item.detail}</p>
                   </div>
                 </div>
               ))}
@@ -414,37 +627,49 @@ const ContractToHiring = () => {
       </section>
 
       {/* Success Metrics */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Success <span className="text-trine-lightblue">Metrics</span>
+      <section className="relative py-16 lg:py-20 bg-white dark:bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">
+              INDUSTRY OUTCOMES
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+              Contract-to-hire
+              <span className="bg-gradient-to-r from-trine-lightblue to-trine-green bg-clip-text pl-2 text-transparent">
+                success metrics
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our contract-to-hire success rates by industry
+            <p className="mt-3 max-w-3xl mx-auto text-sm text-slate-600 dark:text-slate-300 sm:text-base">
+              Performance across key sectors where contract-to-hire is deeply integrated into the hiring strategy.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-3">
             {successMetrics.map((metric, index) => (
-              <div key={index} className="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+              <div
+                key={index}
+                className="rounded-3xl border border-slate-300 dark:border-white/10 bg-white dark:bg-slate-950/85 p-6 shadow-lg"
+              >
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50 sm:text-base">
                   {metric.category}
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 dark:text-gray-300">Conversion Rate</span>
-                    <span className="font-bold text-trine-lightblue">{metric.conversion}</span>
+                <div className="mt-4 space-y-3 text-xs text-slate-600 dark:text-slate-300 sm:text-sm">
+                  <div className="flex items-center justify-between">
+                    <span>Conversion rate</span>
+                    <span className="font-semibold text-trine-lightblue">{metric.conversion}</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 dark:text-gray-300">Post-Conversion Retention</span>
-                    <span className="font-bold text-trine-green">{metric.retention}</span>
+                  <div className="flex items-center justify-between">
+                    <span>Post-conversion retention</span>
+                    <span className="font-semibold text-trine-green">{metric.retention}</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 dark:text-gray-300">Avg. Contract Duration</span>
-                    <span className="font-bold text-trine-orange">{metric.avgDuration}</span>
+                  <div className="flex items-center justify-between">
+                    <span>Average contract duration</span>
+                    <span className="font-semibold text-trine-orange">{metric.avgDuration}</span>
                   </div>
                 </div>
+                <p className="mt-3 text-[11px] text-slate-600 dark:text-slate-400">
+                  Indicative metrics based on multi-engagement data across similar clients and roles.
+                </p>
               </div>
             ))}
           </div>
@@ -452,26 +677,33 @@ const ContractToHiring = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-trine-lightblue via-trine-green to-trine-orange">
-        <div className="container text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-              Ready to Try Before You Hire?
-            </h2>
-            <p className="text-xl text-white/90 mb-10 leading-relaxed">
-              Discover how contract-to-hire can reduce your hiring risks while ensuring 
-              you find the perfect fit for your team.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 flex items-center justify-center">
-                Start Today
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-              <Link to="/consulting/permanent-hiring" className="px-8 py-4 border-2 border-white/30 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 flex items-center justify-center">
-                Explore Permanent Hiring
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
+      <section className="border-t border-slate-200 dark:border-white/5 bg-gradient-to-br from-trine-lightblue via-trine-green to-trine-orange py-16 lg:py-20">
+        <div className="mx-auto max-w-5xl px-4 text-center lg:px-6 xl:px-0">
+          <h2 className="text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
+            Ready to make hiring decisions with
+            <span className="pl-2 underline decoration-white/40 underline-offset-4">
+              more confidence?
+            </span>
+          </h2>
+          <p className="mt-4 text-sm text-white/90 sm:text-base max-w-3xl mx-auto">
+            Let&apos;s design a contract-to-hire model around your portfolio, roles, and timelines—so every permanent
+            offer is grounded in real performance and real fit.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-slate-100"
+            >
+              Talk to our consulting team
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+            <Link
+              to="/consulting/permanent-hiring"
+              className="inline-flex items-center justify-center rounded-full border border-white/60 px-6 py-2.5 text-xs font-semibold text-white hover:bg-white/10"
+            >
+              Explore permanent hiring options
+              <ArrowRight className="ml-2 h-3.5 w-3.5" />
+            </Link>
           </div>
         </div>
       </section>

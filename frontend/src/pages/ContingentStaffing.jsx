@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  Users, 
-  Clock, 
-  DollarSign, 
-  Shield, 
-  Target, 
+import {
+  ArrowRight,
+  CheckCircle2,
+  Users,
+  Clock,
+  DollarSign,
+  Shield,
+  Target,
   TrendingUp,
   Building2,
   Briefcase,
@@ -20,13 +20,13 @@ import {
   Search,
   UserCheck,
   FileCheck,
-  Handshake
+  Handshake,
 } from 'lucide-react';
 import SEO, { pageSEO } from '@/components/SEO';
 
 const ContingentStaffing = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [openFaq, setOpenFaq] = useState(null);
+  const [openFaq, setOpenFaq] = useState(0);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -35,272 +35,469 @@ const ContingentStaffing = () => {
   const benefits = [
     {
       icon: Clock,
-      title: "Flexibility",
-      description: "Scale your workforce up or down based on project demands and business cycles without long-term commitments."
+      title: 'Elastic Capacity',
+      description:
+        'Expand or contract your workforce in days, not months, aligned with project timelines and market conditions.',
+      tag: 'Workforce Agility',
     },
     {
       icon: DollarSign,
-      title: "Cost Savings",
-      description: "Reduce overhead costs associated with full-time employees including benefits, training, and administrative expenses."
+      title: 'Optimized Cost Structure',
+      description:
+        'Convert fixed costs into variable costs. Reduce overhead from benefits, training, and long hiring cycles.',
+      tag: 'Cost Efficiency',
     },
     {
       icon: Target,
-      title: "Specialized Skills",
-      description: "Access niche expertise and specialized skills for specific projects without permanent hiring obligations."
+      title: 'Specialized Expertise',
+      description:
+        'Deploy niche skills on demand for transformation programs, without long-term headcount commitments.',
+      tag: 'Skill Access',
     },
     {
       icon: Shield,
-      title: "Reduced Risk",
-      description: "Minimize employment risks with flexible arrangements and compliance handled by our expert team."
-    }
+      title: 'Governed & Compliant',
+      description:
+        'Mitigate employment, legal, and compliance risk with a governed contingent talent operating model.',
+      tag: 'Risk Reduction',
+    },
   ];
 
   const processSteps = [
     {
       icon: Search,
-      title: "Requirements Analysis",
-      description: "We work closely with you to understand your staffing needs, project requirements, and company culture."
+      title: 'Define Demand',
+      description:
+        'We co-design role profiles, skill matrices, and engagement models based on your portfolio and roadmap.',
     },
     {
       icon: Users,
-      title: "Talent Sourcing",
-      description: "Our extensive network and advanced sourcing techniques help us find the perfect candidates quickly."
+      title: 'Source Intelligence',
+      description:
+        'We tap into curated talent networks, referrals, and market data to surface high-fit candidates fast.',
     },
     {
       icon: UserCheck,
-      title: "Screening & Vetting",
-      description: "Rigorous background checks, skills assessments, and interviews ensure quality candidates."
+      title: 'Rigorous Evaluation',
+      description:
+        'Multi-layer screening, technical assessments, and culture-fit checks to ensure confidence at selection.',
     },
     {
       icon: FileCheck,
-      title: "Placement",
-      description: "Seamless onboarding and integration of contingent workers into your team and projects."
+      title: 'Seamless Onboarding',
+      description:
+        'We orchestrate contracts, compliance, and day-one readiness so talent can contribute from day one.',
     },
     {
       icon: Handshake,
-      title: "Ongoing Support",
-      description: "Continuous support, performance monitoring, and relationship management throughout the engagement."
-    }
+      title: 'Managed Performance',
+      description:
+        'Continuous touchpoints, feedback loops, and governance to keep delivery outcomes on track.',
+    },
   ];
 
   const industries = [
-    { icon: Building2, name: "Information Technology", roles: "Developers, DevOps, QA Engineers" },
-    { icon: HeartPulse, name: "Healthcare", roles: "Nurses, Medical Technicians, Admin Staff" },
-    { icon: Landmark, name: "Finance & Banking", roles: "Analysts, Accountants, Compliance Officers" },
-    { icon: Cog, name: "Engineering", roles: "Mechanical, Electrical, Civil Engineers" },
-    { icon: Briefcase, name: "Professional Services", roles: "Consultants, Project Managers, Analysts" },
-    { icon: GraduationCap, name: "Education", roles: "Instructors, Administrators, IT Support" }
+    {
+      icon: Building2,
+      name: 'Technology & Digital',
+      roles: 'Developers, Cloud & DevOps, Data Engineers, QA, Product Teams',
+    },
+    {
+      icon: HeartPulse,
+      name: 'Healthcare & Life Sciences',
+      roles: 'Clinical Support, HealthTech Specialists, Operations & Admin',
+    },
+    {
+      icon: Landmark,
+      name: 'Financial Services',
+      roles: 'Risk & Compliance, Business Analysts, Transformational PMOs',
+    },
+    {
+      icon: Cog,
+      name: 'Engineering & Manufacturing',
+      roles: 'Mechanical, Electrical, Industrial Engineers, Project Teams',
+    },
+    {
+      icon: Briefcase,
+      name: 'Professional Services',
+      roles: 'Consultants, Strategy & Ops, Change Management, PMO Leads',
+    },
+    {
+      icon: GraduationCap,
+      name: 'Education & Public Sector',
+      roles: 'Digital Enablement, IT Support, Program & Project Governance',
+    },
   ];
 
   const stats = [
-    { value: "500+", label: "Placements Annually" },
-    { value: "95%", label: "Client Satisfaction" },
-    { value: "48hrs", label: "Average Time to Present" },
-    { value: "85%", label: "Retention Rate" }
+    { value: '500+', label: 'Annual Contingent Placements' },
+    { value: '95%', label: 'Client Satisfaction Score' },
+    { value: '48 hrs', label: 'Average Shortlist Turnaround' },
+    { value: '85%', label: 'Engagement Retention Rate' },
   ];
 
   const faqs = [
     {
-      question: "What is contingent staffing?",
-      answer: "Contingent staffing refers to hiring temporary or contract workers to fulfill specific business needs. These workers are employed on a non-permanent basis and can be engaged for short-term projects, seasonal work, or to fill gaps in your workforce."
+      question: 'What is contingent staffing?',
+      answer:
+        'Contingent staffing is a flexible staffing model that uses contract, temporary, or project-based talent instead of—or in addition to—permanent employees. It enables organizations to respond faster to demand, control costs, and access highly specialized skills.',
     },
     {
-      question: "How quickly can you provide contingent workers?",
-      answer: "Depending on the role requirements, we can typically present qualified candidates within 24-48 hours. For specialized positions, the timeline may be slightly longer to ensure we find the right match."
+      question: 'How quickly can you provide contingent workers?',
+      answer:
+        'For most common technology and business roles, we can present a curated shortlist of qualified profiles within 24–48 hours. Highly specialized or niche roles may require additional time to ensure quality and fit.',
     },
     {
-      question: "Who handles payroll and benefits for contingent workers?",
-      answer: "As the staffing agency, we handle all payroll processing, benefits administration, tax withholdings, and compliance requirements for contingent workers, reducing your administrative burden."
+      question: 'Who manages payroll and compliance?',
+      answer:
+        'Trine Solutions manages payroll, statutory compliances, tax withholdings, contracts, and associated documentation for contingent workers, so your teams stay focused on delivery rather than administration.',
     },
     {
-      question: "Can contingent workers transition to permanent employees?",
-      answer: "Yes! Many of our contingent placements transition to permanent roles. We offer contract-to-hire arrangements that allow both parties to evaluate fit before making a permanent commitment."
+      question: 'Can contingent workers convert to permanent employees?',
+      answer:
+        'Yes. We support contract-to-hire models that allow you to evaluate performance and cultural fit before converting talent into permanent roles, with clear commercial terms and transition frameworks.',
     },
     {
-      question: "What industries do you serve?",
-      answer: "We serve a wide range of industries including IT, Healthcare, Finance, Engineering, Professional Services, and Education. Our diverse talent pool allows us to meet staffing needs across various sectors."
-    }
+      question: 'Which geographies and industries do you support?',
+      answer:
+        'We support clients across multiple regions and industries including Technology, Healthcare, Financial Services, Engineering, Professional Services, and Education, with region-aware compliance and engagement practices.',
+    },
   ];
 
   return (
-    <div className={`min-h-screen transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      <SEO 
+    <div
+      className={`min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-opacity duration-700 ease-out ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
+      <SEO
         {...pageSEO.contingentStaffing}
         canonicalUrl="https://trinesolutions.com/consulting/contingent-staffing"
         breadcrumbs={[
           { name: 'Home', url: 'https://trinesolutions.com/' },
           { name: 'Consulting Services', url: 'https://trinesolutions.com/consulting' },
-          { name: 'Contingent Staffing', url: 'https://trinesolutions.com/consulting/contingent-staffing' }
+          { name: 'Contingent Staffing', url: 'https://trinesolutions.com/consulting/contingent-staffing' },
         ]}
       />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-32">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&h=800&fit=crop"
-            alt="Contingent Staffing - Flexible Workforce Solutions"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-trine-black/90 via-trine-black/80 to-trine-orange/40"></div>
-        </div>
-        
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-trine-orange to-trine-lightblue rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-trine-green to-trine-lightblue rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        </div>
+      {/* Global background accents */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-40 -left-32 h-96 w-96 rounded-full bg-gradient-to-br from-trine-orange/25 via-trine-lightblue/5 to-transparent dark:from-trine-orange/25 dark:via-trine-lightblue/5 blur-3xl" />
+        <div className="absolute top-1/3 -right-20 h-[420px] w-[420px] rounded-full bg-gradient-to-tr from-trine-lightblue/25 via-trine-green/10 to-transparent dark:from-trine-lightblue/25 dark:via-trine-green/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-80 w-[600px] -translate-x-1/2 rounded-[999px] bg-gradient-to-t from-slate-100 via-slate-100 to-transparent dark:from-slate-900 dark:via-slate-900 blur-2xl" />
+      </div>
 
-        <div className="container relative z-10 text-center text-white px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-6">
-              <Users className="w-16 h-16 text-trine-orange mr-4" />
-              <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green bg-clip-text text-transparent">
-                Contingent Staffing
-              </h1>
+      {/* Hero */}
+      <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-28">
+        <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 lg:flex-row lg:items-center lg:px-6 xl:px-0">
+          {/* Left: Content */}
+          <div className="flex-1 space-y-8">
+            <div className="inline-flex items-center rounded-full border border-white/10 dark:border-white/10 bg-white/5 dark:bg-white/5 px-3 py-1 text-xs font-medium text-slate-200 dark:text-slate-200 backdrop-blur-sm">
+              <span className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-trine-orange to-trine-lightblue">
+                <Users className="h-3.5 w-3.5 text-white" />
+              </span>
+              Contingent Talent. Enterprise-grade governance.
             </div>
-            <p className="text-xl lg:text-2xl mb-4 text-trine-orange font-semibold">
-              Flexible Workforce Solutions
+
+            <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
+              Contingent Staffing for
+              <span className="bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green bg-clip-text pl-2 text-transparent">
+                modern transformation teams
+              </span>
+            </h1>
+
+            <p className="max-w-xl text-base text-slate-600 dark:text-slate-300 sm:text-lg leading-relaxed">
+              Build an elastic, high-performing workforce without compromising on governance, compliance, or quality.
+              Trine Solutions connects you to curated contingent talent across technology, operations, and change.
             </p>
-            <p className="text-lg lg:text-xl mb-8 opacity-90 leading-relaxed">
-              Access top talent on-demand with our comprehensive contingent staffing services. 
-              Scale your workforce efficiently while we handle the complexity.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="px-8 py-4 bg-gradient-to-r from-trine-orange to-trine-lightblue rounded-full font-semibold hover:shadow-lg hover:shadow-trine-orange/30 transition-all duration-300 hover:scale-105 flex items-center justify-center">
-                Start Hiring
-                <ArrowRight className="w-5 h-5 ml-2" />
+
+            {/* Key points */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-trine-green" />
+                <div>
+                  <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                    Designed for digital & cloud programs
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    From transformation offices to product squads and managed services.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-trine-lightblue" />
+                <div>
+                  <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                    Governance baked into the model
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    Clear engagement structures, SLAs, and ongoing performance management.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center justify-center rounded-full bg-slate-950 dark:bg-white px-7 py-3 text-sm font-semibold text-white dark:text-slate-950 shadow-lg shadow-trine-lightblue/20 transition hover:-translate-y-0.5 hover:bg-slate-800 dark:hover:bg-slate-100"
+              >
+                Start a Contingent Talent Brief
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link to="/services" className="px-8 py-4 border-2 border-white/30 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 flex items-center justify-center">
-                View All Services
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
+                <span className="inline-flex items-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/5 px-3 py-1">
+                  <Clock className="mr-1.5 h-3.5 w-3.5" />
+                  48 hrs shortlist for core roles
+                </span>
+                <Link
+                  to="/services"
+                  className="inline-flex items-center text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white"
+                >
+                  Explore all services
+                  <ArrowRight className="ml-1.5 h-3 w-3" />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Hero panel */}
+          <div className="flex-1">
+            <div className="relative">
+              <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-tr from-trine-orange/40 via-trine-lightblue/20 to-trine-green/40 opacity-60 blur-2xl" />
+              <div className="relative rounded-3xl border border-slate-200 dark:border-white/10 bg-gradient-to-b from-slate-50 dark:from-slate-900/80 via-white dark:via-slate-900/90 to-slate-100 dark:to-slate-950/90 p-6 shadow-2xl backdrop-blur-xl">
+                {/* Top badges */}
+                <div className="mb-6 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                      CONTINGENT TALENT DASHBOARD
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-slate-900 dark:text-slate-100">
+                      At-a-glance view of your extended workforce.
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-900/80 px-3 py-1 text-xs text-trine-green">
+                    <Shield className="mr-1.5 h-3.5 w-3.5" />
+                    Governed
+                  </span>
+                </div>
+
+                {/* Stats */}
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {stats.map((stat, index) => (
+                    <div
+                      key={index}
+                      className="rounded-2xl border border-slate-300 dark:border-white/5 bg-white dark:bg-white/5 p-3.5 text-left shadow-sm"
+                    >
+                      <p className="text-lg font-semibold text-slate-900 dark:text-white">{stat.value}</p>
+                      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pipeline bar */}
+                <div className="mt-6 space-y-3 rounded-2xl border border-slate-300 dark:border-white/5 bg-slate-100 dark:bg-slate-950/40 p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center text-xs font-medium text-slate-800 dark:text-slate-200">
+                      <Users className="mr-1.5 h-3.5 w-3.5 text-trine-lightblue" />
+                      Active contingent pipeline
+                    </span>
+                    <span className="text-[11px] text-slate-600 dark:text-slate-400">Real-time engagement view</span>
+                  </div>
+                  <div className="space-y-2 text-[11px] text-slate-700 dark:text-slate-300">
+                    <div className="flex items-center justify-between">
+                      <span>Technology & Digital</span>
+                      <span className="text-slate-500 dark:text-slate-400">72% capacity</span>
+                    </div>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-slate-300 dark:bg-slate-800">
+                      <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-trine-orange to-trine-lightblue" />
+                    </div>
+
+                    <div className="mt-1 flex items-center justify-between">
+                      <span>Operations & Change</span>
+                      <span className="text-slate-500 dark:text-slate-400">54% capacity</span>
+                    </div>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-slate-300 dark:bg-slate-800">
+                      <div className="h-full w-[54%] rounded-full bg-gradient-to-r from-trine-lightblue to-trine-green" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom CTA */}
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                    <TrendingUp className="h-3.5 w-3.5 text-trine-orange" />
+                    <span>Built for multi-project portfolios</span>
+                  </div>
+                  <Link
+                    to="/consulting/contract-to-hire"
+                    className="inline-flex items-center rounded-full border border-slate-300 dark:border-white/10 px-3 py-1 text-[11px] font-medium text-slate-700 dark:text-slate-100 hover:border-trine-lightblue hover:text-slate-900 dark:hover:text-white"
+                  >
+                    Explore contract-to-hire
+                    <ArrowRight className="ml-1.5 h-3 w-3" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Breadcrumb */}
-      <section className="py-4 bg-gray-50 dark:bg-gray-900">
-        <div className="container">
-          <nav className="flex items-center text-sm">
-            <Link to="/" className="text-gray-600 dark:text-gray-400 hover:text-trine-orange transition-colors">Home</Link>
-            <ArrowRight className="w-4 h-4 mx-2 text-gray-400" />
-            <span className="text-gray-600 dark:text-gray-400">Consulting Services</span>
-            <ArrowRight className="w-4 h-4 mx-2 text-gray-400" />
-            <span className="text-trine-orange font-medium">Contingent Staffing</span>
+      {/* Breadcrumb bar */}
+      <section className="border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950/80">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 text-xs text-slate-600 dark:text-slate-400 lg:px-6 xl:px-0">
+          <nav className="flex items-center gap-2">
+            <Link to="/" className="hover:text-slate-900 dark:hover:text-slate-100">
+              Home
+            </Link>
+            <span className="text-slate-400 dark:text-slate-600">/</span>
+            <span className="hover:text-slate-900 dark:hover:text-slate-100">Consulting Services</span>
+            <span className="text-slate-400 dark:text-slate-600">/</span>
+            <span className="font-medium text-slate-900 dark:text-slate-200">Contingent Staffing</span>
           </nav>
+          <span className="hidden items-center gap-2 sm:inline-flex">
+            <span className="h-1 w-1 rounded-full bg-trine-green" />
+            <span>Enterprise-ready engagement models</span>
+          </span>
         </div>
       </section>
 
-      {/* What is Contingent Staffing */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-                What is <span className="text-trine-orange">Contingent Staffing</span>?
+      {/* Section: What is contingent staffing + value narrative */}
+      <section className="relative py-16 lg:py-20 bg-white dark:bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-start">
+            <div className="space-y-6">
+              <h2 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                A modern approach to
+                <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text pl-2 text-transparent">
+                  contingent staffing
+                </span>
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                Contingent staffing is a flexible workforce strategy that allows organizations to hire 
-                temporary or contract workers to meet specific business needs. Unlike permanent employees, 
-                contingent workers are engaged for defined periods or projects, providing businesses with 
-                agility and cost-effectiveness.
+              <p className="text-sm text-slate-600 dark:text-slate-300 sm:text-base leading-relaxed">
+                Contingent staffing shifts your workforce from a static model to an adaptive one. Instead of forcing
+                every business requirement into a permanent role, you assemble agile teams with a blend of core and
+                contingent talent.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                At Trine Solutions, we specialize in connecting businesses with highly qualified contingent 
-                talent across various industries. Our comprehensive approach ensures you get the right 
-                people with the right skills, exactly when you need them.
+              <p className="text-sm text-slate-600 dark:text-slate-300 sm:text-base leading-relaxed">
+                At Trine Solutions, we operate as an extension of your talent and delivery functions—curating skills,
+                managing engagement, and embedding governance so contingent talent can deliver outcomes, not just fill
+                seats.
               </p>
-              
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center p-6 rounded-2xl bg-gradient-to-br from-trine-orange/10 to-trine-lightblue/10 dark:from-gray-800 dark:to-gray-700">
-                    <div className="text-3xl font-bold text-trine-orange mb-2">{stat.value}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-900/60 p-4">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
+                    WHY IT MATTERS
+                  </p>
+                  <p className="mt-2 text-sm text-slate-800 dark:text-slate-200">
+                    Digital roadmaps, cloud migrations, and transformation programs rarely align neatly to permanent
+                    headcount plans.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-trine-lightblue/40 dark:border-trine-lightblue/20 bg-trine-lightblue/10 dark:bg-gradient-to-br dark:from-trine-lightblue/10 dark:via-slate-900/70 dark:to-slate-950/80 p-4">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-trine-lightblue">
+                    THE TRINE DIFFERENCE
+                  </p>
+                  <p className="mt-2 text-sm text-slate-800 dark:text-slate-100">
+                    We combine talent intelligence, delivery experience, and compliance rigor to make contingent talent
+                    a strategic lever—not a last-minute fix.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Benefits – premium grid */}
+            <div className="space-y-5 rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950/60 p-5 shadow-xl">
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">
+                  CORE ADVANTAGES
+                </p>
+                <span className="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-900/80 px-2.5 py-1 text-[11px] text-slate-700 dark:text-slate-200">
+                  <TrendingUp className="mr-1 h-3 w-3 text-trine-orange" />
+                  Built for scale
+                </span>
+              </div>
+              <div className="space-y-4">
+                {benefits.map((benefit, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-white/5 p-3.5 hover:border-trine-lightblue/40 hover:bg-slate-50 dark:hover:border-trine-lightblue/40 dark:hover:bg-white/10"
+                  >
+                    <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-orange/40 via-trine-lightblue/30 to-trine-green/40">
+                      <benefit.icon className="h-4.5 w-4.5 text-white" />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-50">{benefit.title}</p>
+                        <span className="rounded-full bg-slate-200 dark:bg-slate-950/70 px-2 py-0.5 text-[10px] text-slate-600 dark:text-slate-300">
+                          {benefit.tag}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{benefit.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop"
-                  alt="Team collaboration"
-                  className="w-full h-[400px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-white text-xl font-bold mb-2">Agile Workforce Solutions</h3>
-                  <p className="text-white/90 text-sm">Build the team you need, when you need it</p>
-                </div>
-              </div>
+              <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-400">
+                We design contingent models that align with your HR, finance, and transformation governance.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="container">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-lightblue/10 text-trine-orange font-semibold text-sm mb-4">
-              <TrendingUp className="w-4 h-4 inline mr-2" />
-              Strategic Advantages
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Benefits of <span className="bg-gradient-to-r from-trine-orange to-trine-lightblue bg-clip-text text-transparent">Contingent Staffing</span>
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Discover why leading organizations choose contingent staffing to stay competitive and agile
-            </p>
+      {/* Industries */}
+      <section className="relative border-y border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950/80 py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">
+                INDUSTRY COVERAGE
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                Designed for complex
+                <span className="bg-gradient-to-r from-trine-green to-trine-lightblue bg-clip-text pl-2 text-transparent">
+                  enterprise environments
+                </span>
+              </h2>
+              <p className="mt-3 max-w-xl text-sm text-slate-600 dark:text-slate-300 sm:text-base">
+                Our contingent staffing solutions are tailored for regulated, high-stakes, and fast-moving industries
+                where delivery quality and compliance cannot be compromised.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-trine-green/40 dark:border-trine-green/30 bg-trine-green/20 dark:bg-gradient-to-br dark:from-trine-green/10 dark:via-slate-900/80 dark:to-slate-950/90 px-4 py-3 text-xs text-slate-800 dark:text-slate-100">
+              <p className="font-medium">Embedded with your delivery model</p>
+              <p className="mt-1 text-[11px] text-slate-700 dark:text-slate-300">
+                We work alongside your PMO, HR, and finance to align talent models with portfolio priorities.
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="group relative bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-trine-orange/20 to-trine-lightblue/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-trine-orange/20 to-trine-lightblue/10 flex items-center justify-center mb-6 group-hover:from-trine-orange group-hover:to-trine-lightblue group-hover:shadow-lg transition-all duration-300">
-                    <benefit.icon className="w-8 h-8 text-trine-orange group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-trine-orange transition-colors">{benefit.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{benefit.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="container">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-trine-green/10 to-trine-lightblue/10 text-trine-green font-semibold text-sm mb-4">
-              <Briefcase className="w-4 h-4 inline mr-2" />
-              Diverse Industries
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Industries <span className="bg-gradient-to-r from-trine-green to-trine-lightblue bg-clip-text text-transparent">We Serve</span>
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our contingent staffing solutions span across multiple industries with proven expertise
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {industries.map((industry, index) => (
-              <div key={index} className="group relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 overflow-hidden hover:-translate-y-2">
-                <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-br from-trine-green/20 to-trine-lightblue/20 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-500"></div>
-                <div className="relative z-10">
-                  <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-trine-green/20 to-trine-lightblue/10 flex items-center justify-center mr-4 group-hover:from-trine-green group-hover:to-trine-lightblue group-hover:shadow-lg transition-all duration-300 flex-shrink-0">
-                      <industry.icon className="w-8 h-8 text-trine-green group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-trine-green transition-colors">{industry.name}</h3>
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-3xl border border-slate-300 dark:border-white/5 bg-white dark:bg-gradient-to-br dark:from-slate-900/90 dark:via-slate-950/95 dark:to-slate-950/95 p-5 shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:border-trine-lightblue/40"
+              >
+                <div className="pointer-events-none absolute right-[-40px] top-[-40px] h-40 w-40 rounded-full bg-gradient-to-br from-trine-green/25 via-trine-lightblue/10 to-transparent opacity-70 blur-2xl" />
+                <div className="relative flex items-start gap-3">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-green/40 via-trine-lightblue/40 to-trine-orange/40">
+                    <industry.icon className="h-5 w-5 text-white" />
                   </div>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{industry.roles}</p>
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50">{industry.name}</h3>
+                    <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">{industry.roles}</p>
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400">
+                  <span className="inline-flex items-center gap-1">
+                    <Shield className="h-3 w-3 text-trine-green" />
+                    Governed engagements
+                  </span>
+                  <span className="inline-flex items-center gap-1 opacity-80 group-hover:text-trine-lightblue">
+                    Learn more
+                    <ArrowRight className="h-3 w-3" />
+                  </span>
                 </div>
               </div>
             ))}
@@ -308,98 +505,140 @@ const ContingentStaffing = () => {
         </div>
       </section>
 
-      {/* Our Process */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-trine-orange/10 to-trine-green/10 text-trine-orange font-semibold text-sm mb-4">
-              <Cog className="w-4 h-4 inline mr-2" />
-              5-Step Process
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Our <span className="bg-gradient-to-r from-trine-orange to-trine-green bg-clip-text text-transparent">Process</span>
+      {/* Process */}
+      <section className="relative py-16 lg:py-20 bg-white dark:bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">
+              DELIVERY FRAMEWORK
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+              A structured, transparent
+              <span className="bg-gradient-to-r from-trine-orange to-trine-green bg-clip-text pl-2 text-transparent">
+                5-step process
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A streamlined approach to connecting you with the right talent
+            <p className="mt-3 max-w-2xl mx-auto text-sm text-slate-600 dark:text-slate-300 sm:text-base">
+              From first conversation to sustained performance, our approach is designed to be predictable, transparent,
+              and aligned to your operating model.
             </p>
           </div>
 
           <div className="relative">
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green transform -translate-y-1/2 opacity-30"></div>
-            
-            <div className="grid md:grid-cols-5 gap-8">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-0.5 w-[70%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green opacity-40 lg:block" />
+            <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
               {processSteps.map((step, index) => (
-                <div key={index} className="relative group">
-                  <div className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 text-center border border-gray-100 dark:border-gray-700 group-hover:border-trine-orange/50 relative">
-                    <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-gradient-to-br from-trine-orange to-trine-lightblue rounded-full flex items-center justify-center text-white font-bold text-sm z-10 shadow-lg group-hover:scale-125 transition-transform duration-300">
-                      {index + 1}
+                <div key={index} className="relative">
+                  <div className="relative h-full rounded-3xl border border-slate-300 dark:border-white/8 bg-white dark:bg-slate-950/80 p-5 shadow-md hover:border-trine-lightblue/40">
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-orange/40 via-trine-lightblue/40 to-trine-green/40">
+                        <step.icon className="h-4.5 w-4.5 text-white" />
+                      </div>
+                      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-900 text-[11px] font-semibold text-slate-700 dark:text-slate-100">
+                        {index + 1}
+                      </div>
                     </div>
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-trine-orange/20 to-trine-lightblue/20 flex items-center justify-center mx-auto mb-6 mt-6 group-hover:from-trine-orange group-hover:to-trine-lightblue transition-all duration-300">
-                      <step.icon className="w-8 h-8 text-trine-orange group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-3 text-gray-900 dark:text-white group-hover:text-trine-orange transition-colors">{step.title}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{step.description}</p>
+                    <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50">{step.title}</h3>
+                    <p className="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{step.description}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Frequently Asked <span className="text-trine-lightblue">Questions</span>
-            </h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden">
-                <button
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                >
-                  <span className="text-lg font-semibold text-gray-900 dark:text-white pr-4">{faq.question}</span>
-                  {openFaq === index ? (
-                    <ChevronUp className="w-5 h-5 text-trine-orange flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-trine-orange flex-shrink-0" />
-                  )}
-                </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-6">
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
-                  </div>
-                )}
+          {/* Micro-CTA */}
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-3xl border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950/80 px-4 py-4 text-xs text-slate-600 dark:text-slate-300 sm:flex-row sm:px-6">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-2xl bg-gradient-to-br from-trine-orange/50 via-trine-lightblue/40 to-trine-green/50">
+                <Briefcase className="h-4.5 w-4.5 text-white" />
               </div>
-            ))}
+              <p className="max-w-xl text-[11px] sm:text-xs">
+                We can plug into a single high-priority program or design a multi-tower contingent talent strategy
+                across your portfolio.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center rounded-full border border-slate-400 dark:border-white/15 px-4 py-1.5 text-[11px] font-semibold text-slate-800 dark:text-slate-50 hover:border-trine-lightblue dark:hover:text-white"
+            >
+              Discuss a contingent talent strategy
+              <ArrowRight className="ml-1.5 h-3 w-3" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-trine-orange via-trine-lightblue to-trine-green">
-        <div className="container text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-              Ready to Build Your Flexible Workforce?
+      {/* FAQ */}
+      <section className="relative border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950/85 py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-4 lg:px-6 xl:px-0">
+          <div className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600 dark:text-slate-400">FAQ</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+              Frequently asked
+              <span className="bg-gradient-to-r from-trine-lightblue to-trine-green bg-clip-text pl-2 text-transparent">
+                questions
+              </span>
             </h2>
-            <p className="text-xl text-white/90 mb-10 leading-relaxed">
-              Partner with Trine Solutions for your contingent staffing needs. 
-              Let us help you find the perfect talent to drive your business forward.
+            <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 sm:text-base">
+              Clarity on how contingent staffing works with Trine Solutions, and what to expect at each stage.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 flex items-center justify-center">
-                Get Started Today
-                <ArrowRight className="w-5 h-5 ml-2" />
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={index}
+                  className="overflow-hidden rounded-2xl border border-slate-300 dark:border-white/8 bg-white dark:bg-slate-950/80 transition hover:border-trine-lightblue/40"
+                >
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left sm:px-5 sm:py-5 hover:bg-slate-50 dark:hover:bg-slate-900/50"
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                  >
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-50">{faq.question}</span>
+                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-900/80 text-slate-600 dark:text-slate-200">
+                      {isOpen ? (
+                        <ChevronUp className="h-4 w-4 text-trine-lightblue" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 text-trine-lightblue" />
+                      )}
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <div className="px-4 pb-4 text-sm text-slate-600 dark:text-slate-300 sm:px-5 sm:pb-5">
+                      <p className="text-xs sm:text-sm leading-relaxed">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="mt-10 rounded-3xl border border-trine-lightblue/40 bg-gradient-to-br from-trine-lightblue/20 dark:from-trine-lightblue/10 via-white dark:via-slate-950 to-slate-100 dark:to-slate-950 px-5 py-6 text-center sm:px-8">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+              Ready to design your contingent talent model?
+            </h3>
+            <p className="mt-2 text-xs text-slate-700 dark:text-slate-200 sm:text-sm">
+              Share your current portfolio, hiring challenges, and timelines. We&apos;ll respond with a structured
+              approach—not just profiles.
+            </p>
+            <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-slate-950 dark:bg-white px-6 py-2.5 text-xs font-semibold text-white dark:text-slate-950 shadow-lg shadow-trine-lightblue/30 transition hover:-translate-y-0.5 hover:bg-slate-800 dark:hover:bg-slate-100"
+              >
+                Talk to our consulting team
+                <ArrowRight className="ml-2 h-3.5 w-3.5" />
               </Link>
-              <Link to="/consulting/contract-to-hire" className="px-8 py-4 border-2 border-white/30 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 flex items-center justify-center">
-                Explore Contract-to-Hire
-                <ArrowRight className="w-5 h-5 ml-2" />
+              <Link
+                to="/consulting/contract-to-hire"
+                className="inline-flex items-center justify-center rounded-full border border-slate-400 dark:border-white/20 px-5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-50 hover:border-trine-green dark:hover:text-white"
+              >
+                Explore contract-to-hire options
+                <ArrowRight className="ml-1.5 h-3 w-3" />
               </Link>
             </div>
           </div>
