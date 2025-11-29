@@ -15,6 +15,9 @@ import SEO, { pageSEO, structuredDataSchemas } from '@/components/SEO';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
 
+// Hero background video path
+const HERO_VIDEO_PATH = '/vecteezy_black-geometric-shapes-repeating-3d-rending_43199429.mp4';
+
 // Simplified services for Home page (from shared constants)
 const mockServices = getSimplifiedServices(defaultServices);
 
@@ -300,7 +303,7 @@ const Home = () => {
       playsInline
       className="w-full h-full object-cover"
     >
-      <source src="/vecteezy_black-geometric-shapes-repeating-3d-rending_43199429.mp4" type="video/mp4" />
+      <source src={HERO_VIDEO_PATH} type="video/mp4" />
     </video>
     {/* Overlay for better text readability */}
     <div className="absolute inset-0 bg-black/60"></div>
