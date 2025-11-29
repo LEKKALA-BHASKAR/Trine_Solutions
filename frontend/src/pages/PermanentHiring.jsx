@@ -140,10 +140,10 @@ const PermanentHiring = () => {
   ];
 
   const stats = [
-    { value: "2,000+", label: "Permanent Placements" },
+    { value: "100+", label: "Permanent Placements" },
     { value: "92%", label: "First-Year Retention" },
     { value: "30 Days", label: "Avg. Time to Fill" },
-    { value: "98%", label: "Client Satisfaction" }
+    { value: "92%", label: "Success Rate" }
   ];
 
   const testimonials = [
@@ -430,88 +430,14 @@ const PermanentHiring = () => {
         </div>
       </section>
 
-      {/* Success Stories */}
-      <section className="relative py-16 lg:py-20 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-white/5">
-        <div className="mx-auto max-w-6xl px-4 lg:px-6 xl:px-0">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              Proven
-              <span className="bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text pl-2 text-transparent">
-                Results
-              </span>
-            </h2>
-          </div>
+      {/* Success Stories - Removed */}
 
-          <div className="grid gap-6 lg:grid-cols-3">
-            {successStories.map((story, index) => (
-              <div key={index} className="relative overflow-hidden rounded-3xl bg-white dark:bg-slate-950 p-6 shadow-lg border border-slate-100 dark:border-white/5">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <Award className="h-24 w-24 text-emerald-500" />
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300">
-                      {story.industry}
-                    </span>
-                    <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{story.metric}</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{story.company}</h3>
-                  <div className="space-y-4 text-sm">
-                    <div>
-                      <p className="font-semibold text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider mb-1">Challenge</p>
-                      <p className="text-slate-700 dark:text-slate-300">{story.challenge}</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-emerald-600 dark:text-emerald-400 text-xs uppercase tracking-wider mb-1">Result</p>
-                      <p className="text-slate-700 dark:text-slate-300">{story.result}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Testimonials - Removed */}
 
-      {/* Testimonials */}
+      {/* Bottom CTA */}
       <section className="relative py-16 lg:py-20 bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-4xl px-4 lg:px-6 xl:px-0">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              Client
-              <span className="bg-gradient-to-r from-emerald-500 to-green-500 bg-clip-text pl-2 text-transparent">
-                Testimonials
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="rounded-3xl border border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-900/50 p-6">
-                <Quote className="h-8 w-8 text-emerald-200 dark:text-emerald-900 mb-4" />
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-amber-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900 dark:text-white">{testimonial.name}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{testimonial.position}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="mt-16 rounded-3xl border border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-50 dark:from-emerald-900/20 via-white dark:via-slate-950 to-green-50 dark:to-slate-950 px-6 py-8 text-center shadow-lg">
+          <div className="rounded-3xl border border-emerald-200 dark:border-emerald-800 bg-gradient-to-br from-emerald-50 dark:from-emerald-900/20 via-white dark:via-slate-950 to-green-50 dark:to-slate-950 px-6 py-8 text-center shadow-lg">
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white sm:text-2xl">
               Ready to build your dream team?
             </h3>

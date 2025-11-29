@@ -433,7 +433,7 @@ const Home = () => {
         <div className="container">
           <div className="text-center mb-12">
             <h2 id="partners-title" className="text-3xl font-bold text-trine-orange dark:text-trine-orange mb-4">
-              Trusted Partners
+              Our Clients
             </h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Collaborating with industry leaders to deliver exceptional results
@@ -806,7 +806,21 @@ const Home = () => {
             </div>
           </div>
 
-
+          {/* Bottom Stats Bar */}
+          <div className="mt-16 flex flex-wrap justify-center gap-8 lg:gap-16 animate-on-scroll opacity-0">
+            {[
+              { value: '8+', label: 'Industries Served' },
+              { value: '24/7', label: 'Support Available' },
+              { value: '50+', label: 'Projects Completed' }
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center group">
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-trine-orange via-trine-lightblue to-trine-green bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300 inline-block">
+                  {stat.value}
+                </div>
+                <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -837,7 +851,7 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             {[
               { value: '50+', label: 'Projects Completed', icon: Rocket },
-              { value: '92%', label: 'Client Satisfaction', icon: Heart },
+              { value: '92%', label: 'Success Rate', icon: Heart },
               { value: '$1B+', label: 'Client Revenue Generated', icon: TrendingUp },
             ].map((stat, index) => (
               <div 

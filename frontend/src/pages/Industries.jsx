@@ -200,8 +200,8 @@ const Industries = () => {
           {/* Quick Stats */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto lg:mx-0 lg:max-w-none">
             {[
-              { value: '5+', label: 'Industries' },
-              { value: '20+', label: 'Projects' },
+              { value: '8+', label: 'Industries' },
+              { value: '50+', label: 'Projects' },
               { value: '92%', label: 'Success Rate' },
               { value: '24/7', label: 'Support' }
             ].map((stat, index) => (
@@ -347,8 +347,8 @@ const Industries = () => {
 
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-4xl mx-auto">
             {[
-              { value: '5+', label: 'Industries', icon: Building2 },
-              { value: '20+', label: 'Projects', icon: CheckCircle },
+              { value: '8+', label: 'Industries', icon: Building2 },
+              { value: '50+', label: 'Projects', icon: CheckCircle },
               { value: '92%', label: 'Success Rate', icon: TrendingUp },
               { value: '24/7', label: 'Support', icon: Zap }
             ].map((stat, index) => (

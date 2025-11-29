@@ -33,7 +33,7 @@ const ContractToHiring = () => {
       title: 'Contract Phase',
       description:
         'Candidate begins as a contractor, embedded in your team and delivery environment while both sides evaluate fit.',
-      duration: 'Typically 3–6 months',
+      duration: 'Typically 3-6 months',
     },
     {
       step: '2',
@@ -63,7 +63,7 @@ const ContractToHiring = () => {
       icon: Eye,
       title: 'See Real-World Performance',
       description:
-        'Observe how talent delivers against real priorities—not just how they interview.',
+        'Observe how talent delivers against real priorities - not just how they interview.',
     },
     {
       icon: Target,
@@ -138,25 +138,25 @@ const ContractToHiring = () => {
 
   const timeline = [
     {
-      phase: 'Week 1–2',
+      phase: 'Week 1-2',
       activity: 'Onboarding & Integration',
       color: 'from-trine-orange to-trine-lightblue',
       detail: 'Environment setup, introductions, role clarity, and immediate sprint alignment.',
     },
     {
-      phase: 'Month 1–2',
+      phase: 'Month 1-2',
       activity: 'Skills Assessment & Coaching',
       color: 'from-trine-lightblue to-trine-green',
       detail: 'Observe delivery quality, coach where needed, and confirm role alignment.',
     },
     {
-      phase: 'Month 3–4',
+      phase: 'Month 3-4',
       activity: 'Performance Deep-Dive',
       color: 'from-trine-green to-trine-orange',
       detail: 'Formalize feedback from managers, peers, and stakeholders against defined outcomes.',
     },
     {
-      phase: 'Month 5–6',
+      phase: 'Month 5-6',
       activity: 'Conversion Decision & Offer',
       color: 'from-trine-orange to-trine-green',
       detail: 'Structure the conversion decision, calibrate compensation, and finalize full-time offer.',
@@ -233,7 +233,7 @@ const ContractToHiring = () => {
                   </div>
                   <span className="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-900/80 px-3 py-1 text-[11px] text-trine-lightblue">
                     <Calendar className="mr-1.5 h-3.5 w-3.5" />
-                    3–6 month evaluation
+                    3-6 month evaluation
                   </span>
                 </div>
 
@@ -268,7 +268,7 @@ const ContractToHiring = () => {
                       CANDIDATE VIEW
                     </p>
                     <p>
-                      Experience culture, leadership, and ways of working with full context—then decide on permanence
+                      Experience culture, leadership, and ways of working with full context - then decide on permanence
                       with confidence.
                     </p>
                   </div>
@@ -305,7 +305,7 @@ const ContractToHiring = () => {
 
             <p className="max-w-xl text-sm text-slate-600 dark:text-slate-300 sm:text-base leading-relaxed">
               Instead of relying solely on interviews, contract-to-hire lets you evaluate real performance, team fit,
-              and cultural alignment over time—before making long-term commitments.
+              and cultural alignment over time - before making long-term commitments.
             </p>
 
             <p className="max-w-xl text-xs text-slate-500 dark:text-slate-400 sm:text-sm">
@@ -391,7 +391,7 @@ const ContractToHiring = () => {
                     WHY CANDIDATES VALUE IT
                   </p>
                   <p className="mt-2 text-xs text-slate-800 dark:text-slate-100 sm:text-sm">
-                    Make decisions about long-term roles based on real work, real leadership, and real culture—not just
+                    Make decisions about long-term roles based on real work, real leadership, and real culture - not just
                     interview impressions.
                   </p>
                 </div>
@@ -681,12 +681,12 @@ const ContractToHiring = () => {
         <div className="mx-auto max-w-5xl px-4 text-center lg:px-6 xl:px-0">
           <h2 className="text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
             Ready to make hiring decisions with
-            <span className="pl-2 underline decoration-white/40 underline-offset-4">
+            <span className="pl-2">
               more confidence?
             </span>
           </h2>
           <p className="mt-4 text-sm text-white/90 sm:text-base max-w-3xl mx-auto">
-            Let&apos;s design a contract-to-hire model around your portfolio, roles, and timelines—so every permanent
+            Let&apos;s design a contract-to-hire model around your portfolio, roles, and timelines - so every permanent
             offer is grounded in real performance and real fit.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
