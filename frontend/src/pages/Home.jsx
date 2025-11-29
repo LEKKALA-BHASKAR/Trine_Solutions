@@ -570,16 +570,26 @@ const Home = () => {
           {/* Innovative Vertical Split Layout */}
           <div className="flex flex-col gap-8 lg:gap-10">
             
-            {/* TOP PART - Services Section with Right-to-Left Hover Animation */}
+            {/* TOP PART - Services Section (Styled like Services.jsx Hero) */}
             <div className="group relative animate-on-scroll opacity-0">
-              <div className="relative w-full min-h-[320px] bg-gradient-to-br from-gray-900/90 to-gray-900/60 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
-                {/* Header Accent - Orange Gradient */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-trine-orange via-trine-orange to-trine-lightblue"></div>
+              <div className="relative w-full min-h-[320px] rounded-3xl overflow-hidden">
+                {/* Default Dark Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 to-gray-900/80 backdrop-blur-xl transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+                
+                {/* Hover Background - Services Hero Style (Orange to Light Blue) */}
+                <div className="absolute inset-0 bg-gradient-to-br from-trine-orange via-trine-orange/80 to-trine-lightblue opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">
+                  {/* Floating Animated Blobs */}
+                  <div className="absolute top-10 left-10 w-48 h-48 bg-white/20 rounded-full blur-3xl animate-float"></div>
+                  <div className="absolute bottom-10 right-10 w-56 h-56 bg-trine-green/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+                </div>
+                
+                {/* Border */}
+                <div className="absolute inset-0 rounded-3xl border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"></div>
                 
                 {/* Main Content Container */}
-                <div className="relative h-full flex">
+                <div className="relative h-full flex min-h-[320px]">
                   {/* Left Side - Always Visible Content */}
-                  <div className="w-full lg:w-1/2 p-8 lg:p-10 flex flex-col justify-center transition-all duration-500 ease-out">
+                  <div className="w-full lg:w-1/2 p-8 lg:p-10 flex flex-col justify-center transition-all duration-500 ease-out z-10">
                     {/* Icon Grid */}
                     <div className="flex gap-3 mb-6">
                       {[
@@ -590,7 +600,7 @@ const Home = () => {
                       ].map((item, idx) => (
                         <div 
                           key={idx}
-                          className={`w-11 h-11 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center transform hover:scale-110 transition-all duration-300`}
+                          className={`w-11 h-11 rounded-xl bg-gradient-to-br ${item.color} group-hover:bg-white/20 flex items-center justify-center transform hover:scale-110 transition-all duration-300`}
                         >
                           <item.icon className="w-5 h-5 text-white" />
                         </div>
@@ -601,15 +611,15 @@ const Home = () => {
                       Our Services
                     </h3>
                     
-                    <p className="text-gray-300 mb-6 leading-relaxed max-w-xl">
+                    <p className="text-gray-300 group-hover:text-white/90 mb-6 leading-relaxed max-w-xl transition-colors duration-500">
                       We deliver innovative technology solutions across software development, cloud infrastructure, AI & machine learning, and cybersecurity—empowering businesses to thrive in the digital age.
                     </p>
 
                     {/* CTA Button */}
                     <Link to="/services" className="group/btn inline-flex w-fit">
                       <button className="relative px-8 py-4 rounded-xl overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-trine-orange to-trine-lightblue transition-all duration-300 group-hover/btn:scale-105"></div>
-                        <span className="relative flex items-center gap-2 text-white font-semibold">
+                        <div className="absolute inset-0 bg-gradient-to-r from-trine-orange to-trine-lightblue group-hover:from-white group-hover:to-white transition-all duration-300 group-hover/btn:scale-105"></div>
+                        <span className="relative flex items-center gap-2 text-white group-hover:text-trine-orange font-semibold transition-colors duration-300">
                           View Services
                           <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-300" />
                         </span>
@@ -626,19 +636,19 @@ const Home = () => {
                       ].map((service, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-2 p-2 rounded-lg bg-white/5 border border-white/10"
+                          className="flex items-center gap-2 p-2 rounded-lg bg-white/5 group-hover:bg-white/20 border border-white/10 group-hover:border-white/30 transition-all duration-300"
                         >
-                          <service.icon className="w-4 h-4 text-trine-orange flex-shrink-0" />
+                          <service.icon className="w-4 h-4 text-trine-orange group-hover:text-white flex-shrink-0 transition-colors duration-300" />
                           <span className="text-white text-xs font-medium">{service.name}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Right Side - Slide-in Services List (Right-to-Left Animation) */}
-                  <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out bg-gradient-to-l from-trine-orange/10 via-trine-orange/5 to-transparent">
+                  {/* Right Side - Services List (appears on hover) */}
+                  <div className="hidden lg:flex absolute right-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10">
                     <div className="space-y-4 w-full max-w-sm">
-                      <p className="text-sm font-semibold text-trine-orange uppercase tracking-wider mb-4">Available Services</p>
+                      <p className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Available Services</p>
                       {[
                         { name: 'Custom Software Development', icon: Cpu },
                         { name: 'Cloud & DevOps Solutions', icon: Globe },
@@ -647,11 +657,11 @@ const Home = () => {
                       ].map((service, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/10 hover:border-trine-orange/40 hover:bg-white/10 transition-all duration-300"
+                          className="flex items-center gap-4 p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
                           style={{ transitionDelay: `${idx * 50}ms` }}
                         >
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-trine-orange/20 to-trine-lightblue/20 flex items-center justify-center">
-                            <service.icon className="w-5 h-5 text-trine-orange" />
+                          <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
+                            <service.icon className="w-5 h-5 text-white" />
                           </div>
                           <span className="text-white font-medium text-sm">{service.name}</span>
                         </div>
@@ -659,24 +669,38 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Decorative Corner Element */}
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-trine-orange/15 to-transparent rounded-tl-full pointer-events-none"></div>
               </div>
             </div>
 
-            {/* BOTTOM PART - Consulting Services Section with Left-to-Right Hover Animation */}
+            {/* BOTTOM PART - Consulting Services Section (Styled like ConsultingServices.jsx Hero) */}
             <div className="group relative animate-on-scroll opacity-0" style={{ animationDelay: '0.2s' }}>
-              <div className="relative w-full min-h-[320px] bg-gradient-to-br from-gray-900/90 to-gray-900/60 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
-                {/* Header Accent - Light Blue/Cyan Gradient */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-trine-lightblue via-trine-lightblue to-trine-green"></div>
+              <div className="relative w-full min-h-[320px] rounded-3xl overflow-hidden">
+                {/* Default Dark Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 to-gray-900/80 backdrop-blur-xl transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+                
+                {/* Hover Background - Consulting Hero Style (Blue/Purple/Cyan) */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">
+                  {/* Radial Gradient Overlay */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/10 to-black/20"></div>
+                  {/* Floating Animated Blobs */}
+                  <div className="absolute top-10 left-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-10 right-10 w-44 h-44 bg-cyan-400/20 rounded-full blur-3xl"></div>
+                  <div className="absolute top-1/2 right-1/4 w-36 h-36 bg-purple-400/20 rounded-full blur-3xl"></div>
+                  {/* Grid Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
+                  </div>
+                </div>
+                
+                {/* Border */}
+                <div className="absolute inset-0 rounded-3xl border border-white/10 group-hover:border-white/20 transition-colors duration-500 pointer-events-none"></div>
                 
                 {/* Main Content Container */}
-                <div className="relative h-full flex">
-                  {/* Left Side - Slide-in Consulting Services List (Left-to-Right Animation) */}
-                  <div className="hidden lg:flex absolute left-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 -translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out bg-gradient-to-r from-trine-lightblue/10 via-trine-lightblue/5 to-transparent">
+                <div className="relative h-full flex min-h-[320px]">
+                  {/* Left Side - Consulting Services List (appears on hover) */}
+                  <div className="hidden lg:flex absolute left-0 top-0 bottom-0 w-1/2 items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10">
                     <div className="space-y-3 w-full max-w-sm">
-                      <p className="text-sm font-semibold text-trine-lightblue uppercase tracking-wider mb-4">Consulting Services</p>
+                      <p className="text-sm font-semibold text-cyan-300 uppercase tracking-wider mb-4">Consulting Services</p>
                       {[
                         { name: 'Contingent Staffing', icon: Users },
                         { name: 'Permanent Hiring', icon: Briefcase },
@@ -686,11 +710,11 @@ const Home = () => {
                       ].map((service, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-4 p-3 rounded-xl bg-white/5 border border-white/10 hover:border-trine-lightblue/40 hover:bg-white/10 transition-all duration-300"
+                          className="flex items-center gap-4 p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
                           style={{ transitionDelay: `${idx * 50}ms` }}
                         >
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-trine-lightblue/20 to-trine-green/20 flex items-center justify-center">
-                            <service.icon className="w-5 h-5 text-trine-lightblue" />
+                          <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
+                            <service.icon className="w-5 h-5 text-cyan-300" />
                           </div>
                           <span className="text-white font-medium text-sm">{service.name}</span>
                         </div>
@@ -699,26 +723,26 @@ const Home = () => {
                   </div>
 
                   {/* Right Side - Always Visible Content */}
-                  <div className="w-full lg:w-1/2 lg:ml-auto p-8 lg:p-10 flex flex-col justify-center transition-all duration-500 ease-out">
+                  <div className="w-full lg:w-1/2 lg:ml-auto p-8 lg:p-10 flex flex-col justify-center transition-all duration-500 ease-out z-10">
                     {/* Consulting Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-trine-lightblue/10 border border-trine-lightblue/30 mb-6 w-fit">
-                      <Briefcase className="w-4 h-4 text-trine-lightblue" />
-                      <span className="text-sm font-semibold text-trine-lightblue">Expert Guidance</span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-trine-lightblue/10 group-hover:bg-white/10 border border-trine-lightblue/30 group-hover:border-white/20 mb-6 w-fit transition-all duration-500">
+                      <Briefcase className="w-4 h-4 text-trine-lightblue group-hover:text-cyan-300 transition-colors duration-500" />
+                      <span className="text-sm font-semibold text-trine-lightblue group-hover:text-white transition-colors duration-500">Expert Guidance</span>
                     </div>
 
                     <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
                       Consulting Services
                     </h3>
                     
-                    <p className="text-gray-300 mb-6 leading-relaxed max-w-xl">
+                    <p className="text-gray-300 group-hover:text-white/90 mb-6 leading-relaxed max-w-xl transition-colors duration-500">
                       Our expert consultants provide strategic guidance to help you navigate complex digital transformations, optimize operations, and unlock new growth opportunities for your business.
                     </p>
 
                     {/* CTA Button */}
                     <Link to="/consulting" className="group/btn inline-flex w-fit">
                       <button className="relative px-8 py-4 rounded-xl overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-trine-lightblue to-trine-green transition-all duration-300 group-hover/btn:scale-105"></div>
-                        <span className="relative flex items-center gap-2 text-white font-semibold">
+                        <div className="absolute inset-0 bg-gradient-to-r from-trine-lightblue to-trine-green group-hover:from-white group-hover:to-white transition-all duration-300 group-hover/btn:scale-105"></div>
+                        <span className="relative flex items-center gap-2 text-white group-hover:text-blue-600 font-semibold transition-colors duration-300">
                           Explore Consulting
                           <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-300" />
                         </span>
@@ -736,18 +760,15 @@ const Home = () => {
                       ].map((service, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-center gap-2 p-2 rounded-lg bg-white/5 border border-white/10"
+                          className="flex items-center gap-2 p-2 rounded-lg bg-white/5 group-hover:bg-white/20 border border-white/10 group-hover:border-white/30 transition-all duration-300"
                         >
-                          <service.icon className="w-4 h-4 text-trine-lightblue flex-shrink-0" />
+                          <service.icon className="w-4 h-4 text-trine-lightblue group-hover:text-cyan-300 flex-shrink-0 transition-colors duration-300" />
                           <span className="text-white text-xs font-medium">{service.name}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
-
-                {/* Decorative Corner Element */}
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-trine-lightblue/15 to-transparent rounded-tr-full pointer-events-none"></div>
               </div>
             </div>
           </div>
