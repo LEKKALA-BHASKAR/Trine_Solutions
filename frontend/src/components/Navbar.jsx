@@ -60,7 +60,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               rounded-[30px] px-6 py-4 transition-all duration-500 backdrop-blur-xl border
               ${
                 darkMode
-                  ? 'bg-transparent border-white/10 shadow-xl shadow-black/40'
+                  ? 'bg-transparent border-white/5 shadow-xl shadow-black/40'
                   : 'bg-transparent border-gray-200/50 shadow-lg shadow-gray-300/40'
               }
             `}
@@ -89,7 +89,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                           ? 'bg-gradient-to-r from-trine-orange to-trine-lightblue text-white shadow-md'
                           : darkMode
                           ? 'hover:bg-white/10 hover:text-trine-orange text-white'
-                          : 'hover:bg-trine-orange/10 hover:text-trine-orange text-blue-600'
+                          : 'hover:bg-trine-orange/10 hover:text-trine-orange text-red-600'
                       }
                     `}
                   >
