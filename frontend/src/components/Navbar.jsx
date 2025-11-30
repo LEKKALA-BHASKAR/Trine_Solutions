@@ -60,8 +60,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               rounded-[30px] px-6 py-4 transition-all duration-500 backdrop-blur-xl border
               ${
                 darkMode
-                  ? 'bg-black/50 border-white/10 shadow-xl shadow-black/40'
-                  : 'bg-white/90 border-gray-200 shadow-lg shadow-gray-300/40'
+                  ? 'bg-transparent border-white/10 shadow-xl shadow-black/40'
+                  : 'bg-transparent border-gray-200/50 shadow-lg shadow-gray-300/40'
               }
             `}
           >
@@ -82,14 +82,14 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                    className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-300
                       ${
                         location.pathname === link.path ||
                         (link.path === '/consulting' && isConsultingActive)
                           ? 'bg-gradient-to-r from-trine-orange to-trine-lightblue text-white shadow-md'
                           : darkMode
-                          ? 'hover:bg-white/10 hover:text-trine-orange text-gray-200'
-                          : 'hover:bg-trine-orange/10 hover:text-trine-orange text-gray-700'
+                          ? 'hover:bg-white/10 hover:text-trine-orange text-white'
+                          : 'hover:bg-trine-orange/10 hover:text-trine-orange text-blue-600'
                       }
                     `}
                   >
